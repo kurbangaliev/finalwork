@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="https://www.darrail.com/assets/images/logo.svg"/>
+    <title> Услуги </title>
+    <meta name="description" content="Услуги">
+    <meta name="keywords" content="Услуги">
+    <meta name="title" content="Услуги"/>
+    <link rel="canonical" href="https://www.darrail.com/services">
+    <meta name="csrf-token" content="vYY5b1lsAUI7qeYiJsS0oGRjDV5DCbdDaNW0VC7t">
+    <meta property="og:title" content="Услуги"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Услуги"/>
+    <meta property="og:url" content="https://www.darrail.com/services"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:width" content="300"/>
+    <meta property="og:image:height" content="300"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-touch-events@3.2.2/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" integrity="sha512-NVt7pmp5f+3eWRPO1h4A1gCf4opn4r5z2wS1mi7AaVcTzE9wDJ6RzMqSygjDzYHLp+mAJ2/qzXXDHar6IQwddQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link href="/assets/styles/main.css" rel="stylesheet"/>
+</head>
+<body>
+    <main id="app" ref="infoBox">
+        <header class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="Dar Rail">
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">О Компании</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/services">Услуги</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/sustainableDevelopment">Устойчивое развитие</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/news">Новости</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+
+    <a href="/" class="logo">
+      <img src="https://www.darrail.com/storage/settings/November2021/hPUTsbiQqPdex5OhNgCj.svg" alt="Dar Rail">
+    </a>
+
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  
+  </div>
+  <div class="offcanvas-body">
+
+    <div class="content">
+      <ul class="menu">
+        <li><a  href="https://www.darrail.com/about">О Компании</a></li>
+        <li><a  class="active"  href="https://www.darrail.com/services">Услуги</a></li>
+        
+        <li><a  href="https://www.darrail.com/purchases">Закупки</a></li>        
+        <li><a  href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>        
+        <li><a  href="https://www.darrail.com/news">Новости</a></li>
+        <li><a  href="https://www.darrail.com/contacts">Контакты</a></li>
+      </ul>
+
+      <ul class="lang">
+        <li><a href="/locale/ru"  class="active" >Рус</a></li>
+        <li><a href="/locale/kz" >Қаз</a></li>
+        <li><a href="/locale/en" >Eng</a></li>
+        <li><a href="/locale/ch" >中文</a></li>
+      </ul>
+    </div>
+
+    <div class="feedback">
+      <div class="icon">
+        <img src="https://www.darrail.com/assets/images/icons/call.svg" alt="call">
+      </div>
+      <div class="buttons">
+        <a href="tel:77172399988">+7 (7172) 39 99 88</a>
+        <a href="mailto:info@darrail.com">info@darrail.com</a>
+      </div>
+    </div>
+
+  </div>
+</div>        
+
+<section class="about-banner">
+  <div class="image">
+    <img src="https://www.darrail.com/assets/images/bg_uslugi.jpg" alt="image">
+  </div>
+  <div class="title">
+    <span>Услуги</span>
+  </div>
+</section>
+
+<section class="services-page">
+  
+  <div class="container">
+    <div class="text">
+      Клиентоориентированность одно из основных ценностей ТОО «DAR RAIL».      <br><br>
+      Ведь именно благодаря надежным партнерским отношениям между людьми и компаниями, увеличивается эффект сотрудничества, объем и качество предоставляемых услуг.      <br><br>
+      Вне зависимости от того, каким будет ваш запрос, - услуги по перевозки грузов, предоставление вагонов под перевозку или другое, вы всегда получите своевременный и профессиональный ответ и помощь в решении от специалистов нашей компании.    </div>
+
+    <div class="items">            
+            <div class="item" id="item-1">
+        <div class="number">
+                      01
+                  </div>
+        <div class="info">
+          <div class="icon">
+            <img src="https://www.darrail.com/storage/services/October2021/z8cvHWbK0AHbnXZi0FQr.svg" alt="Перевозка грузов железнодорожным транспортом ">
+          </div>
+          <div class="name">
+            Перевозка грузов железнодорожным транспортом 
+          </div>
+          <div class="text">
+            <p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; line-height: 14.65pt; background: #F8F8F8;"><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">Перевозка грузов железнодорожным транспортом&nbsp;с обеспечением собственными локомотивами и собственными подвижным составом.<br /><br />ТОО &laquo;DAR RAIL&raquo; является лицензированным железнодорожным перевозчиком в Республике Казахстан, ориентированным на перевозку массовых грузов, включая перевозки предприятий, входящих в ERG.<br style="mso-special-character: line-break;" /><!-- [if !supportLineBreakNewLine]--><br style="mso-special-character: line-break;" /><!--[endif]--></span></p>
+<p class="MsoNormal" style="line-height: 14.65pt; background: #F8F8F8; margin: 0cm 0cm .0001pt 36.0pt;"><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">Перевозки DAR RAIL в цифрах:</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-indent: -18.0pt; line-height: 14.65pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">перевезено за 2021 год &ndash; 24,6 млн. тонн;</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-indent: -18.0pt; line-height: 14.65pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">перевезено за 2022 год &ndash; 26,4 млн. тонн.</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-indent: -18.0pt; line-height: 14.65pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">перевезено за 202</span><span lang="RU" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-ansi-language: RU; mso-fareast-language: #0C00;">3</span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"> год &ndash; 2</span><span lang="RU" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-ansi-language: RU; mso-fareast-language: #0C00;">8</span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">,</span><span lang="RU" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-ansi-language: RU; mso-fareast-language: #0C00;">1</span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"> млн. тонн.</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-indent: -18.0pt; line-height: 14.65pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">перевезено</span><span lang="RU" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-ansi-language: RU; mso-fareast-language: #0C00;"> за </span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">202</span><span lang="RU" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-ansi-language: RU; mso-fareast-language: #0C00;">4</span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"> год</span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"> &ndash; 28</span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">,9</span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"> млн. тонн.</span></p>
+          </div>
+        </div>
+        <div class="image">
+          <img src="https://www.darrail.com/storage/services/November2021/Y1UkKKxizdP6rP40cXqV.jpg" alt="Перевозка грузов железнодорожным транспортом ">
+        </div>
+      </div>
+             <div class="item" id="item-2">
+        <div class="number">
+                      02
+                  </div>
+        <div class="info">
+          <div class="icon">
+            <img src="https://www.darrail.com/storage/services/October2021/udpLNShZYzBsZwijvUvu.svg" alt="Экспедирование грузов, перевозимых железнодорожным транспортом">
+          </div>
+          <div class="name">
+            Экспедирование грузов, перевозимых железнодорожным транспортом
+          </div>
+          <div class="text">
+            <p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align: justify; line-height: 16.9pt; background: #F8F8F8;"><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">ТОО DAR RAIL предлагает своим клиентам гибкие и выгодные условия экспедирования грузов, перевозимых железнодорожным транспортом в необходимых клиенту объемах и направлению перевозок.<br style="mso-special-character: line-break;" /><!-- [if !supportLineBreakNewLine]--><br style="mso-special-character: line-break;" /><!--[endif]--></span></p>
+<p class="MsoNormal" style="line-height: 16.9pt; background: #F8F8F8; margin: 0cm 0cm .0001pt 36.0pt;"><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">Экспедирование в цифрах:</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-align: justify; text-indent: -18.0pt; line-height: 16.9pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">за 2020 год организована перевозка &ndash; 79,5 тыс. вагонов и 19 тыс. контейнеров (6,4 млн. тонн);</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-align: justify; text-indent: -18.0pt; line-height: 16.9pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">в 2021 году организована перевозка &ndash; 91 тыс. вагонов и 17,3 тыс. контейнеров (6,7 млн. тонн).</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-align: justify; text-indent: -18.0pt; line-height: 16.9pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">за 2022 год организована перевозка - 78,4 тыс. вагонов и 31,1 тыс. контейнеров (6 млн. тонн)</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-align: justify; text-indent: -18.0pt; line-height: 16.9pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">в 2023 году организована перевозка &ndash; 93,5 тыс. вагонов и 32,4 тыс. контейнеров (6,9 млн. тонн).</span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; margin-left: 51.0pt; text-align: justify; text-indent: -18.0pt; line-height: 16.9pt; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; background: #F8F8F8;"><!-- [if !supportLists]--><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Symbol; mso-fareast-font-family: Symbol; mso-bidi-font-family: Symbol; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;"><span style="mso-list: Ignore;">&middot;<span style="font: 7.0pt 'Times New Roman';">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></span></span><span lang="ru-KZ" style="font-size: 10.0pt; font-family: Montserrat; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; color: black; mso-themecolor: text1; mso-fareast-language: #0C00;">в 2024 году организована перевозка - 106,6 тыс. вагонов и 36,7 тыс. контейнеров (7,8 млн. тонн).</span></p>
+          </div>
+        </div>
+        <div class="image">
+          <img src="https://www.darrail.com/storage/services/November2021/hcxvYvy4RQaq9ep8DNUH.jpg" alt="Экспедирование грузов, перевозимых железнодорожным транспортом">
+        </div>
+      </div>
+             <div class="item" id="item-3">
+        <div class="number">
+                      03
+                  </div>
+        <div class="info">
+          <div class="icon">
+            <img src="https://www.darrail.com/storage/services/October2021/BYIyvg8AioPX71T4wueR.svg" alt="Организация мультимодальных и контейнерных перевозок, включая международные с перевалкой в иностранных портах ">
+          </div>
+          <div class="name">
+            Организация мультимодальных и контейнерных перевозок, включая международные с перевалкой в иностранных портах 
+          </div>
+          <div class="text">
+            <p>Компания предлагает клиентам сервис по доставке контейнеров до портов Китая в соответсвии с гибкой тарифной политикой.</p>
+          </div>
+        </div>
+        <div class="image">
+          <img src="https://www.darrail.com/storage/services/November2021/d4wOxyNp87I6cKM1vwH6.jpg" alt="Организация мультимодальных и контейнерных перевозок, включая международные с перевалкой в иностранных портах ">
+        </div>
+      </div>
+             <div class="item" id="item-4">
+        <div class="number">
+                      04
+                  </div>
+        <div class="info">
+          <div class="icon">
+            <img src="https://www.darrail.com/storage/services/November2021/Rn9EnhogP7HWMpQzowap.svg" alt="Предоставление железнодорожного подвижного состава под перевозку ">
+          </div>
+          <div class="name">
+            Предоставление железнодорожного подвижного состава под перевозку 
+          </div>
+          <div class="text">
+            <p style="text-align: justify;">DAR RAIL наряду с предоставлением услуг по перевозкам грузов имеет возможность предоставлять дополнительную услугу - услуги по обеспечению перевозок необходимым количеством железнодорожного подвижного состава (полувагонов, крытых вагонов, платформ, специализированных вагонов).&nbsp;</p>
+          </div>
+        </div>
+        <div class="image">
+          <img src="https://www.darrail.com/storage/services/November2021/MS0wlyfSA4QqyBrQvt0d.jpg" alt="Предоставление железнодорожного подвижного состава под перевозку ">
+        </div>
+      </div>
+             <div class="item" id="item-5">
+        <div class="number">
+                      05
+                  </div>
+        <div class="info">
+          <div class="icon">
+            <img src="https://www.darrail.com/storage/services/October2021/auQvWdGtIDYO0PkgJTHb.svg" alt="Предоставление услуг локомотивной тяги ">
+          </div>
+          <div class="name">
+            Предоставление услуг локомотивной тяги 
+          </div>
+          <div class="text">
+            <p style="text-align: justify;">Наряду с предоставлением услуг по перевозкам грузов Компания имеет возможность предоставлять дополнительную услугу - услуги локомотивной тяги имеющимся парком.</p>
+          </div>
+        </div>
+        <div class="image">
+          <img src="https://www.darrail.com/storage/services/November2021/xSBOUObXEMSFm5pNc7tu.jpg" alt="Предоставление услуг локомотивной тяги ">
+        </div>
+      </div>
+           </div>
+  </div>
+
+</section>
+        <footer class="footer">
+  <div class="container footer-top">
+    <div class="content">
+      <a href="/" class="logo">
+        <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
+      </a>
+      <ul class="menu">
+        <!-- <li class="btn-group hover-show">
+          <div class="dropdown-toggle" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            О компании
+          </div>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuClickableInside">
+            <li><a class="dropdown-item" href="history.html" @click="tab2">История компании</a></li>
+            <li><a class="dropdown-item" href="mission.html" @click="tab3">Миссия и цели</a></li>
+            <li><a class="dropdown-item" href="management.html" @click="tab4">Руководство</a></li>
+            <li><a class="dropdown-item" href="quality.html" @click="tab5">Управление качеством</a></li>
+            <li><a class="dropdown-item" href="security.html" @click="tab6">Безопасность</a></li>
+            <li><a class="dropdown-item" href="tcc.html" @click="tab7">ЦУП</a></li>
+            <li><a class="dropdown-item" href="staff.html" @click="tab8">Персонал</a></li>
+          </ul>
+        </li> -->
+        <li><a href="https://www.darrail.com/about">О Компании</a></li>
+        <li><a href="https://www.darrail.com/services">Услуги</a></li>
+        
+        <li><a href="https://www.darrail.com/purchases">Закупки</a></li>        
+        <li><a href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>
+        <li><a href="https://www.darrail.com/news">Новости</a></li>
+        <li><a href="https://www.darrail.com/contacts">Контакты</a></li>
+      </ul>
+      <div class="network">
+                  <a href="https://www.facebook.com" class="icon">
+            <img src="https://www.darrail.com/storage/contacts/October2021/v2iSwe2Kq5QVHlDZQA9A.svg" alt="Facebook">
+          </a>
+                  <a href="https://www.instagram.com" class="icon">
+            <img src="https://www.darrail.com/storage/contacts/October2021/9qRxDGt0UpL32OoRq4k1.svg" alt="Instagram">
+          </a>
+              
+      </div>
+    </div>
+    <div class="content text">
+      Грузовые перевозки собственным парком локомотивной тяги     </div>
+  </div>
+  <div class="footer-hr"></div>
+  <div class="container footer-bottom">
+    <div class="text">© 2021 ТОО «Dar Rail»</div> 
+    <a href="#">Политика обработки персональных данных</a>
+    <a href="https://i-marketing.kz"><img src="https://www.darrail.com/assets/images/logo-im.svg" alt="i-marketing"></a>
+  </div>
+
+</footer>        <div class="modal fade" id="modalClick" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        algo
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal start -->
+<div class="modal fade" id="appModal" tabindex="-1" aria-labelledby="appModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Связаться с нами</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="requestFor" action="https://www.darrail.com/feedback" method="POST">
+        <input type="hidden" name="_token" value="vYY5b1lsAUI7qeYiJsS0oGRjDV5DCbdDaNW0VC7t">        <div class="modal-body">          
+            <div class="mb-3">
+              <label for="name" class="col-form-label">Имя:</label>
+              <input type="text" name="name" id="name" class="form-control"  required>
+              <label for="number" class="col-form-label">Номер телефона:</label>
+              <input type="tel" name="phone" id="number" class="form-control"  required>
+              <label for="email" class="col-form-label">E-mail:</label>
+              <input type="text" name="email" id="email" class="form-control" required>
+              <input type="hidden" name="page" value="">
+              <input type="hidden" name="url" value="https://www.darrail.com/services">
+            </div>         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-danger">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
+
+<!-- modal thanks start -->
+<div class="modal fade" id="m-thanks" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                   Спасибо!                </div>
+                <div class="text-center">
+                    Ваша заявка отправлена.                    Мы свяжемся с вами в ближайшее время.                </div>               
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal thanks end -->
+
+
+
+
+
+
+
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample-navbar" aria-labelledby="offcanvasExample-navbarLabel">
+    <div class="offcanvas-header">
+      <a href="index.html" class="logo">
+        <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
+      </a>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="offcanvas-body">
+        <ul>
+          <li><a href="/about" >О компании</a></li>
+          <li><a href="/history" >История компании</a></li>
+          <li><a href="/mission" >Миссия и цели</a></li>
+          <li><a href="/management" >Руководство</a></li>
+          <li><a href="/quality" >Управление качеством</a></li>
+          <li><a href="/security" >Безопасность</a></li>
+          <li><a href="/tcc" >ЦУП</a></li>
+          <li><a href="/staff" >Персонал</a></li>
+          <li><a href="/tradeunion" >Профсоюз</a></li>
+          <li><a href="/privacy" >Политика конфиденциальности</a></li>          
+          <li><a href="/transportation" >Схема организации грузоперевозок</a></li>
+          <li><a href="https://www.darrail.com/storage/forms/survey/customer_satisfaction_survey.pdf" target="_blank" >Анкета удовлетворенности клиента</a></li>          
+<!--          <li><a href="/survey" >Анкета удовлетворенности клиента</a></li>          -->
+        </ul>
+    </div>
+  </div>    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script> 
+<script src="/assets/js/carousel.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script> 
+<script src="/assets/js/script.js"></script>
+<!-- Google tag (gtag.js) -->
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7LSENC4QL9');
+</script>    </body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="https://www.darrail.com/assets/images/logo.svg"/>
+    <title> Устойчивое развитие </title>
+    <meta name="description" content="Устойчивое развитие">
+    <meta name="keywords" content="Устойчивое развитие">
+    <meta name="title" content="Устойчивое развитие"/>
+    <link rel="canonical" href="https://www.darrail.com/sustainableDevelopment">
+    <meta name="csrf-token" content="vYY5b1lsAUI7qeYiJsS0oGRjDV5DCbdDaNW0VC7t">
+    <meta property="og:title" content="Устойчивое развитие"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Устойчивое развитие"/>
+    <meta property="og:url" content="https://www.darrail.com/sustainableDevelopment"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:width" content="300"/>
+    <meta property="og:image:height" content="300"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-touch-events@3.2.2/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" integrity="sha512-NVt7pmp5f+3eWRPO1h4A1gCf4opn4r5z2wS1mi7AaVcTzE9wDJ6RzMqSygjDzYHLp+mAJ2/qzXXDHar6IQwddQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link href="/assets/styles/main.css" rel="stylesheet"/>
+</head>
+<body>
+    <main id="app" ref="infoBox">
+
+        <header class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo.svg" alt="Dar Rail">
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">О Компании</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/services">Услуги</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/sustainableDevelopment">Устойчивое развитие</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/news">Новости</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+
+    <a href="/" class="logo">
+      <img src="https://www.darrail.com/storage/settings/November2021/hPUTsbiQqPdex5OhNgCj.svg" alt="Dar Rail">
+    </a>
+
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  
+  </div>
+  <div class="offcanvas-body">
+
+    <div class="content">
+      <ul class="menu">
+        <li><a  href="https://www.darrail.com/about">О Компании</a></li>
+        <li><a  href="https://www.darrail.com/services">Услуги</a></li>
+        
+        <li><a  href="https://www.darrail.com/purchases">Закупки</a></li>        
+        <li><a  class="active"  href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>        
+        <li><a  href="https://www.darrail.com/news">Новости</a></li>
+        <li><a  href="https://www.darrail.com/contacts">Контакты</a></li>
+      </ul>
+
+      <ul class="lang">
+        <li><a href="/locale/ru"  class="active" >Рус</a></li>
+        <li><a href="/locale/kz" >Қаз</a></li>
+        <li><a href="/locale/en" >Eng</a></li>
+        <li><a href="/locale/ch" >中文</a></li>
+      </ul>
+    </div>
+
+    <div class="feedback">
+      <div class="icon">
+        <img src="https://www.darrail.com/assets/images/icons/call.svg" alt="call">
+      </div>
+      <div class="buttons">
+        <a href="tel:77172399988">+7 (7172) 39 99 88</a>
+        <a href="mailto:info@darrail.com">info@darrail.com</a>
+      </div>
+    </div>
+
+  </div>
+</div>        <section class="about-banner">
+  <div class="image">
+    <img src="https://www.darrail.com/assets/images/about-bg.jpg" alt="image">
+  </div>
+  <div class="title">
+    <span>УСТОЙЧИВОЕ РАЗВИТИЕ, ESG, КОРПОРАТИВНАЯ ОТВЕСТВЕННОСТЬ</span>
+  </div>
+</section>
+
+<section class="services-page">
+    <div class="container">
+        <div class="content">
+                            <div class="content">
+                    <div class="title">
+                        Наше видение
+                    </div>
+                    <div class="text">
+                        <p>Мы стремимся быть частью позитивных глобальных изменений, обеспечивая устойчивое развитие через ответственное ведение бизнеса, инновации и партнёрство. Мы верим, что рост и экологическая ответственность должны идти рука об руку.</p>
+<div class="row g-3">
+<div class="col">
+<div class="alert alert-light d-flex align-items-center" role="alert"><img src="https://www.darrail.com/storage/image-texts/July2025/pdf-256x256.png" alt="" width="64" height="64" />
+<div>
+<h6><strong>Отчет об устойчивом развитии</strong></h6>
+<p>Отчет об устойчивом развитии 2023</p>
+</div>
+</div>
+</div>
+<div class="col">
+<div class="alert alert-light d-flex align-items-center" role="alert"><img src="https://www.darrail.com/storage/image-texts/July2025/pdf-256x256.png" alt="" width="64" height="64" />
+<div>
+<h6><strong>Отчет об устойчивом развитии</strong></h6>
+<p>Отчет об устойчивом развитии 2024</p>
+</div>
+</div>
+</div>
+</div>
+                    </div>
+                </div>
+                <br/>
+                            <div class="content">
+                    <div class="title">
+                        Внутренние нормативные документы
+                    </div>
+                    <div class="text">
+                        <p>Для реализации принципов устойчивого развития в ТОО &laquo;DAR RAIL&raquo; внедрён комплекс внутренних нормативных документов, охватывающий все ключевые направления ESG &mdash; экология, общество, корпоративное управление. Ниже представлены документы, сгруппированные по соответствующим категориям.</p>
+<p>&nbsp;</p>
+<div class="row">
+<div class="col">
+<h6>Environmental (Экологические аспекты)</h6>
+<p>&nbsp;</p>
+<ul>
+<li>
+<p>Политика в области Экологического менеджмента</p>
+</li>
+</ul>
+</div>
+<div class="col">
+<h6>Governance (Корпоративное управление)</h6>
+<p>&nbsp;</p>
+<ul>
+<li>
+<p>Положение по урегулированию трудовых споров</p>
+</li>
+<li>
+<p>Политика противодействия коррупции</p>
+</li>
+<li>
+<p>Положение о рабочих группах по ESG</p>
+</li>
+</ul>
+</div>
+<div class="col">
+<h6>Social (Социальные аспекты)</h6>
+<p>&nbsp;</p>
+<ul>
+<li>
+<p>Положение в области безопасности и охраны труда</p>
+</li>
+<li>
+<p>Кадровая политика</p>
+</li>
+<li>
+<p>Кодекс поведения поставщика</p>
+</li>
+<li>
+<p>Политика в области качества и безопасности продукции</p>
+</li>
+<li>
+<p>Политика по взаимодействию с заинтересованными сторонами</p>
+</li>
+</ul>
+</div>
+</div>
+                    </div>
+                </div>
+                <br/>
+                            <div class="content">
+                    <div class="title">
+                        
+                    </div>
+                    <div class="text">
+                        <p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.darrail.com/storage/image-texts/July2025/map_stakeholders_1024.png" alt="" width="780" /></p>
+<div class="row g-3">
+<div class="col">
+<ul>
+<li>
+<p>ТОО &laquo;DAR RAIL&raquo;, являясь крупнейшим частным перевозчиком грузов в Республике Казахстан, играет существенную роль в решении важнейших экономических и социальных задач, в том числе в области развития бизнеса. Надежная и эффективная работа Компании способствует территориальному и социально - экономическому единству страны, развитию и углублению межрегиональных связей, улучшению транспортной обеспеченности.</p>
+</li>
+<li>
+<p>Мы определяем заинтересованных сторон как тех, кто заинтересован или обеспокоен в ТОО &laquo;DAR RAIL&raquo;, кто одновременно подвержен его влиянию и может оказывать влияние на саму Компанию. Таким образом, заинтересованные стороны, это широкий круг лиц, групп, учреждений и организаций (неполный список), которые могут влиять на процесс принятия решений в Компании и, что более важно, на результаты.</p>
+</li>
+<li>
+<p>Компания определила полный перечень заинтересованных сторон, с которыми осуществляет взаимодействие в процессе своей деятельности, с описанием вклада заинтересованных сторон, их интересов и методов взаимодействия.</p>
+</li>
+</ul>
+</div>
+<div class="col">
+<p>Успех в реализации нашего Видения и Ценностей очевиден, когда мы оправдываем самые высокие ожидания наших десяти групп заинтересованных сторон и когда:</p>
+<ul>
+<li>
+<p>Нашим Клиентам легко вести с нами бизнес, поскольку они получают надежное и своевременное обслуживание за счет выполнения срока доставки груза, точную и актуальную информацию о своем грузе и наилучшую стоимость транспортировки.</p>
+</li>
+<li>
+<p>Наши Работники работают в безопасной и надежной среде, нацелены на постоянное совершенствование, пользуются возможностями личностного и профессионального роста, доступными всем членам команды, и гордятся своей связью с ТОО &laquo;DAR RAIL&raquo;.</p>
+</li>
+<li>
+<p>Наши Учредители получают финансовую прибыль, благодаря динамичному росту доходов и операционным показателям ТОО &laquo;DAR RAIL&raquo;, а также доходности инвестированного капитала.</p>
+</li>
+<li>
+<p>Сообщества (общественные организации), которым мы служим, выигрывают от нашего внимания к их интересам и окружающей среде в целом, от нашего соблюдения самых высоких правовых и этических стандартов, а также от участия ТОО &laquo;DAR RAIL&raquo; и наших работников в общественной деятельности.</p>
+</li>
+</ul>
+</div>
+</div>
+                    </div>
+                </div>
+                <br/>
+                            <div class="content">
+                    <div class="title">
+                        Каналы коммуникации с заинтересованными сторонами:
+                    </div>
+                    <div class="text">
+                        <div class="row g-3">
+<div class="col">
+<ul>
+<li>1) Корпоративный Веб-сайт DAR RAIL</li>
+<li>2) Пресс-релизы и ответы на запросы СМИ</li>
+<li>3) Социальные сети</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>4) Годовая отчетность Компании</li>
+<li>5) Персональные и общие встречи</li>
+<li>6) Форумы, конференции и отраслевые мероприятия</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>7) Опросы и анкетирование заинтересованных сторон</li>
+<li>8) А также иные каналы обратной связи</li>
+</ul>
+</div>
+</div>
+                    </div>
+                </div>
+                <br/>
+                    </div>
+    </div>
+</section>
+        <footer class="footer">
+  <div class="container footer-top">
+    <div class="content">
+      <a href="/" class="logo">
+        <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
+      </a>
+      <ul class="menu">
+        <!-- <li class="btn-group hover-show">
+          <div class="dropdown-toggle" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            О компании
+          </div>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuClickableInside">
+            <li><a class="dropdown-item" href="history.html" @click="tab2">История компании</a></li>
+            <li><a class="dropdown-item" href="mission.html" @click="tab3">Миссия и цели</a></li>
+            <li><a class="dropdown-item" href="management.html" @click="tab4">Руководство</a></li>
+            <li><a class="dropdown-item" href="quality.html" @click="tab5">Управление качеством</a></li>
+            <li><a class="dropdown-item" href="security.html" @click="tab6">Безопасность</a></li>
+            <li><a class="dropdown-item" href="tcc.html" @click="tab7">ЦУП</a></li>
+            <li><a class="dropdown-item" href="staff.html" @click="tab8">Персонал</a></li>
+          </ul>
+        </li> -->
+        <li><a href="https://www.darrail.com/about">О Компании</a></li>
+        <li><a href="https://www.darrail.com/services">Услуги</a></li>
+        
+        <li><a href="https://www.darrail.com/purchases">Закупки</a></li>        
+        <li><a href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>
+        <li><a href="https://www.darrail.com/news">Новости</a></li>
+        <li><a href="https://www.darrail.com/contacts">Контакты</a></li>
+      </ul>
+      <div class="network">
+                  <a href="https://www.facebook.com" class="icon">
+            <img src="https://www.darrail.com/storage/contacts/October2021/v2iSwe2Kq5QVHlDZQA9A.svg" alt="Facebook">
+          </a>
+                  <a href="https://www.instagram.com" class="icon">
+            <img src="https://www.darrail.com/storage/contacts/October2021/9qRxDGt0UpL32OoRq4k1.svg" alt="Instagram">
+          </a>
+              
+      </div>
+    </div>
+    <div class="content text">
+      Грузовые перевозки собственным парком локомотивной тяги     </div>
+  </div>
+  <div class="footer-hr"></div>
+  <div class="container footer-bottom">
+    <div class="text">© 2021 ТОО «Dar Rail»</div> 
+    <a href="#">Политика обработки персональных данных</a>
+    <a href="https://i-marketing.kz"><img src="https://www.darrail.com/assets/images/logo-im.svg" alt="i-marketing"></a>
+  </div>
+
+</footer>        <div class="modal fade" id="modalClick" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        algo
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal start -->
+<div class="modal fade" id="appModal" tabindex="-1" aria-labelledby="appModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Связаться с нами</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="requestFor" action="https://www.darrail.com/feedback" method="POST">
+        <input type="hidden" name="_token" value="vYY5b1lsAUI7qeYiJsS0oGRjDV5DCbdDaNW0VC7t">        <div class="modal-body">          
+            <div class="mb-3">
+              <label for="name" class="col-form-label">Имя:</label>
+              <input type="text" name="name" id="name" class="form-control"  required>
+              <label for="number" class="col-form-label">Номер телефона:</label>
+              <input type="tel" name="phone" id="number" class="form-control"  required>
+              <label for="email" class="col-form-label">E-mail:</label>
+              <input type="text" name="email" id="email" class="form-control" required>
+              <input type="hidden" name="page" value="">
+              <input type="hidden" name="url" value="https://www.darrail.com/sustainableDevelopment">
+            </div>         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-danger">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
+
+<!-- modal thanks start -->
+<div class="modal fade" id="m-thanks" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                   Спасибо!                </div>
+                <div class="text-center">
+                    Ваша заявка отправлена.                    Мы свяжемся с вами в ближайшее время.                </div>               
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal thanks end -->
+
+
+
+
+
+
+
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample-navbar" aria-labelledby="offcanvasExample-navbarLabel">
+    <div class="offcanvas-header">
+      <a href="index.html" class="logo">
+        <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
+      </a>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="offcanvas-body">
+        <ul>
+          <li><a href="/about" >О компании</a></li>
+          <li><a href="/history" >История компании</a></li>
+          <li><a href="/mission" >Миссия и цели</a></li>
+          <li><a href="/management" >Руководство</a></li>
+          <li><a href="/quality" >Управление качеством</a></li>
+          <li><a href="/security" >Безопасность</a></li>
+          <li><a href="/tcc" >ЦУП</a></li>
+          <li><a href="/staff" >Персонал</a></li>
+          <li><a href="/tradeunion" >Профсоюз</a></li>
+          <li><a href="/privacy" >Политика конфиденциальности</a></li>          
+          <li><a href="/transportation" >Схема организации грузоперевозок</a></li>
+          <li><a href="https://www.darrail.com/storage/forms/survey/customer_satisfaction_survey.pdf" target="_blank" >Анкета удовлетворенности клиента</a></li>          
+<!--          <li><a href="/survey" >Анкета удовлетворенности клиента</a></li>          -->
+        </ul>
+    </div>
+  </div>    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script> 
+<script src="/assets/js/carousel.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script> 
+<script src="/assets/js/script.js"></script>
+<!-- Google tag (gtag.js) -->
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7LSENC4QL9');
+</script>    </body>
+</html>

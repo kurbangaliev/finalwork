@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="https://www.darrail.com/assets/images/logo.svg"/>
+    <title> Новости </title>
+    <meta name="description" content="Новости">
+    <meta name="keywords" content="Новости">
+    <meta name="title" content="Новости"/>
+    <link rel="canonical" href="/news">
+    <meta name="csrf-token" content="vYY5b1lsAUI7qeYiJsS0oGRjDV5DCbdDaNW0VC7t">
+    <meta property="og:title" content="Новости"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Новости"/>
+    <meta property="og:url" content="https://www.darrail.com/news"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:width" content="300"/>
+    <meta property="og:image:height" content="300"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue2-touch-events@3.2.2/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" integrity="sha512-NVt7pmp5f+3eWRPO1h4A1gCf4opn4r5z2wS1mi7AaVcTzE9wDJ6RzMqSygjDzYHLp+mAJ2/qzXXDHar6IQwddQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+  />
+  <link href="/assets/styles/main.css" rel="stylesheet"/>
+</head>
+<body>
+    <main id="app" ref="infoBox">
+      <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a href="/" class="logo">
+            <img src="/assets/images/logo.svg" alt="Dar Rail">
+          </a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">О Компании</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/services">Услуги</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sustainableDevelopment">Устойчивое развитие</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="/news">Новости</a></li>
+              <li class="nav-item"><a class="nav-link" href="/contacts">Контакты</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+
+    <a href="/" class="logo">
+      <img src="https://www.darrail.com/storage/settings/November2021/hPUTsbiQqPdex5OhNgCj.svg" alt="Dar Rail">
+    </a>
+
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  
+  </div>
+  <div class="offcanvas-body">
+
+    <div class="content">
+      <ul class="menu">
+        <li><a  href="https://www.darrail.com/about">О Компании</a></li>
+        <li><a  href="https://www.darrail.com/services">Услуги</a></li>
+        
+        <li><a  href="https://www.darrail.com/purchases">Закупки</a></li>        
+        <li><a  href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>        
+        <li><a  class="active"  href="https://www.darrail.com/news">Новости</a></li>
+        <li><a  href="https://www.darrail.com/contacts">Контакты</a></li>
+      </ul>
+
+      <ul class="lang">
+        <li><a href="/locale/ru"  class="active" >Рус</a></li>
+        <li><a href="/locale/kz" >Қаз</a></li>
+        <li><a href="/locale/en" >Eng</a></li>
+        <li><a href="/locale/ch" >中文</a></li>
+      </ul>
+    </div>
+
+    <div class="feedback">
+      <div class="icon">
+        <img src="https://www.darrail.com/assets/images/icons/call.svg" alt="call">
+      </div>
+      <div class="buttons">
+        <a href="tel:77172399988">+7 (7172) 39 99 88</a>
+        <a href="mailto:info@darrail.com">info@darrail.com</a>
+      </div>
+    </div>
+
+  </div>
+</div>        	
+
+      <section class="news-page">
+        <div class="container">
+
+          <div class="image">
+            <img src="https://www.darrail.com/storage/articles/October2024/USsRQRhKisIy1xdhbJPd.jpg" alt="V Евразийский форум по безопасности и цифровизации на транспорте ">
+          </div>
+          <div class="date">
+            08.10.2024
+          </div>
+          <div class="name">
+            V Евразийский форум по безопасности и цифровизации на транспорте 
+          </div>
+          <div class="text">
+            <p>4 октября 2024 года в Алматы, на базе ALT университета имени Мухамеджана Тынышпаева, прошло важное отраслевое событие &mdash; V Евразийский форум по безопасности и цифровизации на транспорте, в рамках которого состоялась выставка компаний. В мероприятии приняли участие представители КТЖ, РЖД, производителей железнодорожной техники и оборудования, а также поставщики ИТ-решений.&nbsp;</p>
+<p>&nbsp;</p>
+<p>Компания DAR RAIL активно участвовала в мероприятии, где генеральный директор Ринат Дюсенов представил инновационную систему АСУП (Автоматизированная система управления перевозками) в рамках панельной сессии, посвященной цифровой трансформации железнодорожной отрасли. Эта система значительно улучшает эффективность управления, оптимизируя процессы и снижая затраты. Презентация вызвала живой интерес у участников, подчеркивая важность внедрения цифровых решений в современном железнодорожном транспорте.</p>
+<p>&nbsp;</p>
+<p>Кроме того, компания была представлена на выставочном стенде Ассоциации казахстанских грузовых железнодорожных перевозчиков. Там посетители могли ознакомиться с информацией о деятельности DAR RAIL и внедряемых ИТ-решениях, представленными в наглядной форме.&nbsp;</p>
+<p>&nbsp;</p>
+<p>Со стендом DAR RAIL ознакомились: заместитель председателя правления КТЖ Талгат Алдыбергенов, директор департамента безопасности движения КТЖ Марат Шакенов и заместитель генерального директора РЖД &mdash; директор департамента безопасности движения Шевкет Шайдуллин.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="news">
+        <div class="container">
+          <div class="title">
+            Читайте также          </div>
+          <div class="title-hr"></div>
+          
+          <div class="news-slider">
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  01.08.2025
+                </div>
+                <div class="text">
+                  DAR Rail отпраздновал День железнод...
+                </div>
+                <a href="/news/dar-rail-temirzholshylar-k-nin-atap-tip-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/CGIBNREGuEEXoJMrc6sd.png" alt="ОО &quot;Локальный профессиональный союз DAR Rail&quot; подарил детям наших сотрудников настоящее летнее приключение в лагерях" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  31.07.2025
+                </div>
+                <div class="text">
+                  ОО &quot;Локальный профессиональный союз...
+                </div>
+                <a href="/news/zhaz-y-demalys-balalar-shin-esten-ketpes-s-tter" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/9YkYbcF9Mow9VtS0BAxA.jpg" alt="В Астане подвели итоги первого общеотраслевого конкурса  «Лучший по профессии» среди локомотивных бригад" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  23.07.2025
+                </div>
+                <div class="text">
+                  В Астане подвели итоги первого обще...
+                </div>
+                <a href="/news/dar-rail-luchshiy-po-professii-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/onSo9zxNI5DEslsm9605.png" alt="Тренинг по корпоративным компетенциям для сотрудников DAR RAIL" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  18.07.2025
+                </div>
+                <div class="text">
+                  Тренинг по корпоративным компетенци...
+                </div>
+                <a href="/news/dar-rail-korporativnye-kompetencii-training-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/TEqxoaoQs3RGWe5kEdxe.png" alt="DAR RAIL отпраздновал День защиты детей с детьми сотрудников" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  05.06.2025
+                </div>
+                <div class="text">
+                  DAR RAIL отпраздновал День защиты д...
+                </div>
+                <a href="/news/dar-rail-otprazdnoval-den-zashity-detej-s-detmi-sotrudnikov" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/Goqi5joxjow5rSRMVoNn.png" alt="DAR RAIL подвёл итоги первого корпоративного конкурса «DAR RAIL в кадре»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  04.06.2025
+                </div>
+                <div class="text">
+                  DAR RAIL подвёл итоги первого корпо...
+                </div>
+                <a href="/news/dar-rail-v-kadre-konkurs-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/NBqMyx9EhmOGVWRq5UxY.png" alt="Председатель наблюдательного совета DAR Rail Александр Клим принял участие на пленарной сессии AIF2025." style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  30.05.2025
+                </div>
+                <div class="text">
+                  Председатель наблюдательного совета...
+                </div>
+                <a href="/news/dar-rail-aif2025-alexandr-klim-uchastie" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/o4xrJyLmi6hCbxtqUDCI.png" alt="DAR RAIL подвёл итоги конкурса профессионального мастерства «Лучший специалист»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  22.05.2025
+                </div>
+                <div class="text">
+                  DAR RAIL подвёл итоги конкурса проф...
+                </div>
+                <a href="/news/dar-rail-luchshiy-specialist-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2025/5nQ55e6NxQXcnexzB1pE.png" alt="В гостях у DAR Rail - ALT University" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  21.05.2025
+                </div>
+                <div class="text">
+                  В гостях у DAR Rail - ALT Universit...
+                </div>
+                <a href="/news/dar-rail-alt-university-vizit-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2025/8S1zVxrrfSf8a0hjLjLZ.png" alt="Итоги Декады охраны труда: дети сотрудников DAR RAIL — за безопасность!" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  02.05.2025
+                </div>
+                <div class="text">
+                  Итоги Декады охраны труда: дети сот...
+                </div>
+                <a href="/news/dar-rail-dekada-ot-nagrady-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2025/gVgKRs0222qblOXydwSK.png" alt="DAR RAIL признана лучшей подрядной организацией по охране труда на разрезе «Восточный»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  29.04.2025
+                </div>
+                <div class="text">
+                  DAR RAIL признана лучшей подрядной...
+                </div>
+                <a href="/news/dar-rail-best-contractor-eeс-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2025/0ZnOWLo9KpHiRFUhQ0eN.png" alt="Сотрудники DAR Rail вернулись с победой на Кубке Азии по силовым видам спорта " style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  28.04.2025
+                </div>
+                <div class="text">
+                  Сотрудники DAR Rail вернулись с поб...
+                </div>
+                <a href="/news/dar-rail-asia-cup-powerlifting-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2025/oEl8tLKHRIfsYIfJ6P2l.png" alt="Памятная акция к 80-летию Победы" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  25.04.2025
+                </div>
+                <div class="text">
+                  Памятная акция к 80-летию Победы
+                </div>
+                <a href="/news/dar-rail-80-let-pobedy-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2025/VG4JdK2VEgZoEls1JIwb.png" alt="Встреча машинистов DAR RAIL со студентами железнодорожного колледжа" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  24.04.2025
+                </div>
+                <div class="text">
+                  Встреча машинистов DAR RAIL со студ...
+                </div>
+                <a href="/news/dar-rail-college-visit-astana-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/LX9fDKEWJD9FRDRlkqX0.png" alt="В DAR RAIL продолжается декада охраны труда" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  18.04.2025
+                </div>
+                <div class="text">
+                  В DAR RAIL продолжается декада охра...
+                </div>
+                <a href="/news/dar-rail-enbek-kauipsizdik-aptalygy-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/nNTWhEw4VPBS8ieBGz1P.png" alt="Участие в ежегодной конференции АНЭК и КазАПО" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  21.04.2025
+                </div>
+                <div class="text">
+                  Участие в ежегодной конференции АНЭ...
+                </div>
+                <a href="/news/dar-rail-anek-kazapo-conference-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/AHMLsUxG9FMX8HApJnnh.png" alt="Встреча с представителями Всемирного банка" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  16.04.2025
+                </div>
+                <div class="text">
+                  Встреча с представителями Всемирног...
+                </div>
+                <a href="/news/dar-rail-world-bank-meeting-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/pFCOt7iAAh0WXPLVDVTd.png" alt="Рабочая поездка в Тобол: диалог с локомотивными бригадами и осмотр объектов" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  09.04.2025
+                </div>
+                <div class="text">
+                  Рабочая поездка в Тобол: диалог с л...
+                </div>
+                <a href="/news/dar-rail-tobol-visit-april-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/Mmit2htbpmYGC051sZDc.jpeg" alt="Открытие нового офиса ТОО «DAR RAIL» в Экибастузе" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  02.04.2025
+                </div>
+                <div class="text">
+                  Открытие нового офиса ТОО «DAR RAIL...
+                </div>
+                <a href="/news/dar-rail-ekibastuz-office-opening-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/QfvVR1mzYfWdwOoEAWpG.jpeg" alt="DAR RAIL на Next Generation Youth Forum 2025" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  02.04.2025
+                </div>
+                <div class="text">
+                  DAR RAIL на Next Generation Youth F...
+                </div>
+                <a href="/news/dar-rail-next-gen-youth-forum-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/budtng1nFiAkxs6DWqmG.png" alt="DAR RAIL усиливает культуру качества: тренинг по корректирующим действиям" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  01.04.2025
+                </div>
+                <div class="text">
+                  DAR RAIL усиливает культуру качеств...
+                </div>
+                <a href="/news/dar-rail-quality-training-ism-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/JY06293GcET5CLTP8i5p.png" alt="Выбраны лучшие машинисты и помощники машинистов DAR RAIL" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  01.04.2025
+                </div>
+                <div class="text">
+                  Выбраны лучшие машинисты и помощник...
+                </div>
+                <a href="/news/dar-rail-da-zdik-mashinister-men-mashinist-k-mekshileri-any-taldy" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/RwpRIuIKe16UOO7itpDx.jpg" alt="DAR RAIL впервые отметил Наурыз по новой концепции «Наурызнама»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  20.03.2025
+                </div>
+                <div class="text">
+                  DAR RAIL впервые отметил Наурыз по...
+                </div>
+                <a href="/news/nauryznama-dar-rail-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2025/Zb4l0ofHKCAFnkEpiIym.png" alt="Встреча с представителями CRRC Dalian" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  17.03.2025
+                </div>
+                <div class="text">
+                  Встреча с представителями CRRC Dali...
+                </div>
+                <a href="/news/vstrecha-s-predstavitelyami-crrc-dalian" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/March2025/FrgHIWbUFTda5Ktfjr5x.png" alt="Делегация Министерства транспорта РК посетила Павлодарское подразделение ТОО «DAR RAIL»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  14.03.2025
+                </div>
+                <div class="text">
+                  Делегация Министерства транспорта Р...
+                </div>
+                <a href="/news/mtrk-visit-dar-rail-pavlodar2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2025/5b6i0A4NayoLbcqigf6F.jpeg" alt="Бизнес-завтрак DAR RAIL: обсуждение с машинистами ключевых вопросов" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  21.02.2025
+                </div>
+                <div class="text">
+                  Бизнес-завтрак DAR RAIL: обсуждение...
+                </div>
+                <a href="/news/biznes-zavtrak-dar-rail-obsuzhdenie-s-mashinistami-klyuchevyh-voprosov" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/March2025/l2PQWlvEREYSEFH13oFX.png" alt="Зимняя спартакиада в Тоболе: спорт, командный дух и победа DAR RAIL" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  28.02.2025
+                </div>
+                <div class="text">
+                  Зимняя спартакиада в Тоболе: спорт,...
+                </div>
+                <a href="/news/tobylda-y-ys-y-spartakiada-sport-komandaly-ruh-zh-ne-dar-rail-zhe-isi" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/March2025/QrKXN8EFtj1jLNXksnkO.png" alt="Связь поколений: железнодорожная династия Куаныша Жаркимбекова продолжается в Dar Rail" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  02.03.2025
+                </div>
+                <div class="text">
+                  Связь поколений: железнодорожная ди...
+                </div>
+                <a href="/news/dar-rail-zharkimbekov-dynasty-kz" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/March2025/5ihagTia3x0Sj4ZEtP0D.png" alt="DAR Rail на фестивале «Город рабочих профессий»: как мы вовлекаем молодежь в железнодорожную отрасль" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  16.02.2025
+                </div>
+                <div class="text">
+                  DAR Rail на фестивале «Город рабочи...
+                </div>
+                <a href="/news/dar-rail-mamanfest-2025" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/March2025/2SOR3JtLnC4sYsRy8KWQ.png" alt="DAR RAIL и ТТТ Сервис укрепляют сотрудничество" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  24.01.2025
+                </div>
+                <div class="text">
+                  DAR RAIL и ТТТ Сервис укрепляют сот...
+                </div>
+                <a href="/news/ttt-service-visit-dar-rail2024-kz" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/March2025/gr1kp4ZytsbGNz2OpWXS.png" alt="Dar Rail на Kazlogistic CUP 2025" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  19.01.2025
+                </div>
+                <div class="text">
+                  Dar Rail на Kazlogistic CUP 2025
+                </div>
+                <a href="/news/dar-rail-kazlogistic-cup-2025-turnirinde" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/March2025/vJGsVMaXsPf3pHWuLKqO.png" alt="Председатель наблюдательного совета ТОО «DAR RAIL» Александр Клим получил награду “Транспорт Профи” на «Магистраль Awards 2024»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  19.12.2024
+                </div>
+                <div class="text">
+                  Председатель наблюдательного совета...
+                </div>
+                <a href="/news/transport-profi-dar-rail2024-kz" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/December2024/zfGaPF7tiE3eWA2OJCZb.jpeg" alt="DAR RAIL изучает возможности модернизации систем безопасности на локомотивах" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  05.12.2024
+                </div>
+                <div class="text">
+                  DAR RAIL изучает возможности модерн...
+                </div>
+                <a href="/news/dar-rail-izuchenie-modernizatsii-sistem-bezopasnosti-lokomotivy" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/December2024/8Ivg4zuOJUIH2xtZGD0S.jpeg" alt="Машинисты DAR Rail завершили обучение в Карагандинском учебном центре работников железнодорожного транспорта" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  05.12.2024
+                </div>
+                <div class="text">
+                  Машинисты DAR Rail завершили обучен...
+                </div>
+                <a href="/news/machinisty-dar-rail-kursy-karaganda" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/December2024/SyFa85U2lddy8VhuKFef.jpeg" alt="Сотрудники ТОО &quot;Dar Rail&quot; награждены юбилейными медалями «Қазақстан темір жолына 120 жыл»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  05.12.2024
+                </div>
+                <div class="text">
+                  Сотрудники ТОО &quot;Dar Rail&quot; награжден...
+                </div>
+                <a href="/news/too-dar-rail-yzmetkerleri-aza-stan-temir-zholyna-120-zhyl-merejtojly-medaldarymen-marapattaldy" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/December2024/Hw0fC6dODhNF9F0rTl43.jpeg" alt="В Астане провели ежегодный турнир по настольному теннису среди сотрудников компании Dar Rail" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  05.12.2024
+                </div>
+                <div class="text">
+                  В Астане провели ежегодный турнир п...
+                </div>
+                <a href="/news/tournament-dar-rail-nastolnyy-tennis-2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2024/aC7L6w68cjhiV2Q2ldoS.png" alt="Осенний комиссионный осмотр 2024: DAR Rail отметила лучших сотрудников за ответственную работу" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  19.11.2024
+                </div>
+                <div class="text">
+                  Осенний комиссионный осмотр 2024: D...
+                </div>
+                <a href="/news/2024-zhyl-y-k-zgi-komissiyaly-tekseru-dar-rail-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2024/x7cpfpbBkAnsB0DoISKs.png" alt="ТОО «DAR RAIL» упрощает грузоперевозки: внедрение технологии безбумажного оформления перевозочных документов" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  15.11.2024
+                </div>
+                <div class="text">
+                  ТОО «DAR RAIL» упрощает грузоперево...
+                </div>
+                <a href="/news/too-dar-rail-zh-k-tasymalyn-zhe-ildetedi-tasymaldau-zhattaryn-a-azsyz-r-simdeudi-engizu" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2024/z9boj79yTFxWQiGQSX6n.png" alt="Организация мультимодальных перевозок ферросплавов и ферросилиция по маршруту ТМТМ: опыт DAR RAIL" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  15.11.2024
+                </div>
+                <div class="text">
+                  Организация мультимодальных перевоз...
+                </div>
+                <a href="/news/multimodalnye-perevozki-ferrosplavov-dar-rail2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2024/NvPxRhTnIgliRIzyd9Q3.png" alt="Забота о комфорте и безопасности сотрудников ТОО «DAR Rail»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  05.11.2024
+                </div>
+                <div class="text">
+                  Забота о комфорте и безопасности со...
+                </div>
+                <a href="/news/zabota-o-komforte-i-bezopasnosti-dar-rail2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2024/AzpZAT4NdYd1qi3ammct.png" alt="Проведены совместные конференции с ВЧД по станциям Тобол и Павлодар" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  05.11.2024
+                </div>
+                <div class="text">
+                  Проведены совместные конференции с...
+                </div>
+                <a href="/news/tobyl-pavlodar-konferenciya-dar-rail2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2024/uFDSqdwr8HhGHr23itzf.jpeg" alt="Обсуждение вопросов сотрудничества с немецкой компанией Ritz Instrument Transformers GmbH" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  05.11.2024
+                </div>
+                <div class="text">
+                  Обсуждение вопросов сотрудничества...
+                </div>
+                <a href="/news/ritz-instrument-transformers-gmbh-nemis-kompaniyasymen-yntyma-tasty-m-seleleri-tal-ylandy" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2024/9OoEYqNo32PVNEJLoKlG.png" alt="Обучение локомотивных бригад ТОО &quot;DAR Rail&quot; по работе автотормозов зимой" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  28.10.2024
+                </div>
+                <div class="text">
+                  Обучение локомотивных бригад ТОО &quot;D...
+                </div>
+                <a href="/news/obuchenie-avtotormozam-dar-rail2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2024/OeSGJS1lUe6My4cEKtV4.png" alt="Подготовка к работе DAR RAIL в зимний период продолжается" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  28.10.2024
+                </div>
+                <div class="text">
+                  Подготовка к работе DAR RAIL в зимн...
+                </div>
+                <a href="/news/qysqa-daiyndyq-dar-rail2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2024/YpHBABcJw8Eyttd0G56s.jpg" alt="Обсудили с ТОО &quot;Камкор Локомотив&quot; вопросы обслуживания и ремонта локомотивов" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  24.10.2024
+                </div>
+                <div class="text">
+                  Обсудили с ТОО &quot;Камкор Локомотив&quot; в...
+                </div>
+                <a href="/news/kamkordiscuss2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2024/i7g761pKt2K96ElbVCeH.jpg" alt="Будущее железнодорожного транспорта и логистики за молодежью, а мы поддержим их в новых начинаниях и профессиональном росте" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  23.10.2024
+                </div>
+                <div class="text">
+                  Будущее железнодорожного транспорта...
+                </div>
+                <a href="/news/budushee-zheleznodorozhnogo-transporta-i-logistiki-za-molodezhyu-a-my-podderzhim-ih-v-novyh-nachinaniyah-i-professionalnom-roste" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2024/USsRQRhKisIy1xdhbJPd.jpg" alt="V Евразийский форум по безопасности и цифровизации на транспорте " style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  08.10.2024
+                </div>
+                <div class="text">
+                  V Евразийский форум по безопасности...
+                </div>
+                <a href="/news/v-eurasian-forum-on-security-and-digitalization-of-transport" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/September2024/h5LnnCbfvaZ3wqJ97wYK.jpeg" alt="Участие руководства нашей компании в международной выставке железнодорожной техники InnoTrans 2024" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  30.09.2024
+                </div>
+                <div class="text">
+                  Участие руководства нашей компании...
+                </div>
+                <a href="/news/innotrans-2024" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/September2024/soc2rKDnZO3vvKtrOdqz.jpg" alt="Визит представителей Латвийской железной дороги в центральный офис DAR RAIL" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  16.09.2024
+                </div>
+                <div class="text">
+                  Визит представителей Латвийской жел...
+                </div>
+                <a href="/news/visit-of-representatives-of-the-latvian-railway-to-the-central-office-of-dar-rail" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/September2024/oV8ZqWkHSh16EjfMSoJ8.jpg" alt="В DAR RAIL поддержали Национальный флешмоб «Ұлттық сезім — Ұлттық дәм»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  10.09.2024
+                </div>
+                <div class="text">
+                  В DAR RAIL поддержали Национальный...
+                </div>
+                <a href="/news/dar-rail-ltty-sezim-ltty-d-m" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/August2024/0kgYmb5QB4yQRkcyrt85.jpg" alt="В DAR Rail выбрали лучших по профессии" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  01.08.2024
+                </div>
+                <div class="text">
+                  В DAR Rail выбрали лучших по профес...
+                </div>
+                <a href="/news/dar-rail-da-mamandy-y-bojynsha-zdik-ta-daldy" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/July2024/d0sBwU2dQYWkKfft751q.jpg" alt="DAR RAIL расширяет сотрудничество с европейскими компаниями " style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  18.07.2024
+                </div>
+                <div class="text">
+                  DAR RAIL расширяет сотрудничество с...
+                </div>
+                <a href="/news/dar-rail-7-17-dar-rail-hhla-international-hamburger-hafen-und-logistik-ag-hhla-project-logistik" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/June2024/lEaA6Dp3E7TxW1b5WyVw.jpg" alt="Очередная встреча представителей ТОО «DAR RAIL» с делегацией Европейской комиссии" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  12.06.2024
+                </div>
+                <div class="text">
+                  Очередная встреча представителей ТО...
+                </div>
+                <a href="/news/ocherednaya-vstrecha-predstavitelej-too-dar-rail-s-delegaciej-evropejskoj-komissii" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2024/GjYt5c1D9f4T29A6TRcO.jpg" alt="Перспективы межстрановой промышленной кооперации обсудили на конференции «Промышленный железнодорожный транспорт: сотрудничество без границ»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  21.05.2024
+                </div>
+                <div class="text">
+                  Перспективы межстрановой промышленн...
+                </div>
+                <a href="/news/perspektivy-mezhstranovoj-promyshlennoj-kooperacii-obsudili-na-konferencii-promyshlennyj-zheleznodorozhnyj-transport-sotrudnichestvo-bez-granic" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2024/ktuyABULvp1FfLaZFB3F.jpg" alt="Безопасность на первом месте: DAR RAIL отмечает Всемирный день охраны труда" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  26.04.2024
+                </div>
+                <div class="text">
+                  Безопасность на первом месте: DAR R...
+                </div>
+                <a href="/news/dar-railbezopasnost-na-pervom-meste-dar-rail-otmechaet-vsemirnyj-den-ohrany-truda" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2024/C0JOJMICEusf0SSx0U6t.jpeg" alt="Наши рационализаторы" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  21.04.2024
+                </div>
+                <div class="text">
+                  Наши рационализаторы
+                </div>
+                <a href="/news/nashi-racionalizatory" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/April2024/eTxjVF8pNgwQOVwuOJZH.jpg" alt="DAR RAIL готовит преемников" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  16.04.2024
+                </div>
+                <div class="text">
+                  DAR RAIL готовит преемников
+                </div>
+                <a href="/news/DAR RAIL готовит преемников" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/March2024/LUWFIvGl9swZ8LnXisnm.jpeg" alt="Посещение выставки TransRussia: новые горизонты и перспективы для «DAR RAIL»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  28.03.2024
+                </div>
+                <div class="text">
+                  Посещение выставки TransRussia: нов...
+                </div>
+                <a href="/news/transrussia-dar-rail" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/February2024/Wd66NgkYDSjy4NzWBm02.jpeg" alt="Смирнова Лариса Иосифовна: полвека служения железной дороге Казахстана" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  11.02.2024
+                </div>
+                <div class="text">
+                  Смирнова Лариса Иосифовна: полвека...
+                </div>
+                <a href="/news/Smirnova Larisa Iosifovna: polveka sluzheniya zheleznoy doroge Kazakhstana" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/January2024/wqh0tyKzz0TsiyUC9VuK.jpg" alt="Развивая социальные инициативы." style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  10.01.2024
+                </div>
+                <div class="text">
+                  Развивая социальные инициативы.
+                </div>
+                <a href="/news/razvivaya-socialnye-iniciativy" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/January2024/hfhiZrh3zTO9CEqGooOP.jpg" alt="DAR Rail в 2023 году организовал более 1000 отправок катодной меди" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  09.01.2024
+                </div>
+                <div class="text">
+                  DAR Rail в 2023 году организовал бо...
+                </div>
+                <a href="/news/dar-rail-2023-1000" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/December2023/kn8ekfzyS08TCIv2yPtH.JPG" alt="Заслуги Почетного Железнодорожника - Тусупканова Асхата Асылхановича." style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  15.12.2023
+                </div>
+                <div class="text">
+                  Заслуги Почетного Железнодорожника...
+                </div>
+                <a href="/news/Заслуги Почетного Железнодорожника - Тусупканова Асхата Асылхановича." class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/December2023/Gq1ijs5WdzTY6GVYdIfj.JPG" alt="Турнир по настольному теннису" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  04.12.2023
+                </div>
+                <div class="text">
+                  Турнир по настольному теннису
+                </div>
+                <a href="/news/Turnir po nastol&#039;nomu tennisu" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/December2023/tRtSyUV6kazQqGb7rSRO.jpg" alt="Встреча с партнерами" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  29.11.2023
+                </div>
+                <div class="text">
+                  Встреча с партнерами
+                </div>
+                <a href="/news/Встреча с партнерами" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2023/pnGz7e5NHv4Ty85LgSWz.jpg" alt="Интегрированное партнерство с учебными заведениями – залог развития профессионализма и качества в железнодорожной отрасли " style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  22.11.2023
+                </div>
+                <div class="text">
+                  Интегрированное партнерство с учебн...
+                </div>
+                <a href="/news/Интегрированное партнерство с учебными заведениями – залог развития профессионализма и качества в железнодорожной отрасли" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2023/D19XQjZrtgEaTr9pDe5E.jpg" alt="Уведомление о повышении тарифов" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  17.11.2023
+                </div>
+                <div class="text">
+                  Уведомление о повышении тарифов
+                </div>
+                <a href="/news/tarifterdi-k-terilui-turaly-habarlama" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/October2023/kkp9qUQzErrkSFn2N7Ud.jpg" alt="Подготовка к работе в зимний период" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  23.10.2023
+                </div>
+                <div class="text">
+                  Подготовка к работе в зимний период
+                </div>
+                <a href="/news/podgotovka-k-rabote-v-zimnij-period" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/August2023/VDZmuGVYKM1RIZQFdesN.jpg" alt="Подведены итоги конкурса «Лучший по профессии» в ТОО «DAR RAIL»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  22.08.2023
+                </div>
+                <div class="text">
+                  Подведены итоги конкурса «Лучший по...
+                </div>
+                <a href="/news/podvedeny-itogi-konkursa-luchshij-po-professii-v-too-dar-rail" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/August2023/bAfDA5pvCO7Rqjd4ptdS.jpg" alt="Развитие DAR-логистики" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  24.05.2023
+                </div>
+                <div class="text">
+                  Развитие DAR-логистики
+                </div>
+                <a href="/news/dar" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/February2023/jvaTfOXKWP0bIwVv8qwf.png" alt="Проводили на заслуженный отдых!" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  10.02.2023
+                </div>
+                <div class="text">
+                  Проводили на заслуженный отдых!
+                </div>
+                <a href="/news/pension" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/December2022/xfAx8fy6oDy5KYxdkPGL.JPG" alt="Чудеса случаются!" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  30.12.2022
+                </div>
+                <div class="text">
+                  Чудеса случаются!
+                </div>
+                <a href="/news/chudesa-sluchayutsya" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2022/ZedkUYnDNae0hW67UXSB.jpg" alt="Профориентационная работа ТОО «DAR RAIL» в Павлодарском регионе" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  18.11.2022
+                </div>
+                <div class="text">
+                  Профориентационная работа ТОО «DAR...
+                </div>
+                <a href="/news/dar-rail" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2022/KU3WEkmAorCNv1iNm3UO.jpg" alt="Повышение тарифов на ж/д перевозку" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  01.11.2022
+                </div>
+                <div class="text">
+                  Повышение тарифов на ж/д перевозку
+                </div>
+                <a href="/news/temirzhol-tarifterini-sui" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/September2022/r5RYQDfdAM4IVhHCXWDN.jpg" alt="Удовольствие от работы" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  14.09.2022
+                </div>
+                <div class="text">
+                  Удовольствие от работы
+                </div>
+                <a href="/news/13" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/July2022/GsfmV2fgbAaEez5Ou4Eq.jpg" alt="Комфортные условия труда-залог эффективности в работе" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  26.07.2022
+                </div>
+                <div class="text">
+                  Комфортные условия труда-залог эффе...
+                </div>
+                <a href="/news/komfortnye-usloviya-truda-zalog-effektivnosti-v-rabote" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/June2022/RSl6iUChG4yoB0ebM2Be.jpg" alt="Вакансии" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  20.06.2022
+                </div>
+                <div class="text">
+                  Вакансии
+                </div>
+                <a href="/news/bos-zh-mys-oryndary" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2022/o8zaO2ytkEMuPWOk0xyW.png" alt="Надежные партнерские отношения" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  27.05.2022
+                </div>
+                <div class="text">
+                  Надежные партнерские отношения
+                </div>
+                <a href="/news/nadezhnye-partnerskie-otnosheniya" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/May2022/1uoKrpMJu6ubujhzz8u4.jpg" alt="Со студенческой скамьи в «Dar Rail»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  19.05.2022
+                </div>
+                <div class="text">
+                  Со студенческой скамьи в «Dar Rail»
+                </div>
+                <a href="/news/so-studencheskoj-skami-v-dar-rail" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/January2022/ZIJCWArW7TLWF6NFMhdb.jpg" alt="Создание кадрового резерва ТОО «DAR RAIL»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  19.01.2022
+                </div>
+                <div class="text">
+                  Создание кадрового резерва ТОО «DAR...
+                </div>
+                <a href="/news/Создание кадрового резерва ТОО «DAR RAIL»" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2021/om6fnPODR9ly4UuyjRR1.jpg" alt="В преддверии празднования Дня Первого Президента подведены итоги операционной деятельности" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  30.11.2021
+                </div>
+                <div class="text">
+                  В преддверии празднования Дня Перво...
+                </div>
+                <a href="/news/庆祝首任总统日前夕，总结经营活动成果" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2021/AG9beMW9efYw8PQkOVSi.jpg" alt="Стандарты ISO" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  26.11.2021
+                </div>
+                <div class="text">
+                  Стандарты ISO
+                </div>
+                <a href="/news/ISO 国际标准" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2021/tXiJ5oMwLlkHF390XFZz.png" alt="В региональных подразделениях ТОО &quot;DAR RAIL&quot; , 15 курсантов прошли обучение в современном учебном центре Технологий Транспорта АО «НК «КТЖ »" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  18.11.2021
+                </div>
+                <div class="text">
+                  В региональных подразделениях ТОО &quot;...
+                </div>
+                <a href="/news/dar-rail-zhshs-ajma-ty-b-limshelerinde-15-kursant-ktzh-nk-a-zamanaui-k-lik-tehnologiyalary-ortaly-ynda-o-udan-tti" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2021/K8IztPELuY0D6qP1WKen.jpeg" alt="ТОО «DAR RAIL» подведены итоги проведенного осеннего комиссионного осмотра локомотивов." style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  27.10.2021
+                </div>
+                <div class="text">
+                  ТОО «DAR RAIL» подведены итоги пров...
+                </div>
+                <a href="/news/dar-rail-llp" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2021/ojwC2UyN7v40ECTTqEuq.jpeg" alt="ТОО &quot;DAR RAIL&quot; наградил лучших сотрудников путевками в солнечный Египет" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  27.10.2021
+                </div>
+                <div class="text">
+                  ТОО &quot;DAR RAIL&quot; наградил лучших сотр...
+                </div>
+                <a href="/news/llp-dar-rail-awarded-the-best-employees-with-trips-to-sunny-egypt" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/July2022/22LzqZ7JVi0aqqOy2SHx.jpg" alt="Система менеджмента подтверждена международными аудиторами" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  12.07.2022
+                </div>
+                <div class="text">
+                  Система менеджмента подтверждена ме...
+                </div>
+                <a href="/news/2" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+             
+            <div class="item">
+              <div class="image">
+                <img src="https://www.darrail.com/storage/articles/November2021/lsrC3NwfbCjJJw0MEs33.jpg" alt="Обращение Генерального Директора ТОО «DAR RAIL»" style="height: 270px; overflow: hidden; img {
+                height: 270px;
+                object-fit: contain;
+            }">
+              </div>
+              <div class="info">
+                <div class="date">
+                  26.10.2021
+                </div>
+                <div class="text">
+                  Обращение Генерального Директора ТО...
+                </div>
+                <a href="/news/dar-rail-zhshs-bas-direktoryny-ndeui" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+                       
+          </div>
+          <div class="center">
+            <div class="news-slider-dots"></div>
+          </div>
+        </div>
+      </section>
+        <footer class="footer">
+  <div class="container footer-top">
+    <div class="content">
+      <a href="/" class="logo">
+        <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
+      </a>
+      <ul class="menu">
+        <!-- <li class="btn-group hover-show">
+          <div class="dropdown-toggle" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            О компании
+          </div>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuClickableInside">
+            <li><a class="dropdown-item" href="history.html" @click="tab2">История компании</a></li>
+            <li><a class="dropdown-item" href="mission.html" @click="tab3">Миссия и цели</a></li>
+            <li><a class="dropdown-item" href="management.html" @click="tab4">Руководство</a></li>
+            <li><a class="dropdown-item" href="quality.html" @click="tab5">Управление качеством</a></li>
+            <li><a class="dropdown-item" href="security.html" @click="tab6">Безопасность</a></li>
+            <li><a class="dropdown-item" href="tcc.html" @click="tab7">ЦУП</a></li>
+            <li><a class="dropdown-item" href="staff.html" @click="tab8">Персонал</a></li>
+          </ul>
+        </li> -->
+        <li><a href="https://www.darrail.com/about">О Компании</a></li>
+        <li><a href="https://www.darrail.com/services">Услуги</a></li>
+        
+        <li><a href="https://www.darrail.com/purchases">Закупки</a></li>        
+        <li><a href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>
+        <li><a href="https://www.darrail.com/news">Новости</a></li>
+        <li><a href="https://www.darrail.com/contacts">Контакты</a></li>
+      </ul>
+      <div class="network">
+                  <a href="https://www.facebook.com" class="icon">
+            <img src="https://www.darrail.com/storage/contacts/October2021/v2iSwe2Kq5QVHlDZQA9A.svg" alt="Facebook">
+          </a>
+                  <a href="https://www.instagram.com" class="icon">
+            <img src="https://www.darrail.com/storage/contacts/October2021/9qRxDGt0UpL32OoRq4k1.svg" alt="Instagram">
+          </a>
+              
+      </div>
+    </div>
+    <div class="content text">
+      Грузовые перевозки собственным парком локомотивной тяги     </div>
+  </div>
+  <div class="footer-hr"></div>
+  <div class="container footer-bottom">
+    <div class="text">© 2021 ТОО «Dar Rail»</div> 
+    <a href="#">Политика обработки персональных данных</a>
+    <a href="https://i-marketing.kz"><img src="https://www.darrail.com/assets/images/logo-im.svg" alt="i-marketing"></a>
+  </div>
+
+</footer>        <div class="modal fade" id="modalClick" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        algo
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal start -->
+<div class="modal fade" id="appModal" tabindex="-1" aria-labelledby="appModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Связаться с нами</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="requestFor" action="https://www.darrail.com/feedback" method="POST">
+        <input type="hidden" name="_token" value="vYY5b1lsAUI7qeYiJsS0oGRjDV5DCbdDaNW0VC7t">        <div class="modal-body">          
+            <div class="mb-3">
+              <label for="name" class="col-form-label">Имя:</label>
+              <input type="text" name="name" id="name" class="form-control"  required>
+              <label for="number" class="col-form-label">Номер телефона:</label>
+              <input type="tel" name="phone" id="number" class="form-control"  required>
+              <label for="email" class="col-form-label">E-mail:</label>
+              <input type="text" name="email" id="email" class="form-control" required>
+              <input type="hidden" name="page" value="">
+              <input type="hidden" name="url" value="https://www.darrail.com/news">
+            </div>         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-danger">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
+
+<!-- modal thanks start -->
+<div class="modal fade" id="m-thanks" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                   Спасибо!                </div>
+                <div class="text-center">
+                    Ваша заявка отправлена.                    Мы свяжемся с вами в ближайшее время.                </div>               
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal thanks end -->
+
+
+
+
+
+
+
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample-navbar" aria-labelledby="offcanvasExample-navbarLabel">
+    <div class="offcanvas-header">
+      <a href="index.html" class="logo">
+        <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
+      </a>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="offcanvas-body">
+        <ul>
+          <li><a href="/about" >О компании</a></li>
+          <li><a href="/history" >История компании</a></li>
+          <li><a href="/mission" >Миссия и цели</a></li>
+          <li><a href="/management" >Руководство</a></li>
+          <li><a href="/quality" >Управление качеством</a></li>
+          <li><a href="/security" >Безопасность</a></li>
+          <li><a href="/tcc" >ЦУП</a></li>
+          <li><a href="/staff" >Персонал</a></li>
+          <li><a href="/tradeunion" >Профсоюз</a></li>
+          <li><a href="/privacy" >Политика конфиденциальности</a></li>          
+          <li><a href="/transportation" >Схема организации грузоперевозок</a></li>
+          <li><a href="https://www.darrail.com/storage/forms/survey/customer_satisfaction_survey.pdf" target="_blank" >Анкета удовлетворенности клиента</a></li>          
+<!--          <li><a href="/survey" >Анкета удовлетворенности клиента</a></li>          -->
+        </ul>
+    </div>
+  </div>    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script> 
+<script src="/assets/js/carousel.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script> 
+<script src="/assets/js/script.js"></script>
+<!-- Google tag (gtag.js) -->
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7LSENC4QL9');
+</script>    </body>
+</html>
