@@ -1,0 +1,50 @@
+version: "3.8"
+services:
+  app:
+    container_name: finalwork-app
+    build:
+      context: ./
+      dockerfile: Dockerfile # The name of the Dockerfile relative to the context path
+    image: finalwork/finalwork:latest # (Optional but recommended) Names the resulting ima
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - finalwork-network
+
+  prometheus:
+    container_name: finalwork-prometheus
+    image: prom/prometheus
+    volumes:
+      - .\prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    networks:
+      - finalwork-network
+
+  grafana:
+    container_name: finalwork-grafana
+    image: grafana/grafana-enterprise # Use the official Grafana image
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # Expose Grafana on host port 3000
+    volumes:
+      - grafana-data:/var/lib/grafana # Persist data in a named volume
+    networks:
+      - finalwork-network
+
+volumes:
+  grafana-data:
+    driver: local
+  prometheus-data:
+    driver: local
+
+networks:
+  finalwork-network:
+    driver: bridge
