@@ -4,75 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/png" href="https://www.darrail.com/assets/images/logo.svg"/>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/logo.svg"/>
     <title> Главная страница </title>
     <meta name="description" content="Главная страница">
     <meta name="keywords" content="Главная страница">
     <meta name="title" content="Главная страница"/>
-    <link rel="canonical" href="https://www.darrail.com">
     <meta name="csrf-token" content="0X3LAu1o0ipJSVo7F5qmRUvCTwXzoENc2ee9oNym">
     <meta property="og:title" content="Главная страница"/>
     <meta property="og:type" content="website" />
     <meta property="og:description" content="Главная страница"/>
-    <meta property="og:url" content="https://www.darrail.com"/>
     <meta property="og:image" content=""/>
     <meta property="og:image:type" content="image/jpeg"/>
     <meta property="og:image:width" content="300"/>
     <meta property="og:image:height" content="300"/>
 
-
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue2-touch-events@3.2.2/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LSENC4QL9"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" integrity="sha512-NVt7pmp5f+3eWRPO1h4A1gCf4opn4r5z2wS1mi7AaVcTzE9wDJ6RzMqSygjDzYHLp+mAJ2/qzXXDHar6IQwddQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/head.blade.css">
-</head><body>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link href="/assets/styles/main.css" rel="stylesheet"/>
+</head>
+<body>
 <main id="app" ref="infoBox">
-    <header class="header  header-image ">
-        <div class="container">
-
-            <div class="toggle-menu" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                <i class="bi bi-list"></i>
-            </div>
-
+    <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
             <a href="/" class="logo">
-                <img src="https://www.darrail.com/storage/settings/November2021/hPUTsbiQqPdex5OhNgCj.svg" alt="Dar Rail">
+                <img src="/assets/images/logo.svg" alt="Dar Rail">
             </a>
-
-            <ul class="menu">
-                <li class="btn-group hover-show">
-                    <a  href="https://www.darrail.com/about" class="dropdown-toggle">
-                        О Компании
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
-                        <li><a class="dropdown-item" href="https://www.darrail.com/history">История компании</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/mission">Миссия и цели</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/management">Руководство</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/quality">Управление качеством</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/security">Безопасность</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/tcc">ЦУП</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/staff">Персонал</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/tradeunion">Профсоюз</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/privacy">Политика конфиденциальности</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/transportation">Схема организации грузоперевозок</a></li>
-                        <li><a class="dropdown-item" href="https://www.darrail.com/storage/forms/survey/customer_satisfaction_survey.pdf" target="_blank">Анкета удовлетворенности клиента</a></li>
-                    </ul>
-                </li>
-                <li><a  href="https://www.darrail.com/services">Услуги</a></li>
-
-                <li><a  href="https://www.darrail.com/purchases">Закупки</a></li>
-                <li><a  href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>
-                <li><a  href="https://www.darrail.com/news">Новости</a></li>
-                <li><a  href="https://www.darrail.com/contacts">Контакты</a></li>
-            </ul>
-
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">О Компании</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/services">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sustainableDevelopment">Устойчивое развитие</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/news">Новости</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contacts">Контакты</a></li>
+                </ul>
+            </div>
         </div>
     </header>
-
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
 
@@ -83,30 +64,8 @@
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
         </div>
-        <div class="offcanvas-body">
-
-            <div class="content">
-                <ul class="menu">
-                    <li><a  href="https://www.darrail.com/about">О Компании</a></li>
-                    <li><a  href="https://www.darrail.com/services">Услуги</a></li>
-
-                    <li><a  href="https://www.darrail.com/purchases">Закупки</a></li>
-                    <li><a  href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>
-                    <li><a  href="https://www.darrail.com/news">Новости</a></li>
-                    <li><a  href="https://www.darrail.com/contacts">Контакты</a></li>
-                </ul>
-
-            </div>
-
-        </div>
-    </div>              <section class="banner">
-
-
-    <div class="banner-slider">
-
     </div>
-
-
+    <section class="banner">
     <div class="container">
         <div class="title">
             <h1>ПЕРЕВОЗЧИК ГРУЗОВ с собственным парком локомотивов:</h1>
