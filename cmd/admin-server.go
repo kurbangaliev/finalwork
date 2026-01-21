@@ -232,7 +232,6 @@ func cors(next http.HandlerFunc) http.HandlerFunc {
 
 /* =================== NEWS =================== */
 func newsHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.Method)
 	switch r.Method {
 	case http.MethodPost:
 		handleAddNews(w, r)

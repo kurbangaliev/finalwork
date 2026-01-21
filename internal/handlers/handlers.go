@@ -92,7 +92,7 @@ func ShowIndexPage(writer http.ResponseWriter, r *http.Request) {
 
 func ShowImagesPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
-	tmpl, err := template.ParseFiles("web/templates/images.html")
+	tmpl, err := template.ParseFiles("web/templates/admin/images.html")
 	if err != nil {
 		fmt.Printf("Error parsing images.html: %v \n", err)
 	}

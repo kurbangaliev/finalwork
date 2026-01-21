@@ -63,7 +63,7 @@
                 const title=document.createElement('input'); title.value=item.Title;
                 const date=document.createElement('input'); date.type='date'; date.value=item.Date.split('T')[0];
                 const text=document.createElement('textarea'); text.value=item.Content;
-                const id=document.createElement('input'); id.value=item.ID; id.disabled=true;
+                // const id=document.createElement('input'); id.value=item.ID; id.disabled=true;
                 const saveBtn=document.createElement('button'); saveBtn.className='btn'; saveBtn.textContent='Сохранить';
                 saveBtn.onclick=()=>saveNews(item.ID,title.value,text.value,date.value,currentEditImage||item.Image);
                 const deleteBtn=document.createElement('button'); deleteBtn.className='btn btn-delete'; deleteBtn.textContent='Удалить';
@@ -71,7 +71,7 @@
                 contentDiv.appendChild(title);
                 contentDiv.appendChild(date);
                 contentDiv.appendChild(text);
-                contentDiv.appendChild(id);
+                // contentDiv.appendChild(id);
                 contentDiv.appendChild(saveBtn);
                 contentDiv.appendChild(deleteBtn);
                 div.appendChild(img);

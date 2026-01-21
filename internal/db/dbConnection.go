@@ -2,13 +2,13 @@ package db
 
 import (
 	"finalwork/internal/models"
+	"log"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"log"
 )
 
 func DbConnection() (*gorm.DB, error) {
-	log.Println("Postgres Connect")
 	pgConnect := "host=localhost dbname=finalwork user=postgres password=postgres port=5432 sslmode=disable"
 	db, err := gorm.Open(postgres.Open(pgConnect), &gorm.Config{})
 	if err != nil {
