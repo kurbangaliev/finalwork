@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Добавление новости</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#111; color:#fff; margin:0; padding:0; }
+        header { background:#f5c400; color:#000; padding:16px; font-size:20px; font-weight:bold; }
+        main { padding:16px; }
+        label { display:block; margin-top:12px; margin-bottom:4px; font-weight:bold; }
+        input, textarea { width:100%; padding:8px; border-radius:4px; border:none; font-size:14px; }
+        textarea { height:100px; resize:vertical; }
+        button { margin-top:12px; padding:8px 16px; border:none; border-radius:4px; cursor:pointer; background:#f5c400; color:#000; font-weight:bold; }
+        #selectedImage { margin-top:8px; max-width:200px; display:block; }
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
+        .modal-content { background:#222; padding:16px; border-radius:6px; max-width:800px; width:90%; max-height:80%; overflow:auto; }
+        .modal .thumb { margin:8px; display:inline-block; cursor:pointer; position:relative; }
+        .modal .thumb img { width:100px; height:100px; object-fit:cover; border-radius:4px; border:2px solid transparent; transition:border 0.2s; }
+        .modal .thumb img.selected { border:2px solid #f5c400; }
+        .modal .folder-header { color:#f5c400; font-weight:bold; margin-top:12px; }
+        .close-btn { position:absolute; top:8px; right:12px; background:red; color:#fff; border:none; border-radius:50%; width:24px; height:24px; cursor:pointer; }
+    </style>
+</head>
+<body>
+<header>Добавление новости</header>
+<main>
+    <label for="title">Заголовок</label>
+    <input type="text" id="title" placeholder="Введите заголовок" />
+
+    <label for="content">Содержание</label>
+    <textarea id="content" placeholder="Введите содержание новости"></textarea>
+
+    <label for="date">Дата</label>
+    <input type="date" id="date" />
+
+    <label>Картинка</label>
+    <button id="chooseImageBtn">Выбрать картинку</button>
+    <img id="selectedImage" src="" />
+
+    <button id="submitBtn">Сохранить новость</button>
+</main>
+
+<!-- Модальное окно выбора картинок -->
+<div class="modal" id="imageModal">
+    <div class="modal-content">
+        <button class="close-btn" id="closeModal">×</button>
+        <div id="modalThumbs"></div>
+    </div>
+</div>
+
+<script>
+    const chooseImageBtn = document.getElementById('chooseImageBtn');
+    const imageModal = document.getElementById('imageModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalThumbs = document.getElementById('modalThumbs');
+    const selectedImage = document.getElementById('selectedImage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    let selectedImageUrl = '';
+
+    // Открыть модальное окно
+    chooseImageBtn.onclick = () => {
+        imageModal.style.display = 'flex';
+        loadAllFoldersAndImages();
+    };
+
+    // Закрыть модальное окно
+    closeModal.onclick = () => { imageModal.style.display = 'none'; };
+
+    // --- Загрузка всех папок и картинок ---
+    async function loadAllFoldersAndImages() {
+        modalThumbs.innerHTML = '';
+        try {
+            const resFolders = await fetch('http://localhost:8080/folders');
+            const folders = await resFolders.json();
+            for(const folder of folders) {
+                const folderHeader = document.createElement('div');
+                folderHeader.className = 'folder-header';
+                folderHeader.textContent = `Папка: ${folder}`;
+                modalThumbs.appendChild(folderHeader);
+
+                const resImages = await fetch(`http://localhost:8080/images?folder=${encodeURIComponent(folder)}`);
+                const images = await resImages.json();
+
+                images.forEach(img => {
+                    const div = document.createElement('div');
+                    div.className = 'thumb';
+                    const imageEl = document.createElement('img');
+                    imageEl.src = 'http://localhost:8080' + img.url;
+                    imageEl.onclick = () => selectImage(imageEl.src);
+                    div.appendChild(imageEl);
+                    modalThumbs.appendChild(div);
+                });
+            }
+        } catch(err) {
+            alert('Ошибка загрузки изображений с сервера');
+        }
+    }
+
+    // Выбор картинки
+    function selectImage(url) {
+        selectedImageUrl = url;
+        selectedImage.src = url;
+        // выделяем выбранную картинку в модальном окне
+        document.querySelectorAll('#modalThumbs img').forEach(img => img.classList.remove('selected'));
+        document.querySelector(`#modalThumbs img[src='${url}']`).classList.add('selected');
+        imageModal.style.display = 'none';
+    }
+
+    // Отправка новости на сервер
+    submitBtn.onclick = async () => {
+        const title = document.getElementById('title').value.trim();
+        const content = document.getElementById('content').value.trim();
+        const date = document.getElementById('date').value;
+
+        if(!title || !content || !date || !selectedImageUrl) {
+            alert('Заполните все поля и выберите картинку');
+            return;
+        }
+
+        const payload = { title, content, date, image: selectedImageUrl };
+
+        try {
+            const res = await fetch('http://localhost:8080/news', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(payload)
+            });
+            if(!res.ok) throw new Error();
+            alert('Новость успешно добавлена');
+            // Очистка формы
+            document.getElementById('title').value = '';
+            document.getElementById('content').value = '';
+            document.getElementById('date').value = '';
+            selectedImage.src = '';
+            selectedImageUrl = '';
+        } catch(err) {
+            alert('Ошибка при отправке новости на сервер');
+        }
+    };
+</script>
+</body>
+</html>

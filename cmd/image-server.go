@@ -3,22 +3,29 @@ package main
 import (
 	"encoding/base64"
 	"encoding/json"
+	"finalwork/internal/db"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 )
 
-const uploadDir = "web\\assets\\uploads"
+const (
+	uploadDir = "web\\assets\\uploads"
+	newsFile  = "news.json"
+)
 
 type ImagePayload struct {
 	Src    string `json:"src"`
 	Name   string `json:"name"`
 	Folder string `json:"folder"`
 }
+
+var newsMutex sync.Mutex // для безопасной работы с файлом новостей
 
 type UploadRequest struct {
 	Images []ImagePayload `json:"images"`
@@ -27,6 +34,13 @@ type UploadRequest struct {
 type ImageInfo struct {
 	Name string `json:"name"`
 	URL  string `json:"url"`
+}
+
+type NewsItem struct {
+	Title   string `json:"title"`
+	Content string `json:"content"`
+	Date    string `json:"date"`
+	Image   string `json:"image"`
 }
 
 func main() {
@@ -38,6 +52,7 @@ func main() {
 	http.HandleFunc("/images", cors(imagesHandler))
 	http.HandleFunc("/image/", cors(deleteHandler))
 	http.HandleFunc("/folders", cors(foldersHandler))
+	http.HandleFunc("/news", cors(newsHandler)) // новый обработчик новостей
 
 	http.Handle("/uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir(uploadDir))))
 
@@ -85,6 +100,11 @@ func saveImage(img ImagePayload, folderPath string) error {
 	filename := sanitizeFilename(img.Name)
 	filename = fmt.Sprintf("%d_%s", time.Now().UnixNano(), filename)
 	path := filepath.Join(folderPath, filename)
+
+	err = db.SaveImage(data, filename, path, img.Folder)
+	if err != nil {
+		log.Printf("Erorr while saving image: %v\n", err)
+	}
 	return os.WriteFile(path, data, 0644)
 }
 
@@ -206,4 +226,78 @@ func cors(next http.HandlerFunc) http.HandlerFunc {
 		}
 		next(w, r)
 	}
+}
+
+/* =================== NEWS =================== */
+func newsHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		// обработка добавления новости (уже реализована)
+		handleAddNews(w, r)
+		return
+	}
+	if r.Method == http.MethodGet {
+		// возвращаем список всех новостей
+		newsMutex.Lock()
+		defer newsMutex.Unlock()
+
+		var newsList []NewsItem
+		if _, err := os.Stat(newsFile); err == nil {
+			data, _ := os.ReadFile(newsFile)
+			json.Unmarshal(data, &newsList)
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(newsList)
+		return
+	}
+	http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+}
+
+func handleAddNews(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	var item NewsItem
+	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
+		http.Error(w, "Invalid JSON", http.StatusBadRequest)
+		return
+	}
+
+	// Валидация
+	if item.Title == "" || item.Content == "" || item.Date == "" || item.Image == "" {
+		http.Error(w, "All fields required", http.StatusBadRequest)
+		return
+	}
+
+	// Добавляем метку времени
+	item.Date = item.Date + "T" + time.Now().Format("15:04:05")
+
+	// Сохраняем в файл с блокировкой
+	newsMutex.Lock()
+	defer newsMutex.Unlock()
+
+	var newsList []NewsItem
+
+	// Если файл существует, читаем существующие новости
+	if _, err := os.Stat(newsFile); err == nil {
+		data, _ := os.ReadFile(newsFile)
+		json.Unmarshal(data, &newsList)
+	}
+
+	newsList = append(newsList, item)
+	data, _ := json.MarshalIndent(newsList, "", "  ")
+	if err := os.WriteFile(newsFile, data, 0644); err != nil {
+		http.Error(w, "Failed to save news", http.StatusInternalServerError)
+		return
+	}
+
+	err := db.SaveNews(item.Title, item.Content, item.Date, item.Image)
+	if err != nil {
+		log.Println(err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("News saved"))
 }

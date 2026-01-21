@@ -31,6 +31,8 @@ func main() {
 	r.HandleFunc("/news", handlers.ShowNews).Methods("GET")
 	r.HandleFunc("/contacts", handlers.ShowContacts).Methods("GET")
 	r.HandleFunc("/images", handlers.ShowImagesPage).Methods("GET")
+	r.HandleFunc("/newsAdd", handlers.NewsAddPage).Methods("GET")
+	r.HandleFunc("/newsBrowser", handlers.NewsBrowserePage).Methods("GET")
 	r.Handle("/metrics", promhttp.Handler())
 	r.PathPrefix(staticDir).Handler(http.StripPrefix(staticDir, fs)).Methods("GET")
 
