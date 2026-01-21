@@ -28,71 +28,54 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
             rel="stylesheet"
     />
-    <link href="/assets/styles/main.css" rel="stylesheet"/>
+    <link href="/assets/styles/navbar.css" rel="stylesheet"/>
+    <link href="/assets/styles/style.css" rel="stylesheet"/>
+    <link href="/assets/styles/head.blade.css" rel="stylesheet">
 </head>
 <body>
 <main id="app" ref="infoBox">
-    <header class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a href="/" class="logo">
-                <img src="/assets/images/logo.svg" alt="Dar Rail">
-            </a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">О Компании</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/services">Услуги</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/sustainableDevelopment">Устойчивое развитие</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/news">Новости</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contacts">Контакты</a></li>
-                </ul>
-            </div>
-        </div>
+
+    <header class="header header-image">
+        <div class="container">
+            <a href="/" class="logo"><img src="/assets/images/logo.svg" alt="Dar Rail"></a>
+            <ul class="menu">
+                <li><a href="/">О Компании</a></li>
+                <li><a href="/services">Услуги</a></li>
+                <li><a href="/sustainableDevelopment">Устойчивое развитие</a></li>
+                <li><a href="/news">Новости</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+            <div class="feedback"><div class="icon"><img src="https://www.darrail.com/assets/images/icons/call.svg" alt="call"></div>
+                <a href="tel:77172399988" class="icon"><img src="https://www.darrail.com/assets/images/icons/call.svg" alt="call"></a>
+                <div class="buttons"><a href="tel:77172399988">+7 (7172) 39 99 88</a> <a href="mailto:info@darrail.com">info@darrail.com</a></div>
+            </div></div>
     </header>
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
 
-            <a href="/" class="logo">
-                <img src="https://www.darrail.com/storage/settings/November2021/hPUTsbiQqPdex5OhNgCj.svg" alt="Dar Rail">
-            </a>
-
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
+    <section class="about-banner">
+        <div class="image">
+            <img src="/assets/images/index-bg.jpg" alt="image">
         </div>
-    </div>
-    <section class="banner">
-    <div class="container">
-        <div class="title">
-            <h1>ПЕРЕВОЗЧИК ГРУЗОВ с собственным парком локомотивов:</h1>
-
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="carousel-item-llp"><h3><p>надежно</p></h3></div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-item-llp"><h3><p>эффективно</p></h3></div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-item-llp"><h3><p>вовремя</p></h3></div>
+        <div class="container">
+            <div class="title">
+                <h1>ПЕРЕВОЗЧИК ГРУЗОВ с собственным парком локомотивов:</h1>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-item-llp"><h3><p>надежно</p></h3></div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-item-llp"><h3><p>эффективно</p></h3></div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-item-llp"><h3><p>вовремя</p></h3></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--<div class="text">
-          Работаем по всему Казахстану!          </div>-->
-        <button data-bs-toggle="modal" data-bs-target="#appModal" class="btn mt-5">
-            Связаться с нами          </button>
-    </div>
+    </section>
 
-</section>
-
-    <section class="about">
+    <section class="about-page">
         <div class="container">
             <div class="content">
                 <div class="title">
@@ -113,7 +96,6 @@
                         <li>Более 40 единиц магистральных локомотивов</li>
                     </ul>
                 </div>
-                <a href="/about" class="arrow-link">Подробнее <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="content">
                 <div class="images">
@@ -403,8 +385,6 @@
 
                 </div>
             </div>
-
-
         </div>
     </section>
 
@@ -481,16 +461,6 @@
                     <li>Ассоциация Национальных Экспедиторов Республики Казахстан</li>
                     <li>Объединение юридических лиц &ldquo;Саморегулируемая организация &ldquo;Ассоциация казахстанских грузовых железнодородных перевозчиков&rdquo;</li>
                 </ul>
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
     </section>
@@ -504,8 +474,108 @@
             </div>
 
             <div class="news-slider">
-
-
+                <div class="item">
+                    <div class="image">
+                        <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {
+                    height: 270px;
+                    object-fit: contain;
+                }">
+                    </div>
+                    <div class="info">
+                        <div class="date">
+                            01.08.2025
+                        </div>
+                        <div class="text">
+                            DAR Rail отпраздновал День железнод...
+                        </div>
+                        <a href="/news/dar-rail-temirzholshylar-k-nin-atap-tip-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {
+                    height: 270px;
+                    object-fit: contain;
+                }">
+                    </div>
+                    <div class="info">
+                        <div class="date">
+                            01.08.2025
+                        </div>
+                        <div class="text">
+                            DAR Rail отпраздновал День железнод...
+                        </div>
+                        <a href="/news/dar-rail-temirzholshylar-k-nin-atap-tip-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {
+                    height: 270px;
+                    object-fit: contain;
+                }">
+                    </div>
+                    <div class="info">
+                        <div class="date">
+                            01.08.2025
+                        </div>
+                        <div class="text">
+                            DAR Rail отпраздновал День железнод...
+                        </div>
+                        <a href="/news/dar-rail-temirzholshylar-k-nin-atap-tip-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {
+                    height: 270px;
+                    object-fit: contain;
+                }">
+                    </div>
+                    <div class="info">
+                        <div class="date">
+                            01.08.2025
+                        </div>
+                        <div class="text">
+                            DAR Rail отпраздновал День железнод...
+                        </div>
+                        <a href="/news/dar-rail-temirzholshylar-k-nin-atap-tip-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {
+                    height: 270px;
+                    object-fit: contain;
+                }">
+                    </div>
+                    <div class="info">
+                        <div class="date">
+                            01.08.2025
+                        </div>
+                        <div class="text">
+                            DAR Rail отпраздновал День железнод...
+                        </div>
+                        <a href="/news/dar-rail-temirzholshylar-k-nin-atap-tip-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {
+                    height: 270px;
+                    object-fit: contain;
+                }">
+                    </div>
+                    <div class="info">
+                        <div class="date">
+                            01.08.2025
+                        </div>
+                        <div class="text">
+                            DAR Rail отпраздновал День железнод...
+                        </div>
+                        <a href="/news/dar-rail-temirzholshylar-k-nin-atap-tip-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
                 <div class="item">
                     <div class="image">
                         <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {
@@ -573,20 +643,6 @@
                     <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
                 </a>
                 <ul class="menu">
-                    <!-- <li class="btn-group hover-show">
-                      <div class="dropdown-toggle" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                        О компании
-                      </div>
-                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuClickableInside">
-                        <li><a class="dropdown-item" href="history.html" @click="tab2">История компании</a></li>
-                        <li><a class="dropdown-item" href="mission.html" @click="tab3">Миссия и цели</a></li>
-                        <li><a class="dropdown-item" href="management.html" @click="tab4">Руководство</a></li>
-                        <li><a class="dropdown-item" href="quality.html" @click="tab5">Управление качеством</a></li>
-                        <li><a class="dropdown-item" href="security.html" @click="tab6">Безопасность</a></li>
-                        <li><a class="dropdown-item" href="tcc.html" @click="tab7">ЦУП</a></li>
-                        <li><a class="dropdown-item" href="staff.html" @click="tab8">Персонал</a></li>
-                      </ul>
-                    </li> -->
                     <li><a href="https://www.darrail.com/about">О Компании</a></li>
                     <li><a href="https://www.darrail.com/services">Услуги</a></li>
 
@@ -602,7 +658,6 @@
                     <a href="https://www.instagram.com" class="icon">
                         <img src="https://www.darrail.com/storage/contacts/October2021/9qRxDGt0UpL32OoRq4k1.svg" alt="Instagram">
                     </a>
-
                 </div>
             </div>
             <div class="content text">
@@ -610,82 +665,17 @@
         </div>
         <div class="footer-hr"></div>
         <div class="container footer-bottom">
-            <div class="text">© 2021 ТОО «Dar Rail»</div>
+            <div class="text">© 2026 ТОО «Dar Rail»</div>
             <a href="#">Политика обработки персональных данных</a>
             <a href="https://i-marketing.kz"><img src="https://www.darrail.com/assets/images/logo-im.svg" alt="i-marketing"></a>
         </div>
-
-    </footer>        <div class="modal fade" id="modalClick" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                algo
-            </div>
-        </div>
-    </div>
+    </footer>
 </div>
-
-    <!-- Modal start -->
-    <div class="modal fade" id="appModal" tabindex="-1" aria-labelledby="appModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Связаться с нами</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="requestFor" action="https://www.darrail.com/feedback" method="POST">
-                    <input type="hidden" name="_token" value="0X3LAu1o0ipJSVo7F5qmRUvCTwXzoENc2ee9oNym">        <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="name" class="col-form-label">Имя:</label>
-                        <input type="text" name="name" id="name" class="form-control"  required>
-                        <label for="number" class="col-form-label">Номер телефона:</label>
-                        <input type="tel" name="phone" id="number" class="form-control"  required>
-                        <label for="email" class="col-form-label">E-mail:</label>
-                        <input type="text" name="email" id="email" class="form-control" required>
-                        <input type="hidden" name="page" value="">
-                        <input type="hidden" name="url" value="https://www.darrail.com">
-                    </div>
-                </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="submit" class="btn btn-danger">Отправить</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Modal end -->
-
-    <!-- modal thanks start -->
-    <div class="modal fade" id="m-thanks" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="text-center">
-                        Спасибо!                </div>
-                    <div class="text-center">
-                        Ваша заявка отправлена.                    Мы свяжемся с вами в ближайшее время.                </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- modal thanks end -->
-
-
-
-
-
-
-
-
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample-navbar" aria-labelledby="offcanvasExample-navbarLabel">
         <div class="offcanvas-header">
             <a href="index.html" class="logo">
-                <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
+                <img src="/assets/images/logo.svg" alt="Dar Rail">
             </a>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
                 <i class="bi bi-x-lg"></i>
@@ -708,7 +698,8 @@
                 <!--          <li><a href="/survey" >Анкета удовлетворенности клиента</a></li>          -->
             </ul>
         </div>
-    </div>    </main>
+    </div>
+</main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile # The name of the Dockerfile relative to the context path
     image: finalwork/finalwork:latest # (Optional but recommended) Names the resulting ima
     ports:
-      - "8000:8000"
+      - "8080:8000"
     restart: unless-stopped
     networks:
       - finalwork-network
@@ -39,10 +39,64 @@ services:
     networks:
       - finalwork-network
 
+  postgres:
+    container_name: finalwork-postgres
+    image: postgres
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - db-data:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
+    networks:
+      - finalwork-network
+
+  pgadmin:
+    container_name: finalwork-pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "kurbangaliev@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5051:80"
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    networks:
+      - finalwork-network
+
 volumes:
   grafana-data:
     driver: local
   prometheus-data:
+    driver: local
+  pgadmin-data:
+    driver: local
+  db-data:
     driver: local
 
 networks:

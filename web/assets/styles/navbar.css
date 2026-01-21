@@ -56,9 +56,3 @@ table tr:nth-child(even) td {
     background-color: #e67e22;
     color: #fff;
 }
-@media (max-width: 767px) {
-    table th,
-    table td {
-        padding: 12px;
-    }
-}
