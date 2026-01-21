@@ -15,8 +15,9 @@ import (
 const uploadDir = "web\\assets\\uploads"
 
 type ImagePayload struct {
-	Src  string `json:"src"`
-	Name string `json:"name"`
+	Src    string `json:"src"`
+	Name   string `json:"name"`
+	Folder string `json:"folder"`
 }
 
 type UploadRequest struct {
@@ -35,7 +36,8 @@ func main() {
 
 	http.HandleFunc("/upload", cors(uploadHandler))
 	http.HandleFunc("/images", cors(imagesHandler))
-	http.HandleFunc("/image/", cors(deleteHandler)) // DELETE /image/{name}
+	http.HandleFunc("/image/", cors(deleteHandler))
+	http.HandleFunc("/folders", cors(foldersHandler))
 
 	http.Handle("/uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir(uploadDir))))
 
@@ -58,7 +60,9 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, img := range req.Images {
-		if err := saveImage(img); err != nil {
+		folderPath := filepath.Join(uploadDir, sanitizeFolder(img.Folder))
+		os.MkdirAll(folderPath, 0755)
+		if err := saveImage(img, folderPath); err != nil {
 			log.Println("❌", err)
 			http.Error(w, "Failed to save image", http.StatusInternalServerError)
 			return
@@ -69,20 +73,18 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Images saved"))
 }
 
-func saveImage(img ImagePayload) error {
+func saveImage(img ImagePayload, folderPath string) error {
 	parts := strings.Split(img.Src, ",")
 	if len(parts) != 2 {
 		return fmt.Errorf("invalid base64 image")
 	}
-
 	data, err := base64.StdEncoding.DecodeString(parts[1])
 	if err != nil {
 		return err
 	}
-
 	filename := sanitizeFilename(img.Name)
 	filename = fmt.Sprintf("%d_%s", time.Now().UnixNano(), filename)
-	path := filepath.Join(uploadDir, filename)
+	path := filepath.Join(folderPath, filename)
 	return os.WriteFile(path, data, 0644)
 }
 
@@ -94,7 +96,14 @@ func imagesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	files, err := os.ReadDir(uploadDir)
+	folder := sanitizeFolder(r.URL.Query().Get("folder"))
+	if folder == "" {
+		folder = "default"
+	}
+	folderPath := filepath.Join(uploadDir, folder)
+	os.MkdirAll(folderPath, 0755)
+
+	files, err := os.ReadDir(folderPath)
 	if err != nil {
 		http.Error(w, "Failed to read directory", http.StatusInternalServerError)
 		return
@@ -107,12 +116,36 @@ func imagesHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		images = append(images, ImageInfo{
 			Name: file.Name(),
-			URL:  "/uploads/" + file.Name(),
+			URL:  "/uploads/" + folder + "/" + file.Name(),
 		})
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(images)
+}
+
+/* ================= GET FOLDERS ================= */
+func foldersHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	entries, err := os.ReadDir(uploadDir)
+	if err != nil {
+		http.Error(w, "Failed to read upload directory", http.StatusInternalServerError)
+		return
+	}
+
+	var folders []string
+	for _, entry := range entries {
+		if entry.IsDir() {
+			folders = append(folders, entry.Name())
+		}
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(folders)
 }
 
 /* ================= DELETE ================= */
@@ -123,10 +156,13 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Получаем имя файла из URL /image/{name}
-	name := strings.TrimPrefix(r.URL.Path, "/image/")
-	name = sanitizeFilename(name)
-	path := filepath.Join(uploadDir, name)
+	parts := strings.SplitN(r.URL.Path[len("/image/"):], "?", 2)
+	name := sanitizeFilename(parts[0])
+	folder := sanitizeFolder(r.URL.Query().Get("folder"))
+	if folder == "" {
+		folder = "default"
+	}
+	path := filepath.Join(uploadDir, folder, name)
 
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		http.Error(w, "File not found", http.StatusNotFound)
@@ -148,6 +184,15 @@ func sanitizeFilename(name string) string {
 	name = filepath.Base(name)
 	name = strings.ReplaceAll(name, "..", "")
 	return name
+}
+
+func sanitizeFolder(folder string) string {
+	folder = filepath.Base(folder)
+	folder = strings.ReplaceAll(folder, "..", "")
+	if folder == "" {
+		folder = "default"
+	}
+	return folder
 }
 
 func cors(next http.HandlerFunc) http.HandlerFunc {
