@@ -3,219 +3,157 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Обозреватель картинок</title>
+    <title>Обозреватель картинок с папками</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #111;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background: #f5c400;
-            color: #000;
-            padding: 16px 24px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        main {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        /* Левая панель с миниатюрами */
-        .sidebar {
-            width: 280px;
-            background: #1b1b1b;
-            overflow-y: auto;
-            border-right: 1px solid #333;
-        }
-
-        .thumb {
-            padding: 8px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .delete-btn {
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            background: rgba(0,0,0,0.7);
-            color: #f5c400;
-            border: none;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 14px;
-            cursor: pointer;
-            display: none;
-        }
-
-        .thumb:hover .delete-btn {
-            display: block;
-        }
-
-        .thumb img {
-            width: 100%;
-            border-radius: 6px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .filename {
-            margin-top: 4px;
-            font-size: 12px;
-            color: #ccc;
-            text-align: center;
-            word-break: break-all;
-        }
-
-        .thumb img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 10px rgba(245,196,0,0.6);
-        }
-
-        /* Основная область просмотра */
-        .viewer {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            position: relative;
-        }
-
-        .viewer img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .placeholder {
-            color: #777;
-            font-size: 18px;
-        }
-
-        footer {
-            background: #111;
-            border-top: 1px solid #333;
-            padding: 8px 16px;
-            font-size: 12px;
-            color: #777;
-        }
+        * { box-sizing: border-box; margin:0; padding:0; font-family:Arial,sans-serif; }
+        body { background:#111; color:#fff; min-height:100vh; display:flex; flex-direction:column; }
+        header { background:#f5c400; color:#000; padding:16px 24px; font-size:20px; font-weight:bold; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+        main { display:flex; flex:1; overflow:hidden; }
+        .sidebar { width:300px; background:#1b1b1b; overflow-y:auto; border-right:1px solid #333; }
+        .folder-list { padding:8px; border-bottom:1px solid #333; display:flex; gap:4px; flex-wrap:wrap; }
+        .folder-btn { background:#333; color:#f5c400; border:none; padding:4px 8px; cursor:pointer; border-radius:4px; }
+        .folder-btn.active { background:#f5c400; color:#000; font-weight:bold; }
+        .thumb { padding:8px; cursor:pointer; position:relative; }
+        .thumb img { width:100%; border-radius:6px; transition: transform 0.2s, box-shadow 0.2s; }
+        .thumb img:hover { transform:scale(1.03); box-shadow:0 0 10px rgba(245,196,0,0.6); }
+        .filename { margin-top:4px; font-size:12px; color:#ccc; text-align:center; word-break:break-all; }
+        .delete-btn { position:absolute; top:6px; right:6px; background:rgba(0,0,0,0.7); color:#f5c400; border:none; border-radius:50%; width:22px; height:22px; font-size:14px; cursor:pointer; display:none; }
+        .thumb:hover .delete-btn { display:block; }
+        .viewer { flex:1; display:flex; align-items:center; justify-content:center; background:#000; position:relative; }
+        .viewer img { max-width:100%; max-height:100%; object-fit:contain; }
+        .placeholder { color:#777; font-size:18px; }
+        footer { background:#111; border-top:1px solid #333; padding:8px 16px; font-size:12px; color:#777; }
+        #status { margin-left:16px; font-size:14px; color:#000; }
     </style>
 </head>
 <body>
 <header>
     Обозреватель картинок
-    <input type="file" id="fileInput" accept="image/*" multiple style="margin-left:16px;" />
-    <button id="saveBtn" style="margin-left:16px; padding:6px 12px; cursor:pointer;">Сохранить на сервер</button>
+    <input type="file" id="fileInput" accept="image/*" multiple />
+    <button id="saveBtn">Сохранить на сервер</button>
+    <button id="loadBtn">Загрузить с сервера</button>
+    <input type="text" id="newFolderName" placeholder="Новая папка" style="padding:4px;"/>
+    <button id="createFolderBtn">Создать папку</button>
+    <span id="status">Статус: готов</span>
 </header>
-
 <main>
-    <aside class="sidebar" id="thumbContainer">
-        <!-- Миниатюры будут добавляться сюда -->
+    <aside class="sidebar">
+        <div class="folder-list" id="folderList"></div>
+        <div id="thumbContainer"></div>
     </aside>
-
     <section class="viewer" id="viewer">
         <div class="placeholder" id="placeholder">Выберите изображение</div>
         <img id="fullImage" style="display:none;" />
     </section>
 </main>
-
-<footer>
-    © 2026 · HTML Image Viewer
-</footer>
+<footer>© 2026 · HTML Image Viewer</footer>
 
 <script>
     const fileInput = document.getElementById('fileInput');
     const thumbContainer = document.getElementById('thumbContainer');
     const saveBtn = document.getElementById('saveBtn');
+    const loadBtn = document.getElementById('loadBtn');
+    const status = document.getElementById('status');
+    const folderList = document.getElementById('folderList');
+    const newFolderName = document.getElementById('newFolderName');
+    const createFolderBtn = document.getElementById('createFolderBtn');
+
     let images = [];
+    let unsavedImages = [];
+    let folders = [];
+    let currentFolder = 'default';
 
-    fileInput.addEventListener('change', (event) => {
-        const files = event.target.files;
-        for (const file of files) {
-            if (!file.type.startsWith('image/')) continue;
+    // --- Функции папок ---
+    function renderFolders() {
+        folderList.innerHTML = '';
+        folders.forEach(folder=>{
+            const btn = document.createElement('button');
+            btn.textContent = folder;
+            btn.className='folder-btn'+(folder===currentFolder?' active':'');
+            btn.onclick=()=>{
+                currentFolder=folder;
+                renderFolders();
+                loadFromServer();
+            };
+            folderList.appendChild(btn);
+        });
+    }
 
+    // Создание папки
+    createFolderBtn.addEventListener('click',()=>{
+        const name = newFolderName.value.trim();
+        if(!name) return;
+        if(!folders.includes(name)) folders.push(name);
+        currentFolder=name;
+        newFolderName.value='';
+        renderFolders();
+        loadFromServer();
+    });
+
+    // --- Загрузка файлов с ПК ---
+    fileInput.addEventListener('change',(event)=>{
+        const files=event.target.files;
+        for(const file of files){
+            if(!file.type.startsWith('image/')) continue;
             const reader = new FileReader();
-            reader.onload = (e) => {
-                const div = document.createElement('div');
-                div.className = 'thumb';
-
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.onclick = () => showImage(img.src);
-
-                const name = document.createElement('div');
-                name.className = 'filename';
-                name.textContent = file.name;
-
-                const del = document.createElement('button');
-                del.className = 'delete-btn';
-                del.innerHTML = '×';
-                del.onclick = (ev) => {
-                    ev.stopPropagation();
-                    images = images.filter(i => i.src !== img.src);
-                    if (document.getElementById('fullImage').src === img.src) {
-                        document.getElementById('fullImage').style.display = 'none';
-                        document.getElementById('placeholder').style.display = 'block';
-                    }
-                    div.remove();
-                };
-
-                images.push({ src: img.src, name: file.name });
-
-                div.appendChild(img);
-                div.appendChild(name);
-                div.appendChild(del);
+            reader.onload=(e)=>{
+                const div=document.createElement('div'); div.className='thumb';
+                const img=document.createElement('img'); img.src=e.target.result; img.onclick=()=>showImage(img.src);
+                const nameDiv=document.createElement('div'); nameDiv.className='filename'; nameDiv.textContent=file.name;
+                const del=document.createElement('button'); del.className='delete-btn'; del.innerHTML='×';
+                del.onclick=(ev)=>{ ev.stopPropagation(); images=images.filter(i=>i.src!==img.src); unsavedImages=unsavedImages.filter(i=>i.src!==img.src); if(document.getElementById('fullImage').src===img.src){document.getElementById('fullImage').style.display='none';document.getElementById('placeholder').style.display='block';} div.remove(); updateStatus();}
+                const imgObj={src:img.src,name:file.name,folder:currentFolder};
+                images.push(imgObj); unsavedImages.push(imgObj);
+                div.appendChild(img); div.appendChild(nameDiv); div.appendChild(del);
                 thumbContainer.appendChild(div);
+                updateStatus();
             };
             reader.readAsDataURL(file);
         }
     });
 
-    saveBtn.addEventListener('click', async () => {
-        if (images.length === 0) {
-            alert('Нет изображений для сохранения');
-            return;
-        }
-
-        try {
-            const response = await fetch('http://localhost:8080/upload', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ images })
-            });
-
-            if (!response.ok) throw new Error('Ошибка сервера');
-            alert('Изображения успешно отправлены на сервер');
-        } catch (err) {
-            alert('Не удалось подключиться к серверу');
-            console.error(err);
-        }
+    // --- Сохранение только новых изображений ---
+    saveBtn.addEventListener('click',async()=>{
+        if(unsavedImages.length===0){alert('Нет новых изображений для сохранения'); return;}
+        status.textContent='Статус: сохранение...';
+        try{
+            const response = await fetch('http://localhost:8080/upload', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({images:unsavedImages})});
+            if(!response.ok) throw new Error();
+            status.textContent='Статус: все изображения сохранены';
+            unsavedImages=[];
+        }catch{status.textContent='Статус: ошибка сохранения'; alert('Ошибка подключения к серверу');}
     });
 
-    function showImage(src) {
-        const img = document.getElementById('fullImage');
-        const placeholder = document.getElementById('placeholder');
-        img.src = src;
-        img.style.display = 'block';
-        placeholder.style.display = 'none';
+    // --- Загрузка с сервера ---
+    loadBtn.addEventListener('click', loadFromServer);
+
+    async function loadFromServer(){
+        try{
+            const res=await fetch('http://localhost:8080/images?folder='+encodeURIComponent(currentFolder));
+            const data=await res.json();
+            thumbContainer.innerHTML=''; images=[]; unsavedImages=[];
+            data.forEach(item=>{
+                const div=document.createElement('div'); div.className='thumb';
+                const img=document.createElement('img'); img.src='http://localhost:8080'+item.url; img.onclick=()=>showImage(img.src);
+                const nameDiv=document.createElement('div'); nameDiv.className='filename'; nameDiv.textContent=item.name;
+                const del=document.createElement('button'); del.className='delete-btn'; del.innerHTML='×';
+                del.onclick=async(e)=>{ e.stopPropagation(); try{ const resp=await fetch('http://localhost:8080/image/'+encodeURIComponent(item.name)+'?folder='+encodeURIComponent(currentFolder),{method:'DELETE'}); if(!resp.ok) throw new Error(); div.remove(); images=images.filter(i=>i.name!==item.name);}catch{alert('Не удалось удалить с сервера');} }
+                images.push({src:img.src,name:item.name,folder:currentFolder});
+                div.appendChild(img); div.appendChild(nameDiv); div.appendChild(del);
+                thumbContainer.appendChild(div);
+            });
+            updateStatus();
+        }catch{status.textContent='Статус: ошибка загрузки'; alert('Не удалось загрузить изображения с сервера');}
     }
+
+    // --- Показ выбранного изображения ---
+    function showImage(src){ const img=document.getElementById('fullImage'); const placeholder=document.getElementById('placeholder'); img.src=src; img.style.display='block'; placeholder.style.display='none';}
+
+    // --- Статус ---
+    function updateStatus(){ status.textContent=`Статус: ${unsavedImages.length} новых изображений к сохранению`; }
+
+    // --- Инициализация ---
+    folders=['default']; renderFolders();
 </script>
 </body>
 </html>

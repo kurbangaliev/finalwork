@@ -35,13 +35,9 @@ func main() {
 
 	http.HandleFunc("/upload", cors(uploadHandler))
 	http.HandleFunc("/images", cors(imagesHandler))
+	http.HandleFunc("/image/", cors(deleteHandler)) // DELETE /image/{name}
 
-	// Раздача файлов
-	http.Handle("/uploads/",
-		http.StripPrefix("/uploads/",
-			http.FileServer(http.Dir(uploadDir)),
-		),
-	)
+	http.Handle("/uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir(uploadDir))))
 
 	log.Println("🚀 Server started on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
@@ -86,7 +82,6 @@ func saveImage(img ImagePayload) error {
 
 	filename := sanitizeFilename(img.Name)
 	filename = fmt.Sprintf("%d_%s", time.Now().UnixNano(), filename)
-
 	path := filepath.Join(uploadDir, filename)
 	return os.WriteFile(path, data, 0644)
 }
@@ -110,16 +105,41 @@ func imagesHandler(w http.ResponseWriter, r *http.Request) {
 		if file.IsDir() {
 			continue
 		}
-
-		name := file.Name()
 		images = append(images, ImageInfo{
-			Name: name,
-			URL:  "/uploads/" + name,
+			Name: file.Name(),
+			URL:  "/uploads/" + file.Name(),
 		})
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(images)
+}
+
+/* ================= DELETE ================= */
+
+func deleteHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodDelete {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Получаем имя файла из URL /image/{name}
+	name := strings.TrimPrefix(r.URL.Path, "/image/")
+	name = sanitizeFilename(name)
+	path := filepath.Join(uploadDir, name)
+
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		http.Error(w, "File not found", http.StatusNotFound)
+		return
+	}
+
+	if err := os.Remove(path); err != nil {
+		http.Error(w, "Failed to delete file", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("Deleted"))
 }
 
 /* ================= UTILS ================= */
@@ -134,8 +154,7 @@ func cors(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
 			return
