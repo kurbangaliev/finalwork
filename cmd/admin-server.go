@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -37,6 +38,7 @@ type ImageInfo struct {
 }
 
 type NewsItem struct {
+	Id      uint   `json:"id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
 	Date    string `json:"date"`
@@ -52,7 +54,7 @@ func main() {
 	http.HandleFunc("/images", cors(imagesHandler))
 	http.HandleFunc("/image/", cors(deleteHandler))
 	http.HandleFunc("/folders", cors(foldersHandler))
-	http.HandleFunc("/news", cors(newsHandler)) // новый обработчик новостей
+	http.HandleFunc("/news/", cors(newsHandler)) // новый обработчик новостей
 
 	http.Handle("/uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir(uploadDir))))
 
@@ -219,7 +221,7 @@ func cors(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
 			return
@@ -230,27 +232,78 @@ func cors(next http.HandlerFunc) http.HandlerFunc {
 
 /* =================== NEWS =================== */
 func newsHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodPost {
-		// обработка добавления новости (уже реализована)
+	log.Println(r.Method)
+	switch r.Method {
+	case http.MethodPost:
 		handleAddNews(w, r)
+	case http.MethodGet:
+		handleGetNews(w, r)
+	case http.MethodPut:
+		handleEditNews(w, r)
+	case http.MethodDelete:
+		handleDeleteNews(w, r)
+	default:
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	}
+}
+
+// GET /news
+func handleGetNews(w http.ResponseWriter, r *http.Request) {
+	//newsMutex.Lock()
+	//defer newsMutex.Unlock()
+	//
+	//var newsList []NewsItem
+	//if _, err := os.Stat(newsFile); err == nil {
+	//	data, _ := os.ReadFile(newsFile)
+	//	json.Unmarshal(data, &newsList)
+	//}
+	newsList := db.SelectAllNews()
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(newsList)
+}
+
+// PUT /news/{index}
+func handleEditNews(w http.ResponseWriter, r *http.Request) {
+	indexStr := strings.TrimPrefix(r.URL.Path, "/news/")
+	id, err := strconv.Atoi(indexStr)
+	if err != nil {
+		http.Error(w, "Invalid id", http.StatusBadRequest)
 		return
 	}
-	if r.Method == http.MethodGet {
-		// возвращаем список всех новостей
-		newsMutex.Lock()
-		defer newsMutex.Unlock()
 
-		var newsList []NewsItem
-		if _, err := os.Stat(newsFile); err == nil {
-			data, _ := os.ReadFile(newsFile)
-			json.Unmarshal(data, &newsList)
-		}
-
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(newsList)
+	var item NewsItem
+	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
+		http.Error(w, "Invalid JSON", http.StatusBadRequest)
 		return
 	}
-	http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+
+	err = db.UpdateNews(uint(id), item.Title, item.Content, item.Date, item.Image)
+	if err != nil {
+		http.Error(w, "Failed to update item", http.StatusInternalServerError)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("News updated"))
+}
+
+// DELETE /news/{index}
+func handleDeleteNews(w http.ResponseWriter, r *http.Request) {
+	indexStr := strings.TrimPrefix(r.URL.Path, "/news/")
+	id, err := strconv.Atoi(indexStr)
+	if err != nil {
+		http.Error(w, "Invalid id", http.StatusBadRequest)
+		return
+	}
+	log.Printf("delete %d", id)
+
+	err = db.DeleteNews(uint(id))
+	if err != nil {
+		http.Error(w, "Failed to delete item", http.StatusInternalServerError)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("News deleted"))
 }
 
 func handleAddNews(w http.ResponseWriter, r *http.Request) {
@@ -261,6 +314,7 @@ func handleAddNews(w http.ResponseWriter, r *http.Request) {
 
 	var item NewsItem
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
+		log.Println(err)
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
 		return
 	}
@@ -273,25 +327,6 @@ func handleAddNews(w http.ResponseWriter, r *http.Request) {
 
 	// Добавляем метку времени
 	item.Date = item.Date + "T" + time.Now().Format("15:04:05")
-
-	// Сохраняем в файл с блокировкой
-	newsMutex.Lock()
-	defer newsMutex.Unlock()
-
-	var newsList []NewsItem
-
-	// Если файл существует, читаем существующие новости
-	if _, err := os.Stat(newsFile); err == nil {
-		data, _ := os.ReadFile(newsFile)
-		json.Unmarshal(data, &newsList)
-	}
-
-	newsList = append(newsList, item)
-	data, _ := json.MarshalIndent(newsList, "", "  ")
-	if err := os.WriteFile(newsFile, data, 0644); err != nil {
-		http.Error(w, "Failed to save news", http.StatusInternalServerError)
-		return
-	}
 
 	err := db.SaveNews(item.Title, item.Content, item.Date, item.Image)
 	if err != nil {

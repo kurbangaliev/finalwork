@@ -2,8 +2,10 @@ package db
 
 import (
 	"finalwork/internal/models"
-	"fmt"
 	"log"
+	"time"
+
+	"gorm.io/gorm"
 )
 
 func SelectAllManagers() []models.Manager {
@@ -18,9 +20,7 @@ func SelectAllManagers() []models.Manager {
 	if result.Error != nil {
 		log.Fatal(result.Error)
 	}
-	for _, manager := range managers {
-		fmt.Println(manager.Name)
-	}
+
 	return managers
 }
 
@@ -30,13 +30,11 @@ func SelectAllNews() []models.News {
 	if err != nil {
 		log.Fatal(err)
 	}
-	result := db.Find(&news)
+	result := db.Order("created_at ASC").Find(&news)
 	if result.Error != nil {
 		log.Fatal(result.Error)
 	}
-	for _, newsItem := range news {
-		log.Println(newsItem.Title)
-	}
+
 	return news
 }
 
@@ -59,18 +57,59 @@ func SaveImage(data []byte, filename string, serverPath string, folderPath strin
 	return nil
 }
 
-func SaveNews(title string, content string, date string, imagePath string) error {
+func SaveNews(title string, content string, date string, image string) error {
 	db, err := DbConnection()
 	if err != nil {
 		return err
 	}
 	news := models.News{
-		Title:     title,
-		Content:   content,
-		Date:      date,
-		ImagePath: imagePath,
+		Title:   title,
+		Content: content,
+		Date:    date,
+		Image:   image,
 	}
 	result := db.Create(&news)
+	if result.Error != nil {
+		log.Println(result.Error)
+		return result.Error
+	}
+	return nil
+}
+
+func UpdateNews(id uint, title string, content string, date string, image string) error {
+	db, err := DbConnection()
+	if err != nil {
+		return err
+	}
+	news := models.News{
+		Model: gorm.Model{
+			ID:        id,
+			UpdatedAt: time.Time{},
+		},
+		Title:   title,
+		Content: content,
+		Date:    date,
+		Image:   image,
+	}
+	result := db.Updates(&news)
+	if result.Error != nil {
+		log.Println(result.Error)
+		return result.Error
+	}
+	return nil
+}
+
+func DeleteNews(id uint) error {
+	db, err := DbConnection()
+	if err != nil {
+		return err
+	}
+	news := models.News{
+		Model: gorm.Model{
+			ID: id,
+		},
+	}
+	result := db.Delete(&news)
 	if result.Error != nil {
 		log.Println(result.Error)
 		return result.Error

@@ -21,10 +21,10 @@ type Manager struct {
 
 type News struct {
 	gorm.Model
-	Title     string `gorm:"type:text"`
-	Content   string `gorm:"type:text"`
-	Date      string `gorm:"size:20"`
-	ImagePath string `gorm:"size:1024"`
+	Title   string `gorm:"type:text"`
+	Content string `gorm:"type:text"`
+	Date    string `gorm:"size:20"`
+	Image   string `gorm:"size:1024"`
 }
 
 type Partner struct {
