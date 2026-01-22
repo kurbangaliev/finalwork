@@ -12,6 +12,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
+const (
+	staticDir = "/assets/"
+)
+
 func main() {
 	fmt.Println("Server is starting...")
 	fmt.Println("Database auto migrate...")
@@ -19,7 +23,7 @@ func main() {
 
 	fmt.Println("Server handling requests...")
 	r := mux.NewRouter()
-	staticDir := "/assets/"
+
 	staticPath := http.Dir("./web/assets")
 	fs := http.FileServer(staticPath)
 
