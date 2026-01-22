@@ -74,7 +74,7 @@ func saveImage(img models.ImagePayload, folderPath string) error {
 
 func ImagesHandler(w http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
-	log.Println("ImagesHandler")
+
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
@@ -85,7 +85,7 @@ func ImagesHandler(w http.ResponseWriter, r *http.Request) {
 		folder = "default"
 	}
 	folderPath := filepath.Join(UploadDir, folder)
-	log.Println("Folder:", folderPath)
+
 	os.MkdirAll(folderPath, 0755)
 
 	files, err := os.ReadDir(folderPath)
@@ -93,7 +93,7 @@ func ImagesHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to read directory", http.StatusInternalServerError)
 		return
 	}
-	log.Println("Files:", len(files))
+
 	var images []models.ImageInfo
 	for _, file := range files {
 		if file.IsDir() {
@@ -105,7 +105,6 @@ func ImagesHandler(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
-	log.Println("Images:", images)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(images)
 }
