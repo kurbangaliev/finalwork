@@ -7,12 +7,14 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"strings"
 	"time"
+
+	"github.com/gorilla/mux"
 )
 
 /* =================== NEWS =================== */
-// GET /news
+
+// HandleGetNews GET /news
 func HandleGetNews(w http.ResponseWriter, r *http.Request) {
 	newsList := db.SelectAllNews()
 
@@ -20,10 +22,11 @@ func HandleGetNews(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(newsList)
 }
 
-// PUT /news/{index}
+// HandleEditNews PUT /news/{id}
 func HandleEditNews(w http.ResponseWriter, r *http.Request) {
-	indexStr := strings.TrimPrefix(r.URL.Path, "/news/")
-	id, err := strconv.Atoi(indexStr)
+	vars := mux.Vars(r)
+	strId := vars["id"]
+	id, err := strconv.Atoi(strId)
 	if err != nil {
 		http.Error(w, "Invalid id", http.StatusBadRequest)
 		return
@@ -44,10 +47,11 @@ func HandleEditNews(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("News updated"))
 }
 
-// DELETE /news/{index}
+// HandleDeleteNews DELETE /news/{id}
 func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
-	indexStr := strings.TrimPrefix(r.URL.Path, "/news/")
-	id, err := strconv.Atoi(indexStr)
+	vars := mux.Vars(r)
+	strId := vars["id"]
+	id, err := strconv.Atoi(strId)
 	if err != nil {
 		http.Error(w, "Invalid id", http.StatusBadRequest)
 		return
@@ -63,6 +67,7 @@ func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("News deleted"))
 }
 
+// HandleAddNews POST /news
 func HandleAddNews(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)

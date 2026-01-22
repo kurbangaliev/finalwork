@@ -90,7 +90,7 @@
                 body:JSON.stringify({title,content,date,image})
             });
             if (!res.ok) {
-                const message = `An error occurred: ${response.status}`;
+                const message = `An error occurred: ${res.status}`;
                 throw new Error(message);
             }
             currentEditImage='';
