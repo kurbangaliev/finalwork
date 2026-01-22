@@ -23,12 +23,9 @@ const (
 
 /* ================= UPLOAD ================= */
 
+// UploadHandler POST /upload
 func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
 
 	var req models.UploadRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -58,6 +55,7 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// saveImage Save image to local file storage in upload folder
 func saveImage(img models.ImagePayload, folderPath string) error {
 	parts := strings.Split(img.Src, ",")
 	if len(parts) != 2 {
@@ -80,13 +78,9 @@ func saveImage(img models.ImagePayload, folderPath string) error {
 
 /* ================= LOAD ================= */
 
+// ImagesHandler GET /images
 func ImagesHandler(w http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
-
-	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
 
 	folder := utils.SanitizeFolder(r.URL.Query().Get("folder"))
 	if folder == "" {
@@ -127,12 +121,9 @@ func ImagesHandler(w http.ResponseWriter, r *http.Request) {
 
 /* ================= DELETE ================= */
 
+// DeleteHandler DELETE /image/
 func DeleteHandler(w http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
-	if r.Method != http.MethodDelete {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
 
 	parts := strings.SplitN(r.URL.Path[len("/image/"):], "?", 2)
 	name := utils.SanitizeFilename(parts[0])
@@ -162,12 +153,9 @@ func DeleteHandler(w http.ResponseWriter, r *http.Request) {
 
 /* ================= GET FOLDERS ================= */
 
+// FoldersHandler GET /folders
 func FoldersHandler(w http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
-	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
 
 	entries, err := os.ReadDir(UploadDir)
 	if err != nil {

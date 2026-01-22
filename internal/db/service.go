@@ -57,7 +57,7 @@ func SaveImage(data []byte, filename string, serverPath string, folderPath strin
 	return nil
 }
 
-func SaveNews(title string, content string, date string, image string) error {
+func saveNews(title string, content string, date string, image string) error {
 	db, err := DbConnection()
 	if err != nil {
 		return err
@@ -72,6 +72,14 @@ func SaveNews(title string, content string, date string, image string) error {
 	if result.Error != nil {
 		log.Println(result.Error)
 		return result.Error
+	}
+	return nil
+}
+
+func SaveNews(newsItem models.NewsItem) error {
+	err := saveNews(newsItem.Title, newsItem.Content, newsItem.Date, newsItem.Image)
+	if err != nil {
+		return err
 	}
 	return nil
 }

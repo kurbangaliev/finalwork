@@ -69,11 +69,6 @@ func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
 
 // HandleAddNews POST /news
 func HandleAddNews(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
-
 	var item models.NewsItem
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		log.Println(err)
@@ -90,7 +85,7 @@ func HandleAddNews(w http.ResponseWriter, r *http.Request) {
 	// Добавляем метку времени
 	item.Date = item.Date + "T" + time.Now().Format("15:04:05")
 
-	err := db.SaveNews(item.Title, item.Content, item.Date, item.Image)
+	err := db.SaveNews(item)
 	if err != nil {
 		log.Println(err)
 	}
