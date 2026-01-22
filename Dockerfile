@@ -16,6 +16,7 @@ COPY . .
 # Build the application with CGO_ENABLED=0 to produce a static binary
 # and optional flags to strip debug information for a smaller size
 RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /app/server ./cmd/main.go
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /app/admin-server ./cmd/admin-server.go
 
 # Stage 2: Create a minimal production image
 FROM debian:bookworm-slim
@@ -25,8 +26,9 @@ RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/
 WORKDIR /app
 
 # Copy the built binary from the builder stage
-COPY --from=builder /app/server /app/server
+COPY --from=builder /app/* /app/
 COPY web/ /app/web/
+COPY scripts/start.sh .
 
 # Optional: Run as a non-root user for better security
 RUN groupadd -r appgroup && useradd -r -g appgroup appuser
@@ -34,6 +36,7 @@ USER appuser
 
 # Expose the port your application listens on
 EXPOSE 8080
+EXPOSE 8081
 
 # Command to run the executable when the container starts
-CMD ["./server"]
+CMD ["./start.sh"]

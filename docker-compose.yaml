@@ -6,8 +6,17 @@ services:
       context: ./
       dockerfile: Dockerfile # The name of the Dockerfile relative to the context path
     image: finalwork/finalwork:latest # (Optional but recommended) Names the resulting ima
+    environment:
+      DB_USER: "postgres"
+      DB_PASSWORD: "postgres"
+      DB_HOST: "finalwork-postgres"
+      DB_NAME: "finalwork"
+      DB_PORT: 5432
     ports:
-      - "8080:8000"
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - postgres
     restart: unless-stopped
     networks:
       - finalwork-network

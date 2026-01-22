@@ -2,10 +2,11 @@ package main
 
 import (
 	"finalwork/internal/handlers"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/gorilla/mux"
 )
 
 const (
@@ -32,6 +33,6 @@ func main() {
 	fileServer := http.FileServer(uploadPath)
 	r.PathPrefix(uploadPrefix).Handler(http.StripPrefix(uploadPrefix, fileServer)).Methods("GET")
 
-	log.Println("🚀 Server started on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Println("🚀 Server started on http://localhost:8081")
+	log.Fatal(http.ListenAndServe(":8081", r))
 }

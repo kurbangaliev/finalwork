@@ -79,7 +79,7 @@
     async function loadAllFoldersAndImages() {
         modalThumbs.innerHTML = '';
         try {
-            const resFolders = await fetch('http://localhost:8080/folders');
+            const resFolders = await fetch('http://localhost:8081/folders');
             const folders = await resFolders.json();
             for(const folder of folders) {
                 const folderHeader = document.createElement('div');
@@ -87,14 +87,14 @@
                 folderHeader.textContent = `Папка: ${folder}`;
                 modalThumbs.appendChild(folderHeader);
 
-                const resImages = await fetch(`http://localhost:8080/images?folder=${encodeURIComponent(folder)}`);
+                const resImages = await fetch(`http://localhost:8081/images?folder=${encodeURIComponent(folder)}`);
                 const images = await resImages.json();
 
                 images.forEach(img => {
                     const div = document.createElement('div');
                     div.className = 'thumb';
                     const imageEl = document.createElement('img');
-                    imageEl.src = 'http://localhost:8080' + img.url;
+                    imageEl.src = 'http://localhost:8081' + img.url;
                     imageEl.onclick = () => selectImage(imageEl.src);
                     div.appendChild(imageEl);
                     modalThumbs.appendChild(div);
@@ -129,7 +129,7 @@
         const payload = { title, content, date, image: selectedImageUrl };
 
         try {
-            const res = await fetch('http://localhost:8080/news/', {
+            const res = await fetch('http://localhost:8081/news/', {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(payload)

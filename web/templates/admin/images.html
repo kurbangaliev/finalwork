@@ -67,7 +67,7 @@
     // --- Получаем папки с сервера ---
     async function loadFolders(){
         try{
-            const res = await fetch('http://localhost:8080/folders');
+            const res = await fetch('http://localhost:8081/folders');
             const data = await res.json();
             folders = data.length ? data : ['default'];
             if(!folders.includes(currentFolder)) currentFolder='default';
@@ -124,7 +124,7 @@
         if(unsavedImages.length===0){alert('Нет новых изображений для сохранения'); return;}
         status.textContent='Статус: сохранение...';
         try{
-            const response=await fetch('http://localhost:8080/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({images:unsavedImages})});
+            const response=await fetch('http://localhost:8081/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({images:unsavedImages})});
             if(!response.ok) throw new Error();
             status.textContent='Статус: все изображения сохранены';
             unsavedImages=[];
@@ -136,15 +136,15 @@
 
     async function loadFromServer(){
         try{
-            const res=await fetch('http://localhost:8080/images?folder='+encodeURIComponent(currentFolder));
+            const res=await fetch('http://localhost:8081/images?folder='+encodeURIComponent(currentFolder));
             const data=await res.json();
             thumbContainer.innerHTML=''; images=[]; unsavedImages=[];
             data.forEach(item=>{
                 const div=document.createElement('div'); div.className='thumb';
-                const img=document.createElement('img'); img.src='http://localhost:8080'+item.url; img.onclick=()=>showImage(img.src);
+                const img=document.createElement('img'); img.src='http://localhost:8081'+item.url; img.onclick=()=>showImage(img.src);
                 const nameDiv=document.createElement('div'); nameDiv.className='filename'; nameDiv.textContent=item.name;
                 const del=document.createElement('button'); del.className='delete-btn'; del.innerHTML='×';
-                del.onclick=async(e)=>{ e.stopPropagation(); try{ const resp=await fetch('http://localhost:8080/image/'+encodeURIComponent(item.name)+'?folder='+encodeURIComponent(currentFolder),{method:'DELETE'}); if(!resp.ok) throw new Error(); div.remove(); images=images.filter(i=>i.name!==item.name);}catch{alert('Не удалось удалить с сервера');} }
+                del.onclick=async(e)=>{ e.stopPropagation(); try{ const resp=await fetch('http://localhost:8081/image/'+encodeURIComponent(item.name)+'?folder='+encodeURIComponent(currentFolder),{method:'DELETE'}); if(!resp.ok) throw new Error(); div.remove(); images=images.filter(i=>i.name!==item.name);}catch{alert('Не удалось удалить с сервера');} }
                 images.push({src:img.src,name:item.name,folder:currentFolder});
                 div.appendChild(img); div.appendChild(nameDiv); div.appendChild(del);
                 thumbContainer.appendChild(div);
@@ -155,7 +155,7 @@
     async function loadAllFoldersAndImages() {
         try {
             // Получаем список всех папок с сервера
-            const resFolders = await fetch('http://localhost:8080/folders');
+            const resFolders = await fetch('http://localhost:8081/folders');
             const allFolders = await resFolders.json();
             folders = allFolders.length ? allFolders : ['default'];
             renderFolders();
@@ -165,7 +165,7 @@
             unsavedImages = [];
 
             for (const folder of folders) {
-                const resImages = await fetch('http://localhost:8080/images?folder=' + encodeURIComponent(folder));
+                const resImages = await fetch('http://localhost:8081/images?folder=' + encodeURIComponent(folder));
                 const data = await resImages.json();
 
                 // Заголовок папки
@@ -181,7 +181,7 @@
                     div.className = 'thumb';
 
                     const img = document.createElement('img');
-                    img.src = 'http://localhost:8080' + item.url;
+                    img.src = 'http://localhost:8081' + item.url;
                     img.onclick = () => showImage(img.src);
 
                     const nameDiv = document.createElement('div');
@@ -194,7 +194,7 @@
                     del.onclick = async (e) => {
                         e.stopPropagation();
                         try {
-                            const resp = await fetch('http://localhost:8080/image/' + encodeURIComponent(item.name) + '?folder=' + encodeURIComponent(folder), { method: 'DELETE' });
+                            const resp = await fetch('http://localhost:8081/image/' + encodeURIComponent(item.name) + '?folder=' + encodeURIComponent(folder), { method: 'DELETE' });
                             if (!resp.ok) throw new Error();
                             div.remove();
                             images = images.filter(i => i.name !== item.name);

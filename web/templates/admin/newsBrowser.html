@@ -52,7 +52,7 @@
 
     async function loadNews(){
         try{
-            const res = await fetch('http://localhost:8080/news/');
+            const res = await fetch('http://localhost:8081/news/');
             const newsList = await res.json();
             newsContainer.innerHTML='';
             newsList.forEach((item,index)=>{
@@ -84,7 +84,7 @@
     // --- Функции работы с сервером ---
     async function saveNews(id,title,content,date,image){
         try{
-            const res=await fetch('http://localhost:8080/news/'+id,{
+            const res=await fetch('http://localhost:8081/news/'+id,{
                 method:'PUT',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({title,content,date,image})
@@ -106,7 +106,7 @@
     async function deleteNews(id){
         if(!confirm('Удалить новость?')) return;
         try{
-            const res=await fetch('http://localhost:8080/news/'+id,{method:'DELETE'});
+            const res=await fetch('http://localhost:8081/news/'+id,{method:'DELETE'});
             if(!res.ok) throw new Error();
             loadNews();
         }catch{ alert('Ошибка при удалении'); }
@@ -122,16 +122,16 @@
     async function loadAllFoldersAndImages(){
         modalThumbs.innerHTML='';
         try{
-            const resFolders = await fetch('http://localhost:8080/folders');
+            const resFolders = await fetch('http://localhost:8081/folders');
             const folders = await resFolders.json();
             for(const folder of folders){
                 const header=document.createElement('div'); header.className='folder-header'; header.textContent=`Папка: ${folder}`;
                 modalThumbs.appendChild(header);
-                const resImages = await fetch(`http://localhost:8080/images?folder=${encodeURIComponent(folder)}`);
+                const resImages = await fetch(`http://localhost:8081/images?folder=${encodeURIComponent(folder)}`);
                 const images = await resImages.json();
                 images.forEach(img=>{
                     const div=document.createElement('div'); div.className='thumb';
-                    const imageEl=document.createElement('img'); imageEl.src='http://localhost:8080'+img.url;
+                    const imageEl=document.createElement('img'); imageEl.src='http://localhost:8081'+img.url;
                     imageEl.onclick=()=>{currentEditImage=imageEl.src; selectImageInModal(imageEl.src);};
                     div.appendChild(imageEl); modalThumbs.appendChild(div);
                 });

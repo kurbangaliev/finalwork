@@ -122,7 +122,7 @@ func NewsAddPage(writer http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func NewsBrowserePage(writer http.ResponseWriter, r *http.Request) {
+func NewsBrowserPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/admin/newsBrowser.html")
 	if err != nil {

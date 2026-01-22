@@ -2,15 +2,27 @@ package db
 
 import (
 	"finalwork/internal/models"
+	"fmt"
 	"log"
+	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func DbConnection() (*gorm.DB, error) {
-	pgConnect := "host=localhost dbname=finalwork user=postgres password=postgres port=5432 sslmode=disable"
-	db, err := gorm.Open(postgres.Open(pgConnect), &gorm.Config{})
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbHost := os.Getenv("DB_HOST")
+	dbName := os.Getenv("DB_NAME")
+	dbPort := os.Getenv("DB_PORT")
+
+	connectionString := fmt.Sprintf("host=%s dbname=%s user=%s password=%s port=%s sslmode=disable", dbHost, dbName, dbUser, dbPassword, dbPort)
+	if dbUser == "" || dbPassword == "" || dbHost == "" || dbName == "" {
+		connectionString = "host=localhost dbname=finalwork user=postgres password=postgres port=5432 sslmode=disable"
+	}
+
+	db, err := gorm.Open(postgres.Open(connectionString), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
 		return nil, err

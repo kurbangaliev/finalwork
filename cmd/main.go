@@ -19,7 +19,10 @@ const (
 func main() {
 	fmt.Println("Server is starting...")
 	fmt.Println("Database auto migrate...")
-	db.AutoMigrate()
+	err := db.AutoMigrate()
+	if err != nil {
+		log.Println(err)
+	}
 
 	fmt.Println("Server handling requests...")
 	r := mux.NewRouter()
@@ -36,10 +39,10 @@ func main() {
 	r.HandleFunc("/contacts", handlers.ShowContacts).Methods("GET")
 	r.HandleFunc("/images", handlers.ShowImagesPage).Methods("GET")
 	r.HandleFunc("/newsAdd", handlers.NewsAddPage).Methods("GET")
-	r.HandleFunc("/newsBrowser", handlers.NewsBrowserePage).Methods("GET")
+	r.HandleFunc("/newsBrowser", handlers.NewsBrowserPage).Methods("GET")
 	r.Handle("/metrics", promhttp.Handler())
 	r.PathPrefix(staticDir).Handler(http.StripPrefix(staticDir, fs)).Methods("GET")
 
-	fmt.Println("Server is running on port 8000...")
-	log.Fatal(http.ListenAndServe(":8000", r))
+	fmt.Println("Server is running on port 8080...")
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
