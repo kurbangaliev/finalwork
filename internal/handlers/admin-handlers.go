@@ -38,7 +38,12 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 
 	for _, img := range req.Images {
 		folderPath := filepath.Join(UploadDir, utils.SanitizeFolder(img.Folder))
-		os.MkdirAll(folderPath, 0755)
+		err := os.MkdirAll(folderPath, 0755)
+		if err != nil {
+			log.Println("❌", err)
+			http.Error(w, "Failed to save image", http.StatusInternalServerError)
+			return
+		}
 		if err := saveImage(img, folderPath); err != nil {
 			log.Println("❌", err)
 			http.Error(w, "Failed to save image", http.StatusInternalServerError)
@@ -47,7 +52,10 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Images saved"))
+	_, err := w.Write([]byte("Images saved"))
+	if err != nil {
+		return
+	}
 }
 
 func saveImage(img models.ImagePayload, folderPath string) error {
@@ -86,7 +94,11 @@ func ImagesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	folderPath := filepath.Join(UploadDir, folder)
 
-	os.MkdirAll(folderPath, 0755)
+	err := os.MkdirAll(folderPath, 0755)
+	if err != nil {
+		http.Error(w, "Failed to create directory", http.StatusInternalServerError)
+		return
+	}
 
 	files, err := os.ReadDir(folderPath)
 	if err != nil {
@@ -106,7 +118,11 @@ func ImagesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(images)
+	err = json.NewEncoder(w).Encode(images)
+	if err != nil {
+		http.Error(w, "Failed to encode images", http.StatusInternalServerError)
+		return
+	}
 }
 
 /* ================= DELETE ================= */
@@ -137,7 +153,11 @@ func DeleteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Deleted"))
+	_, err := w.Write([]byte("Deleted"))
+	if err != nil {
+		http.Error(w, "Failed to write status", http.StatusInternalServerError)
+		return
+	}
 }
 
 /* ================= GET FOLDERS ================= */
@@ -163,7 +183,11 @@ func FoldersHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(folders)
+	err = json.NewEncoder(w).Encode(folders)
+	if err != nil {
+		http.Error(w, "Failed to encode folders", http.StatusInternalServerError)
+		return
+	}
 }
 
 /* ================= SET HEADERS ================= */
