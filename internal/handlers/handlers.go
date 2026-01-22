@@ -40,6 +40,7 @@ func ShowNews(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	news := db.SelectAllNews()
+	log.Printf("Count news: %d \n", len(news))
 
 	err = tmpl.Execute(writer, news)
 	if err != nil {
@@ -83,7 +84,10 @@ func ShowIndexPage(writer http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Error parsing index.html: %v \n", err)
 	}
 
-	err = tmpl.Execute(writer, nil)
+	news := db.SelectAllNews()
+	log.Printf("Count news: %d \n", len(news))
+
+	err = tmpl.Execute(writer, news)
 	if err != nil {
 		http.Error(writer, "Error rendering template", http.StatusInternalServerError)
 		log.Printf("Error executing template: %v", err)
