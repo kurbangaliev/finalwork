@@ -37,6 +37,10 @@ func main() {
 	r.HandleFunc("/news/{id}", handlers.HandleEditNews).Methods("PUT")
 	r.HandleFunc("/news/", handlers.HandleGetNews).Methods("GET")
 	r.HandleFunc("/news/{id}", handlers.HandleDeleteNews).Methods("DELETE")
+	r.HandleFunc("/managers/", handlers.HandleAddManager).Methods("POST")
+	r.HandleFunc("/managers/{id}", handlers.HandleEditManagers).Methods("PUT")
+	r.HandleFunc("/managers/", handlers.HandleGetManagers).Methods("GET")
+	r.HandleFunc("/managers/{id}", handlers.HandleDeleteManager).Methods("DELETE")
 
 	uploadPath := http.Dir(handlers.UploadDir)
 	fileServer := http.FileServer(uploadPath)

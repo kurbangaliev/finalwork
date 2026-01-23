@@ -65,14 +65,5 @@ func AutoMigrate() error {
 			Err:     ErrAutoMigrate, // Wrap the sentinel error
 		}
 	}
-	err = db.AutoMigrate(&models.Image{})
-	if err != nil {
-		log.Fatal(err)
-		return &MigrateError{
-			Model:   "Image",
-			Message: err.Error(),
-			Err:     ErrAutoMigrate, // Wrap the sentinel error
-		}
-	}
 	return nil
 }

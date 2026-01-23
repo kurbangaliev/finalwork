@@ -7,23 +7,22 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/gorilla/mux"
 )
 
 /* =================== NEWS =================== */
 
-// HandleGetNews GET /news
-func HandleGetNews(w http.ResponseWriter, r *http.Request) {
-	newsList := db.SelectAllNews()
+// HandleGetManagers GET /managers
+func HandleGetManagers(w http.ResponseWriter, r *http.Request) {
+	managersList := db.SelectAllManagers()
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(newsList)
+	json.NewEncoder(w).Encode(managersList)
 }
 
-// HandleEditNews PUT /news/{id}
-func HandleEditNews(w http.ResponseWriter, r *http.Request) {
+// HandleEditManagers PUT /managers/{id}
+func HandleEditManagers(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	strId := vars["id"]
 	id, err := strconv.Atoi(strId)
@@ -32,24 +31,24 @@ func HandleEditNews(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var item models.NewsItem
+	var item models.ManagerItem
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
 		return
 	}
 	item.Id = uint(id)
 
-	err = db.UpdateNews(item)
+	err = db.UpdateManager(item)
 	if err != nil {
 		http.Error(w, "Failed to update item", http.StatusInternalServerError)
 	}
 
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("News updated"))
+	w.Write([]byte("Manager updated"))
 }
 
-// HandleDeleteNews DELETE /news/{id}
-func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
+// HandleDeleteManager DELETE /managers/{id}
+func HandleDeleteManager(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	strId := vars["id"]
 	id, err := strconv.Atoi(strId)
@@ -59,7 +58,7 @@ func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Printf("delete %d", id)
 
-	err = db.DeleteNews(uint(id))
+	err = db.DeleteManager(uint(id))
 	if err != nil {
 		http.Error(w, "Failed to delete item", http.StatusInternalServerError)
 	}
@@ -68,9 +67,9 @@ func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("News deleted"))
 }
 
-// HandleAddNews POST /news
-func HandleAddNews(w http.ResponseWriter, r *http.Request) {
-	var item models.NewsItem
+// HandleAddManager POST /managers
+func HandleAddManager(w http.ResponseWriter, r *http.Request) {
+	var item models.ManagerItem
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		log.Println(err)
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
@@ -78,15 +77,12 @@ func HandleAddNews(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Валидация
-	if item.Title == "" || item.Content == "" || item.Date == "" || item.Image == "" {
+	if item.Name == "" || item.JobTitle == "" || item.Address == "" || item.Phone == "" || item.Email == "" || item.Schedule == "" || item.Image == "" {
 		http.Error(w, "All fields required", http.StatusBadRequest)
 		return
 	}
 
-	// Добавляем метку времени
-	item.Date = item.Date + "T" + time.Now().Format("15:04:05")
-
-	err := db.SaveNews(item)
+	err := db.SaveManager(item)
 	if err != nil {
 		log.Println(err)
 	}
