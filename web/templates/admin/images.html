@@ -32,16 +32,22 @@
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <header class="navbar navbar-expand-lg navbar-dark">
-    Обозреватель картинок
     <div class="collapse navbar-collapse">
-        <div class="mb-3">
+        <a class="navbar-brand">Обозреватель картинок</a>
+        <div class="mb-3 ms-auto">
             <div class="input-group">
                 <input class="form-control" type="file" id="fileInput" accept="image/*" multiple />
-                <button class="btn btn-primary" id="saveBtn">Сохранить на сервер</button>
-                <button class="btn btn-primary" id="loadBtn">Загрузить с сервера</button>
-                <input type="text" id="newFolderName" placeholder="Новая папка" style="padding:4px;"/>
-                <button class="btn btn-primary" id="createFolderBtn">Создать папку</button>
-                <span id="status">Статус: готов</span>
+                <button type="button" class="btn btn-outline-primary" id="saveBtn" >
+                    <img class="bi bi-plus-square" src="/assets/icons/save.svg" alt="Save" width="16px" height="16px" title="Сохранить"/>
+                </button>
+                <button class="btn btn-outline-primary" id="loadBtn">
+                    <img class="bi bi-plus-square" src="/assets/icons/load-list.svg" alt="Load From Server" width="16px" height="16px" title="Загрузить с сервера"/>
+                </button>
+                <input class="form-control" type="text" id="newFolderName" placeholder="Новая папка" style="padding:4px;"/>
+                <button class="btn btn-outline-primary" id="createFolderBtn">
+                    <img class="bi bi-plus-square" src="/assets/icons/add-folder.svg" alt="Create Folder" width="16px" height="16px" title="Создать папку"/>
+                </button>
+                <span class="input-group-text" id="status">Статус: готов</span>
             </div>
         </div>
         <ul class="navbar-nav ms-auto">
