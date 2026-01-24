@@ -26,3 +26,9 @@ type Partner struct {
 	Name  string `gorm:"size:255" json:"name"`
 	Image string `gorm:"size:255" json:"image"`
 }
+
+type User struct {
+	gorm.Model
+	Login    string `gorm:"size:255" json:"login"`
+	Password string `gorm:"size:255" json:"password"`
+}

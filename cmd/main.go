@@ -23,6 +23,10 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
+	err = db.CreateDefaultUser()
+	if err != nil {
+		log.Println(err)
+	}
 
 	fmt.Println("Server handling requests...")
 	r := mux.NewRouter()

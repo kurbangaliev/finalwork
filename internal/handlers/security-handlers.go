@@ -2,20 +2,30 @@ package handlers
 
 import (
 	"encoding/json"
+	"finalwork/internal/db"
 	"finalwork/internal/models"
 	"finalwork/internal/utils"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var users = map[string]string{
-	"admin": "hqBWNunDWATHLyNavE+CEQ==",
-}
+//var users = map[string]string{
+//	"admin": "hqBWNunDWATHLyNavE+CEQ==",
+//}
 
-var secretKey = []byte("you_can_change_secret_key_in_env")
+var defaultKey = []byte("you_can_change_secret_key_in_env")
+
+func GetSecretKey() []byte {
+	envKey := os.Getenv("SECRET_KEY")
+	if envKey == "" {
+		return defaultKey
+	}
+	return []byte(envKey)
+}
 
 type contextKey string
 
@@ -28,7 +38,7 @@ func generateJWT(login string) (string, error) {
 		"Until":    time.Now().Add(time.Hour * 24).Unix(), // токен живёт 24 часа
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString([]byte(secretKey))
+	return token.SignedString([]byte(GetSecretKey()))
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
@@ -40,14 +50,21 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	correctPassword, ok := users[loginRequest.Login]
-	if !ok {
+	//allUsers := db.SelectAllUsers()
+	findUser, err := db.FindUserByLogin(loginRequest.Login)
+	if err != nil {
+		log.Println(err)
 		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
 		return
 	}
+	//correctPassword, ok := users[loginRequest.Login]
+	//if !ok {
+	//	http.Error(w, "Invalid username or password", http.StatusUnauthorized)
+	//	return
+	//}
 
 	checkPassword := utils.GetHashPassword(loginRequest.Password)
-	if correctPassword != checkPassword {
+	if findUser.Password != checkPassword {
 		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
 		return
 	}
@@ -86,7 +103,7 @@ func JWTAuth(next http.Handler) http.Handler {
 			if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 				return nil, jwt.ErrSignatureInvalid
 			}
-			return secretKey, nil
+			return GetSecretKey(), nil
 		})
 
 		if err != nil || !token.Valid {
