@@ -46,9 +46,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Printf("Login %s\n", loginRequest.Login)
 	checkPassword := utils.GetHashPassword(loginRequest.Password)
-	log.Printf("Check Password %s\n", checkPassword)
 	if correctPassword != checkPassword {
 		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
 		return
@@ -58,7 +56,6 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	log.Printf("jwtToken: %s\n", jwtToken)
 
 	http.SetCookie(w, &http.Cookie{
 		Name:     "access_token",

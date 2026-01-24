@@ -58,6 +58,6 @@ func main() {
 	protected.HandleFunc("/managerAdd", handlers.ManagerAddPage).Methods("GET")
 	protected.HandleFunc("/managerBrowser", handlers.ManagerBrowserPage).Methods("GET")
 
-	fmt.Println("Server is running on port 8080...")
+	log.Println("🚀 Server started on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
