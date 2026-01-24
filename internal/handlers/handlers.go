@@ -40,7 +40,6 @@ func ShowNews(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	news := db.SelectAllNews()
-	log.Printf("Count news: %d \n", len(news))
 
 	err = tmpl.Execute(writer, news)
 	if err != nil {
@@ -85,7 +84,6 @@ func ShowIndexPage(writer http.ResponseWriter, r *http.Request) {
 	}
 
 	news := db.SelectAllNews()
-	log.Printf("Count news: %d \n", len(news))
 
 	err = tmpl.Execute(writer, news)
 	if err != nil {
@@ -127,6 +125,34 @@ func NewsBrowserPage(writer http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("web/templates/admin/newsBrowser.html")
 	if err != nil {
 		fmt.Printf("Error parsing newsBrowser.html: %v \n", err)
+	}
+
+	err = tmpl.Execute(writer, nil)
+	if err != nil {
+		http.Error(writer, "Error rendering template", http.StatusInternalServerError)
+		log.Printf("Error executing template: %v", err)
+	}
+}
+
+func ManagerAddPage(writer http.ResponseWriter, r *http.Request) {
+	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
+	tmpl, err := template.ParseFiles("web/templates/admin/managerAdd.html")
+	if err != nil {
+		fmt.Printf("Error parsing managerAdd.html: %v \n", err)
+	}
+
+	err = tmpl.Execute(writer, nil)
+	if err != nil {
+		http.Error(writer, "Error rendering template", http.StatusInternalServerError)
+		log.Printf("Error executing template: %v", err)
+	}
+}
+
+func ManagerBrowserPage(writer http.ResponseWriter, r *http.Request) {
+	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
+	tmpl, err := template.ParseFiles("web/templates/admin/managerBrowser.html")
+	if err != nil {
+		fmt.Printf("Error parsing managerBrowser.html: %v \n", err)
 	}
 
 	err = tmpl.Execute(writer, nil)
