@@ -68,21 +68,18 @@
   <div class="blocks">
 
     <div class="block">
-      <div class="title">Центральный офис компании</div>
+      <div class="title">TOO "DAR RAIL"</div>
       <div class="title-hr"></div>
 
       <div class="items">
-                        <div class="item">
+        {{range .}}
+        <div class="item">
           <div class="image">
-            <img src="https://www.darrail.com/storage/many-contacts/November2021/eXssp2MdTMQIrnJkQOol.jpg" alt="ДЮСЕНОВ Ринат Тасбулатович">
+            <img src="{{.Image}}" alt="ДЮСЕНОВ Ринат Тасбулатович">
           </div>
           <div class="info">
-            <div class="name">
-              ДЮСЕНОВ Ринат Тасбулатович
-            </div>
-            <div class="position">
-              Генеральный директор ТОО «DAR RAIL»
-            </div>
+            <div class="name">{{.Name}}</div>
+            <div class="position">{{.JobTitle}}</div>
             <div class="boxs">
 
               <div class="box">
@@ -92,7 +89,7 @@
                 </div>
                 <div class="content">
                   <div class="text">
-                    Республика Казахстан, г. Астана, проспект Ракымжан Кошкарбаев, 1/5, 6-этаж
+                    {{.Address}}
                   </div>
                 </div>
               </div>
@@ -104,7 +101,7 @@
                 </div>
                 <div class="content">
                   <div class="text">
-                    <a href="tel:77172399988.510">+7 7172 39 99 88 (вн.510)</a>
+                    <a href="tel:77172399988.510">{{.Phone}}</a>
                   </div>
                 </div>
               </div>
@@ -116,7 +113,7 @@
                 </div>
                 <div class="content">
                   <div class="text">
-                    <a href="mailto:info@darrail.com">info@darrail.com </a>
+                    <a href="mailto:info@darrail.com">{{.Email}}</a>
                   </div>
                 </div>
               </div>
@@ -128,368 +125,18 @@
                 </div>
                 <div class="content">
                   <div class="text">
-                    09:00 – 18:00
+                    {{.Schedule}}
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-                                                                                                      </div>
-
+        {{end}}
+        </div>
     </div>
-    <div class="block">
-      <div class="title">Филиал ТОО «DAR RAIL» в г.Алматы</div>
-      <div class="title-hr"></div>
-
-      <div class="items">
-                                         <div class="item">
-          <div class="image">
-            <img src="https://www.darrail.com/storage/many-contacts/November2021/yQaXmchwJsiI2eJOiacP.jpg" alt="СМИРНОВА Лариса Иосифовна">
-          </div>
-          <div class="info">
-            <div class="name">
-              СМИРНОВА Лариса Иосифовна
-            </div>
-            <div class="position">
-              Директор Филиала
-            </div>
-            <div class="boxs">
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/geo.svg" alt="icon">
-                  <div class="text">Наш офис:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    Республика Казахстан, г. Алматы, проспект Достык, 291/23, 2-этаж
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/call.svg" alt="icon">
-                  <div class="text">Телефон:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="tel:77172399988">+7 7172 39 99 88</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/email.svg" alt="icon">
-                  <div class="text">Email:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="mailto:info-almaty@darrail.com">info-almaty@darrail.com </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/schedule.svg" alt="icon">
-                  <div class="text">График работы:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    09:00 – 18:00
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-                                                                                            </div>
-
-    </div>
-
-    <div class="block">
-      <div class="title">Региональные подразделения</div>
-      <div class="title-hr"></div>
-
-      <div class="items">
-                                                        <div class="item">
-          <div class="image">
-            <img src="https://www.darrail.com/storage/many-contacts/February2022/ObjFwqlqf2WUA03AvyFv.jpg" alt="ЕРМОЛЬЧЕВ Александр Александрович">
-          </div>
-          <div class="info">
-            <div class="name">
-              ЕРМОЛЬЧЕВ Александр Александрович
-            </div>
-            <div class="position">
-              Директор регионального подразделения на ст. Тобол
-            </div>
-            <div class="boxs">
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/geo.svg" alt="icon">
-                  <div class="text">Наш офис:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    Республика Казахстан, пос.Тобол , улица Станционная, 1, 1-этаж
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/call.svg" alt="icon">
-                  <div class="text">Телефон:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="tel:7714640026.5101">+7 714 64 00 26 (вн.5101)</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/email.svg" alt="icon">
-                  <div class="text">Email:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="mailto:Info-tobol@darrail.com">Info-tobol@darrail.com </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/schedule.svg" alt="icon">
-                  <div class="text">График работы:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    09:00 – 18:00
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-                                                <div class="item">
-          <div class="image">
-            <img src="https://www.darrail.com/storage/many-contacts/October2024/NA5vZPZzf9yA7Ax4xHq8.jpg" alt="Байымбетов Арман Санатарович ">
-          </div>
-          <div class="info">
-            <div class="name">
-              Байымбетов Арман Санатарович 
-            </div>
-            <div class="position">
-              Директор регионального подразделения на ст. Павлодар
-            </div>
-            <div class="boxs">
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/geo.svg" alt="icon">
-                  <div class="text">Наш офис:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    Республика Казахстан, город Павлодар,  улица Путейская, 2, 3 этаж
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/call.svg" alt="icon">
-                  <div class="text">Телефон:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="tel:77182372284.521">+7  7182 37 22 84 (вн.521)</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/email.svg" alt="icon">
-                  <div class="text">Email:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="mailto:Info-ekibastuz@darrail.com">Info-ekibastuz@darrail.com </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/schedule.svg" alt="icon">
-                  <div class="text">График работы:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    09:00 – 18:00
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-                                <div class="item">
-          <div class="image">
-            <img src="https://www.darrail.com/storage/many-contacts/March2023/hDXbAchIGp2mFr27cPLD.jpg" alt="АСКАРОВ Марат Сабырович">
-          </div>
-          <div class="info">
-            <div class="name">
-              АСКАРОВ Марат Сабырович
-            </div>
-            <div class="position">
-              Директор регионального подразделения на ст. Нур-Султан
-            </div>
-            <div class="boxs">
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/geo.svg" alt="icon">
-                  <div class="text">Наш офис:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    Республика Казахстан, г. Астана, улица Шынтас, 8, 3-этаж
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/call.svg" alt="icon">
-                  <div class="text">Телефон:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="tel:77172934353.570">+7 7172 93 43 53 (вн.570)</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/email.svg" alt="icon">
-                  <div class="text">Email:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="mailto:info@darrail.com">info@darrail.com </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/schedule.svg" alt="icon">
-                  <div class="text">График работы:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    09:00 – 18:00
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-                              
-      </div>
-
-    </div>
-
-    <div class="block">
-      <div class="title">Региональные участки</div>
-      <div class="title-hr"></div>
-
-      <div class="items">
-                                                                        <div class="item">
-          <div class="image">
-            <img src="https://www.darrail.com/storage/many-contacts/September2025/EfXxl5TirdTN7MFyw5GH.jpg" alt="БЕКЕНОВ Бестыбай Каратаевич">
-          </div>
-          <div class="info">
-            <div class="name">
-              БЕКЕНОВ Бестыбай Каратаевич
-            </div>
-            <div class="position">
-              Начальник участка на ст. Екибастуз
-            </div>
-            <div class="boxs">
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/geo.svg" alt="icon">
-                  <div class="text">Наш офис:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    Республика Казахстан, г. Экибастуз, улица Астана, 31, 3-этаж
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/call.svg" alt="icon">
-                  <div class="text">Телефон:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    <a href="tel:77187227235.520">+7 7187 22 72 35 (вн.520)</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/email.svg" alt="icon">
-                  <div class="text">Email:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                   <a href="mailto:Info-ekibastuz@darrail.com">Info-ekibastuz@darrail.com </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="icon">
-                  <img src="https://www.darrail.com/assets/images/icons/schedule.svg" alt="icon">
-                  <div class="text">График работы:</div>
-                </div>
-                <div class="content">
-                  <div class="text">
-                    09:00 – 18:00
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>        
-                                                 
-      </div>
-
-    </div>
-
   </div>
-  
+
 </div>
 </section>
 
@@ -497,47 +144,7 @@
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10015.320237570919!2d71.45857195418081!3d51.1300425963177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424583fbecd17d25%3A0xc8b6a8361e2349cd!2sDowntown%20Business%20Center!5e0!3m2!1sru!2skz!4v1635743098147!5m2!1sru!2skz" allowfullscreen="" loading="lazy"></iframe>      
 </section>
         <footer class="footer">
-  <div class="container footer-top">
-    <div class="content">
-      <a href="/" class="logo">
-        <img src="https://www.darrail.com/storage/settings/November2021/4riyWlfnsrbxMDeLgdEK.svg" alt="Dar Rail">
-      </a>
-      <ul class="menu">
-        <!-- <li class="btn-group hover-show">
-          <div class="dropdown-toggle" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-            О компании
-          </div>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuClickableInside">
-            <li><a class="dropdown-item" href="history.html" @click="tab2">История компании</a></li>
-            <li><a class="dropdown-item" href="mission.html" @click="tab3">Миссия и цели</a></li>
-            <li><a class="dropdown-item" href="management.html" @click="tab4">Руководство</a></li>
-            <li><a class="dropdown-item" href="quality.html" @click="tab5">Управление качеством</a></li>
-            <li><a class="dropdown-item" href="security.html" @click="tab6">Безопасность</a></li>
-            <li><a class="dropdown-item" href="tcc.html" @click="tab7">ЦУП</a></li>
-            <li><a class="dropdown-item" href="staff.html" @click="tab8">Персонал</a></li>
-          </ul>
-        </li> -->
-        <li><a href="https://www.darrail.com/about">О Компании</a></li>
-        <li><a href="https://www.darrail.com/services">Услуги</a></li>
-        
-        <li><a href="https://www.darrail.com/purchases">Закупки</a></li>        
-        <li><a href="https://www.darrail.com/sustainableDevelopment">Устойчивое развитие</a></li>
-        <li><a href="https://www.darrail.com/news">Новости</a></li>
-        <li><a href="https://www.darrail.com/contacts">Контакты</a></li>
-      </ul>
-      <div class="network">
-                  <a href="https://www.facebook.com" class="icon">
-            <img src="https://www.darrail.com/storage/contacts/October2021/v2iSwe2Kq5QVHlDZQA9A.svg" alt="Facebook">
-          </a>
-                  <a href="https://www.instagram.com" class="icon">
-            <img src="https://www.darrail.com/storage/contacts/October2021/9qRxDGt0UpL32OoRq4k1.svg" alt="Instagram">
-          </a>
-              
-      </div>
-    </div>
-    <div class="content text">
-      Грузовые перевозки собственным парком локомотивной тяги     </div>
-  </div>
+
   <div class="footer-hr"></div>
   <div class="container footer-bottom">
     <div class="text">© 2021 ТОО «Dar Rail»</div> 
