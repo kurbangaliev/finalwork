@@ -14,3 +14,8 @@ type ImageInfo struct {
 	Name string `json:"name"`
 	URL  string `json:"url"`
 }
+
+type LoginRequest struct {
+	Login    string `json:"login"`
+	Password string `json:"password"`
+}

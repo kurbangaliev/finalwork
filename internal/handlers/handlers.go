@@ -161,3 +161,17 @@ func ManagerBrowserPage(writer http.ResponseWriter, r *http.Request) {
 		log.Printf("Error executing template: %v", err)
 	}
 }
+
+func ShowLoginPage(writer http.ResponseWriter, r *http.Request) {
+	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
+	tmpl, err := template.ParseFiles("web/templates/admin/auth.html")
+	if err != nil {
+		fmt.Printf("Error parsing auth.html: %v \n", err)
+	}
+
+	err = tmpl.Execute(writer, nil)
+	if err != nil {
+		http.Error(writer, "Error rendering template", http.StatusInternalServerError)
+		log.Printf("Error executing template: %v", err)
+	}
+}
