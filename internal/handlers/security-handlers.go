@@ -13,10 +13,6 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-//var users = map[string]string{
-//	"admin": "hqBWNunDWATHLyNavE+CEQ==",
-//}
-
 var defaultKey = []byte("you_can_change_secret_key_in_env")
 
 func GetSecretKey() []byte {
@@ -50,18 +46,12 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//allUsers := db.SelectAllUsers()
 	findUser, err := db.FindUserByLogin(loginRequest.Login)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
 		return
 	}
-	//correctPassword, ok := users[loginRequest.Login]
-	//if !ok {
-	//	http.Error(w, "Invalid username or password", http.StatusUnauthorized)
-	//	return
-	//}
 
 	checkPassword := utils.GetHashPassword(loginRequest.Password)
 	if findUser.Password != checkPassword {
