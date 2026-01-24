@@ -18,7 +18,10 @@
                     <a class="nav-link" href="/newsBrowser">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/managersBrowser">Руководители</a>
+                    <a class="nav-link" href="/managerBrowser">Руководители</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/partnersBrowser">Партнеры</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/images">Изображения</a>
@@ -28,24 +31,26 @@
     </div>
 </header>
 <main>
-    <div class="mb-3">
-        <label for="title">Заголовок</label>
-        <input type="text" class="form-control" id="title" placeholder="Введите заголовок" />
+    <div class="container">
+        <div class="mb-3">
+            <label for="title">Заголовок</label>
+            <input type="text" class="form-control" id="title" placeholder="Введите заголовок" />
+        </div>
+        <div class="mb-3">
+            <label for="content">Содержание</label>
+            <textarea class="form-control" id="content" placeholder="Введите содержание новости" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="date">Дата</label>
+            <input class="form-control" type="date" id="date" />
+        </div>
+        <div class="mb-3">
+            <label>Картинка</label>
+            <button class="form-control" id="chooseImageBtn">Выбрать картинку</button>
+            <img class="img-thumbnail" id="selectedImage" src="" width="200px" height="200px" />
+        </div>
+        <button type="button" class="btn btn-primary" id="submitBtn">Сохранить</button>
     </div>
-    <div class="mb-3">
-        <label for="content">Содержание</label>
-        <textarea class="form-control" id="content" placeholder="Введите содержание новости" rows="3"></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="date">Дата</label>
-        <input class="form-control" type="date" id="date" />
-    </div>
-    <div class="mb-3">
-        <label>Картинка</label>
-        <button class="form-control" id="chooseImageBtn">Выбрать картинку</button>
-        <img class="img-thumbnail" id="selectedImage" src="" width="200px" height="200px" />
-    </div>
-    <button type="button" class="btn btn-primary" id="submitBtn">Сохранить</button>
 </main>
 
 <!-- Модальное окно выбора картинок -->

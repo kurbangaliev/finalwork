@@ -19,7 +19,10 @@
                     <a class="nav-link" href="/newsBrowser">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/managersBrowser">Руководители</a>
+                    <a class="nav-link" href="/managerBrowser">Руководители</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/partnersBrowser">Партнеры</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/images">Изображения</a>
@@ -57,17 +60,20 @@
             newsContainer.innerHTML='';
             newsList.forEach((item,index)=>{
                 const div=document.createElement('div'); div.className='news-item';
-                const img=document.createElement('img'); img.className='news-image'; img.src=item.Image;
+                const img=document.createElement('img'); img.className='news-image'; img.src=item.image;
                 img.onclick=()=>openImageSelector(index); // смена картинки
-                const contentDiv=document.createElement('div'); contentDiv.className='news-content';
-                const title=document.createElement('input'); title.value=item.Title;
-                const date=document.createElement('input'); date.type='date'; date.value=item.Date.split('T')[0];
-                const text=document.createElement('textarea'); text.value=item.Content;
+                const contentDiv=document.createElement('div'); contentDiv.className='container-sm';
+                const title=document.createElement('input'); title.className='form-control'; title.value=item.title;
+                const date=document.createElement('input'); date.className='form-control'; date.type='date'; date.value=item.date.split('T')[0];
+                const text=document.createElement('textarea'); text.className='form-control'; text.value=item.content;
+
                 // const id=document.createElement('input'); id.value=item.ID; id.disabled=true;
-                const saveBtn=document.createElement('button'); saveBtn.className='btn'; saveBtn.textContent='Сохранить';
-                saveBtn.onclick=()=>saveNews(item.ID,title.value,text.value,date.value,currentEditImage||item.Image);
-                const deleteBtn=document.createElement('button'); deleteBtn.className='btn btn-delete'; deleteBtn.textContent='Удалить';
+                const saveBtn=document.createElement('button'); saveBtn.className='btn btn-outline-primary'; saveBtn.textContent='Сохранить';
+                saveBtn.onclick=()=>saveNews(item.ID,title.value,text.value,date.value,currentEditImage||item.image);
+
+                const deleteBtn=document.createElement('button'); deleteBtn.className='btn btn-outline-danger'; deleteBtn.textContent='Удалить';
                 deleteBtn.onclick=()=>deleteNews(item.ID);
+
                 contentDiv.appendChild(title);
                 contentDiv.appendChild(date);
                 contentDiv.appendChild(text);
@@ -87,7 +93,7 @@
             const res=await fetch('http://localhost:8081/news/'+id,{
                 method:'PUT',
                 headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({title,content,date,image})
+                body:JSON.stringify({id,title,content,date,image})
             });
             if (!res.ok) {
                 const message = `An error occurred: ${res.status}`;
