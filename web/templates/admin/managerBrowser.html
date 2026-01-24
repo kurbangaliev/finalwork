@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Администрирование новостей</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="/assets/styles/admin.css" rel="stylesheet">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<header class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">Администрирование руководетелей</a>
+        <a class="nav-link" href="/managerAdd"><img src="assets/icons/add-square.svg"  width="32" height="32"/></a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/newsBrowser">Новости</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/managerBrowser">Руководители</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/partnersBrowser">Партнеры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/images">Изображения</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main id="managerContainer"></main>
+
+<!-- Модальное окно выбора картинки -->
+<div class="modal" id="imageModal">
+    <div class="modal-content">
+        <button class="close-btn" id="closeModal">×</button>
+        <div id="modalThumbs"></div>
+    </div>
+</div>
+
+<script>
+    const managerContainer = document.getElementById('managerContainer');
+    const imageModal = document.getElementById('imageModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalThumbs = document.getElementById('modalThumbs');
+
+    let currentEditIndex = null;
+    let currentEditImage = '';
+    let currentImageControl = null;
+
+    closeModal.onclick = ()=>imageModal.style.display='none';
+
+    async function loadManagers(){
+        try{
+            const res = await fetch('http://localhost:8081/managers/');
+            const managerList = await res.json();
+            managerContainer.innerHTML='';
+            managerList.forEach((item,index)=>{
+                const div=document.createElement('div'); div.className='manager-item';
+                const img=document.createElement('img'); img.className='manager-image img-fluid img-thumbnail'; img.src=item.image;
+                img.onclick=()=>openImageSelector(item.ID, img); // смена картинки
+                const contentDiv=document.createElement('div');contentDiv.className='container-sm';
+                const name=document.createElement('input');name.className='form-control'; name.value=item.name;
+                const jobTitle=document.createElement('input');jobTitle.className='form-control';jobTitle.value=item.jobTitle;
+                const address=document.createElement('input');address.className='form-control';address.value=item.address;
+                const phone=document.createElement('input'); phone.className='form-control';phone.value=item.phone;
+                const email=document.createElement('input'); email.className='form-control';email.value=item.email;
+                const schedule=document.createElement('input');schedule.className='form-control';schedule.value=item.schedule;
+
+                const saveBtn=document.createElement('button'); saveBtn.className='btn btn-outline-primary'; saveBtn.textContent='Сохранить';
+                saveBtn.onclick=()=>saveManager(item.ID,name.value,jobTitle.value,address.value,phone.value,email.value,schedule.value,currentEditImage||item.Image);
+
+                const deleteBtn=document.createElement('button'); deleteBtn.className='btn btn-outline-danger'; deleteBtn.textContent='Удалить';
+                deleteBtn.onclick=()=>deleteManager(item.ID);
+
+                contentDiv.appendChild(name);
+                contentDiv.appendChild(jobTitle);
+                contentDiv.appendChild(address);
+                contentDiv.appendChild(phone);
+                contentDiv.appendChild(email);
+                contentDiv.appendChild(schedule);
+                contentDiv.appendChild(saveBtn);
+                contentDiv.appendChild(deleteBtn);
+                div.appendChild(img);
+                div.appendChild(contentDiv);
+                managerContainer.appendChild(div);
+            });
+        }catch(err){ managerContainer.innerHTML='<div>Ошибка загрузки руководителей</div>'; }
+    }
+
+    // --- Функции работы с сервером ---
+    async function saveManager(id,name,jobTitle,address,phone,email,schedule,image){
+        try{
+            const res=await fetch('http://localhost:8081/managers/'+id,{
+                method:'PUT',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({id,name,jobTitle,address,phone,email,schedule,image})
+            });
+            if (!res.ok) {
+                const message = `An error occurred: ${res.status}`;
+                throw new Error(message);
+            }
+            currentEditImage='';
+            loadManagers();
+        }catch(error)
+        {
+            console.error('Fetch error:', error);
+            alert('Ошибка при сохранении');
+            throw error; // Re-throw if necessary
+        }
+    }
+
+    async function deleteManager(id){
+        if(!confirm('Удалить руководителя?')) return;
+        try{
+            const res=await fetch('http://localhost:8081/managers/'+id,{method:'DELETE'});
+            if(!res.ok) throw new Error();
+            loadManagers();
+        }catch{ alert('Ошибка при удалении'); }
+    }
+
+    // --- Модальное окно выбора картинки ---
+    function openImageSelector(index, imgControl){
+        currentEditIndex=index;
+        currentImageControl=imgControl;
+        imageModal.style.display='flex';
+        loadAllFoldersAndImages();
+    }
+
+    async function loadAllFoldersAndImages(){
+        modalThumbs.innerHTML='';
+        try{
+            const resFolders = await fetch('http://localhost:8081/folders');
+            const folders = await resFolders.json();
+            for(const folder of folders){
+                const header=document.createElement('div'); header.className='folder-header'; header.textContent=`Папка: ${folder}`;
+                modalThumbs.appendChild(header);
+                const resImages = await fetch(`http://localhost:8081/images?folder=${encodeURIComponent(folder)}`);
+                const images = await resImages.json();
+                images.forEach(img=>{
+                    const div=document.createElement('div'); div.className='thumb';
+                    const imageEl=document.createElement('img'); imageEl.src='http://localhost:8081'+img.url;
+                    imageEl.onclick=()=>{
+                        currentEditImage=imageEl.src;
+                        currentImageControl.src=imageEl.src;
+                        selectImageInModal(imageEl.src);
+                    };
+                    div.appendChild(imageEl); modalThumbs.appendChild(div);
+                });
+            }
+        }catch{ alert('Ошибка загрузки изображений'); }
+    }
+
+    function selectImageInModal(url){
+        document.querySelectorAll('#modalThumbs img').forEach(img=>img.classList.remove('selected'));
+        document.querySelector(`#modalThumbs img[src='${url}']`).classList.add('selected');
+        imageModal.style.display='none';
+    }
+
+    // --- Инициализация ---
+    loadManagers();
+</script>
+</body>
+</html>

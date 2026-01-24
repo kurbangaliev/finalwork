@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Добавление руководителя</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="/assets/styles/admin.css" rel="stylesheet">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<header class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">Добавление руководителя</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/newsBrowser">Новости</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/managerBrowser">Руководители</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/partnersBrowser">Партнеры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/images">Изображения</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="mb-3">
+            <label for="name">ФИО</label>
+            <input type="text" class="form-control" id="name" placeholder="Введите ФИО" />
+        </div>
+        <div class="mb-3">
+            <label for="jobTitle">Должность</label>
+            <input type="text" class="form-control" id="jobTitle" placeholder="Введите должность" />
+        </div>
+        <div class="mb-3">
+            <label for="address">Адрес</label>
+            <input type="text" class="form-control" id="address" placeholder="Введите адрес" />
+        </div>
+        <div class="mb-3">
+            <label for="phone">Телефон</label>
+            <input type="text" class="form-control" id="phone" placeholder="Введите телефон" />
+        </div>
+        <div class="mb-3">
+            <label for="email">Электронный адрес</label>
+            <input type="text" class="form-control" id="email" placeholder="Введите электронную почту" />
+        </div>
+        <div class="mb-3">
+            <label for="schedule">График работы</label>
+            <input type="text" class="form-control" id="schedule" placeholder="Введите график работы" />
+        </div>
+        <div class="mb-3">
+            <label>Картинка</label>
+            <button class="form-control" id="chooseImageBtn">Выбрать картинку</button>
+            <img class="img-thumbnail" id="selectedImage" src="" width="200px" height="200px" />
+        </div>
+        <button type="button" class="btn btn-primary" id="submitBtn">Сохранить</button>
+    </div>
+</main>
+
+<!-- Модальное окно выбора картинок -->
+<div class="modal" id="imageModal">
+    <div class="modal-content">
+        <button class="close-btn" id="closeModal">×</button>
+        <div id="modalThumbs"></div>
+    </div>
+</div>
+
+<script>
+    const chooseImageBtn = document.getElementById('chooseImageBtn');
+    const imageModal = document.getElementById('imageModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalThumbs = document.getElementById('modalThumbs');
+    const selectedImage = document.getElementById('selectedImage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    let selectedImageUrl = '';
+
+    // Открыть модальное окно
+    chooseImageBtn.onclick = () => {
+        imageModal.style.display = 'flex';
+        loadAllFoldersAndImages();
+    };
+
+    // Закрыть модальное окно
+    closeModal.onclick = () => { imageModal.style.display = 'none'; };
+
+    // --- Загрузка всех папок и картинок ---
+    async function loadAllFoldersAndImages() {
+        modalThumbs.innerHTML = '';
+        try {
+            const resFolders = await fetch('http://localhost:8081/folders');
+            const folders = await resFolders.json();
+            for(const folder of folders) {
+                const folderHeader = document.createElement('div');
+                folderHeader.className = 'folder-header';
+                folderHeader.textContent = `Папка: ${folder}`;
+                modalThumbs.appendChild(folderHeader);
+
+                const resImages = await fetch(`http://localhost:8081/images?folder=${encodeURIComponent(folder)}`);
+                const images = await resImages.json();
+
+                images.forEach(img => {
+                    const div = document.createElement('div');
+                    div.className = 'thumb';
+                    const imageEl = document.createElement('img');
+                    imageEl.src = 'http://localhost:8081' + img.url;
+                    imageEl.onclick = () => selectImage(imageEl.src);
+                    div.appendChild(imageEl);
+                    modalThumbs.appendChild(div);
+                });
+            }
+        } catch(err) {
+            alert('Ошибка загрузки изображений с сервера');
+        }
+    }
+
+    // Выбор картинки
+    function selectImage(url) {
+        selectedImageUrl = url;
+        selectedImage.src = url;
+        // выделяем выбранную картинку в модальном окне
+        document.querySelectorAll('#modalThumbs img').forEach(img => img.classList.remove('selected'));
+        document.querySelector(`#modalThumbs img[src='${url}']`).classList.add('selected');
+        imageModal.style.display = 'none';
+    }
+
+    // Отправка данных руководителя на сервер
+    submitBtn.onclick = async () => {
+        const name = document.getElementById('name').value.trim();
+        const jobTitle = document.getElementById('jobTitle').value.trim();
+        const address = document.getElementById('address').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const schedule = document.getElementById('schedule').value.trim();
+
+        if(!name || !jobTitle || !address || !phone ||!email ||!schedule ||!selectedImageUrl) {
+            alert('Заполните все поля и выберите картинку');
+            return;
+        }
+
+        const payload = { name, jobTitle, address, phone, email, schedule, image: selectedImageUrl };
+
+        try {
+            const res = await fetch('http://localhost:8081/managers/', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(payload)
+            });
+            if(!res.ok) throw new Error();
+            alert('Руководитель успешно добавлена');
+            // Очистка формы
+            document.getElementById('name').value = '';
+            document.getElementById('jobTitle').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('schedule').value = '';
+            selectedImage.src = '';
+            selectedImageUrl = '';
+        } catch(err) {
+            alert('Ошибка при отправке новости на сервер');
+        }
+    };
+</script>
+</body>
+</html>

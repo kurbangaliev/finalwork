@@ -11,7 +11,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-/* =================== NEWS =================== */
+/* =================== Managers =================== */
 
 // HandleGetManagers GET /managers
 func HandleGetManagers(w http.ResponseWriter, r *http.Request) {
@@ -23,22 +23,13 @@ func HandleGetManagers(w http.ResponseWriter, r *http.Request) {
 
 // HandleEditManagers PUT /managers/{id}
 func HandleEditManagers(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	strId := vars["id"]
-	id, err := strconv.Atoi(strId)
-	if err != nil {
-		http.Error(w, "Invalid id", http.StatusBadRequest)
-		return
-	}
-
-	var item models.ManagerItem
+	var item models.Manager
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
 		return
 	}
-	item.Id = uint(id)
 
-	err = db.UpdateManager(item)
+	err := db.UpdateManager(item)
 	if err != nil {
 		http.Error(w, "Failed to update item", http.StatusInternalServerError)
 	}
@@ -69,7 +60,7 @@ func HandleDeleteManager(w http.ResponseWriter, r *http.Request) {
 
 // HandleAddManager POST /managers
 func HandleAddManager(w http.ResponseWriter, r *http.Request) {
-	var item models.ManagerItem
+	var item models.Manager
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		log.Println(err)
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)

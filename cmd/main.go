@@ -37,9 +37,15 @@ func main() {
 	r.HandleFunc("/sustainableDevelopment", handlers.ShowSustainableDevelopment).Methods("GET")
 	r.HandleFunc("/news", handlers.ShowNews).Methods("GET")
 	r.HandleFunc("/contacts", handlers.ShowContacts).Methods("GET")
+
+	// Admin page handlers
 	r.HandleFunc("/images", handlers.ShowImagesPage).Methods("GET")
 	r.HandleFunc("/newsAdd", handlers.NewsAddPage).Methods("GET")
 	r.HandleFunc("/newsBrowser", handlers.NewsBrowserPage).Methods("GET")
+	r.HandleFunc("/managerAdd", handlers.ManagerAddPage).Methods("GET")
+	r.HandleFunc("/managerBrowser", handlers.ManagerBrowserPage).Methods("GET")
+
+	//Prometey handler
 	r.Handle("/metrics", promhttp.Handler())
 	r.PathPrefix(staticDir).Handler(http.StripPrefix(staticDir, fs)).Methods("GET")
 
