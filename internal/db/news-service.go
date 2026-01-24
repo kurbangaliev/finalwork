@@ -8,18 +8,12 @@ import (
 	"gorm.io/gorm"
 )
 
-func saveNews(title string, content string, date string, image string) error {
+func SaveNews(newsItem models.News) error {
 	db, err := DbConnection()
 	if err != nil {
 		return err
 	}
-	news := models.News{
-		Title:   title,
-		Content: content,
-		Date:    date,
-		Image:   image,
-	}
-	result := db.Create(&news)
+	result := db.Create(&newsItem)
 	if result.Error != nil {
 		log.Println(result.Error)
 		return result.Error
@@ -27,35 +21,18 @@ func saveNews(title string, content string, date string, image string) error {
 	return nil
 }
 
-func SaveNews(newsItem models.NewsItem) error {
-	return saveNews(newsItem.Title, newsItem.Content, newsItem.Date, newsItem.Image)
-}
-
-func updateNews(id uint, title string, content string, date string, image string) error {
+func UpdateNews(newsItem models.News) error {
 	db, err := DbConnection()
 	if err != nil {
 		return err
 	}
-	news := models.News{
-		Model: gorm.Model{
-			ID:        id,
-			UpdatedAt: time.Time{},
-		},
-		Title:   title,
-		Content: content,
-		Date:    date,
-		Image:   image,
-	}
-	result := db.Updates(&news)
+	newsItem.UpdatedAt = time.Now()
+	result := db.Updates(&newsItem)
 	if result.Error != nil {
 		log.Println(result.Error)
 		return result.Error
 	}
 	return nil
-}
-
-func UpdateNews(newsItem models.NewsItem) error {
-	return updateNews(newsItem.Id, newsItem.Title, newsItem.Content, newsItem.Date, newsItem.Image)
 }
 
 func DeleteNews(id uint) error {

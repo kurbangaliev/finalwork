@@ -24,22 +24,12 @@ func HandleGetNews(w http.ResponseWriter, r *http.Request) {
 
 // HandleEditNews PUT /news/{id}
 func HandleEditNews(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	strId := vars["id"]
-	id, err := strconv.Atoi(strId)
-	if err != nil {
-		http.Error(w, "Invalid id", http.StatusBadRequest)
-		return
-	}
-
-	var item models.NewsItem
+	var item models.News
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
 		return
 	}
-	item.Id = uint(id)
-
-	err = db.UpdateNews(item)
+	err := db.UpdateNews(item)
 	if err != nil {
 		http.Error(w, "Failed to update item", http.StatusInternalServerError)
 	}
@@ -70,7 +60,7 @@ func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
 
 // HandleAddNews POST /news
 func HandleAddNews(w http.ResponseWriter, r *http.Request) {
-	var item models.NewsItem
+	var item models.News
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		log.Println(err)
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
