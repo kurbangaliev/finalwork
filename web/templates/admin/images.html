@@ -55,7 +55,10 @@
                 <a class="nav-link" href="/newsBrowser">Новости</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/managersBrowser">Руководители</a>
+                <a class="nav-link" href="/managerBrowser">Руководители</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/partnersBrowser">Партнеры</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/images">Изображения</a>
@@ -169,7 +172,25 @@
                 const img=document.createElement('img'); img.src='http://localhost:8081'+item.url; img.onclick=()=>showImage(img.src);
                 const nameDiv=document.createElement('div'); nameDiv.className='filename'; nameDiv.textContent=item.name;
                 const del=document.createElement('button'); del.className='delete-btn'; del.innerHTML='×';
-                del.onclick=async(e)=>{ e.stopPropagation(); try{ const resp=await fetch('http://localhost:8081/image/'+encodeURIComponent(item.name)+'?folder='+encodeURIComponent(currentFolder),{method:'DELETE'}); if(!resp.ok) throw new Error(); div.remove(); images=images.filter(i=>i.name!==item.name);}catch{alert('Не удалось удалить с сервера');} }
+                del.onclick=async(e)=>
+                {
+                    e.stopPropagation();
+                    try {
+                        const resp=await fetch(
+                                'http://localhost:8081/image/'+encodeURIComponent(item.name)+'?folder='+encodeURIComponent(currentFolder),
+                                {
+                                    method:'DELETE'
+                                }
+                            );
+                        if(!resp.ok)
+                            throw new Error();
+                        div.remove();
+                        images=images.filter(i=>i.name!==item.name);
+                    }
+                    catch{
+                        alert('Не удалось удалить с сервера');
+                    }
+                }
                 images.push({src:img.src,name:item.name,folder:currentFolder});
                 div.appendChild(img); div.appendChild(nameDiv); div.appendChild(del);
                 thumbContainer.appendChild(div);
