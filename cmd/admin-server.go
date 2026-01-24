@@ -31,7 +31,7 @@ func main() {
 
 	r.HandleFunc("/upload", handlers.UploadHandler).Methods("POST")
 	r.HandleFunc("/images", handlers.ImagesHandler).Methods("GET")
-	r.HandleFunc("/image/", handlers.DeleteHandler).Methods("DELETE")
+	r.HandleFunc("/image/{filename}", handlers.DeleteHandler).Methods("DELETE")
 	r.HandleFunc("/folders", handlers.FoldersHandler).Methods("GET")
 	r.HandleFunc("/news/", handlers.HandleAddNews).Methods("POST")
 	r.HandleFunc("/news/{id}", handlers.HandleEditNews).Methods("PUT")
