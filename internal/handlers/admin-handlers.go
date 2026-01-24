@@ -3,7 +3,6 @@ package handlers
 import (
 	"encoding/base64"
 	"encoding/json"
-	"finalwork/internal/db"
 	"finalwork/internal/models"
 	"finalwork/internal/utils"
 	"fmt"
@@ -69,10 +68,6 @@ func saveImage(img models.ImagePayload, folderPath string) error {
 	filename = fmt.Sprintf("%d_%s", time.Now().UnixNano(), filename)
 	path := filepath.Join(folderPath, filename)
 
-	err = db.SaveImage(data, filename, path, img.Folder)
-	if err != nil {
-		log.Printf("Erorr while saving image: %v\n", err)
-	}
 	return os.WriteFile(path, data, 0644)
 }
 
