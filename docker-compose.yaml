@@ -4,12 +4,12 @@ services:
     container_name: finalwork-app
     build:
       context: ./
-      dockerfile: Dockerfile # The name of the Dockerfile relative to the context path
-    image: finalwork/finalwork:latest # (Optional but recommended) Names the resulting ima
+      dockerfile: Dockerfile
+    image: finalwork/finalwork:latest
     environment:
       DB_HOST: "finalwork-postgres"
       DB_USER: "postgres"
-      DB_PASSWORD: "postgres"
+      DB_PASSWORD: ${DB_DEFAULT_PASSWORD}
       DB_NAME: "finalwork"
       DB_PORT: 5432
       SECRET_KEY: ${SECRET_KEY}
@@ -40,12 +40,12 @@ services:
 
   grafana:
     container_name: finalwork-grafana
-    image: grafana/grafana-enterprise # Use the official Grafana image
+    image: grafana/grafana-enterprise
     restart: unless-stopped
     ports:
-      - "3000:3000" # Expose Grafana on host port 3000
+      - "3000:3000"
     volumes:
-      - grafana-data:/var/lib/grafana # Persist data in a named volume
+      - grafana-data:/var/lib/grafana
     networks:
       - finalwork-network
 
@@ -55,7 +55,7 @@ services:
     environment:
       POSTGRES_DB: "postgres"
       POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_PASSWORD: ${DB_DEFAULT_PASSWORD}
       PGDATA: "/var/lib/postgresql/data/pgdata"
     ports:
       - "5432:5432"
@@ -82,7 +82,7 @@ services:
     image: dpage/pgadmin4:latest
     environment:
       PGADMIN_DEFAULT_EMAIL: "kurbangaliev@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "postgres"
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
       PGADMIN_CONFIG_SERVER_MODE: "False"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
