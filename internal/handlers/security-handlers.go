@@ -83,7 +83,8 @@ func JWTAuth(next http.Handler) http.Handler {
 
 		cookie, err := r.Cookie("access_token")
 		if err != nil {
-			http.Error(w, "unauthorized", http.StatusUnauthorized)
+			//http.Error(w, "unauthorized", http.StatusUnauthorized)
+			http.Redirect(w, r, "/login", http.StatusFound)
 			return
 		}
 
@@ -97,7 +98,8 @@ func JWTAuth(next http.Handler) http.Handler {
 		})
 
 		if err != nil || !token.Valid {
-			http.Error(w, "invalid token", http.StatusUnauthorized)
+			//http.Error(w, "invalid token", http.StatusUnauthorized)
+			http.Redirect(w, r, "/login", http.StatusFound)
 			return
 		}
 
