@@ -31,4 +31,5 @@ type User struct {
 	gorm.Model
 	Login    string `gorm:"size:255" json:"login"`
 	Password string `gorm:"size:255" json:"password"`
+	Role     string `gorm:"size:255" json:"role"`
 }

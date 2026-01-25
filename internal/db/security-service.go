@@ -85,6 +85,7 @@ func CreateDefaultUser() error {
 		adminUser := models.User{
 			Login:    "admin",
 			Password: "hqBWNunDWATHLyNavE+CEQ==",
+			Role:     "admin",
 		}
 		result = db.Create(&adminUser)
 		if result.Error != nil {
