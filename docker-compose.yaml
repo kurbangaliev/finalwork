@@ -12,7 +12,7 @@ services:
       DB_PASSWORD: "postgres"
       DB_NAME: "finalwork"
       DB_PORT: 5432
-      SECRET_KEY: "sk_live_6bnvkCiezBwE4KvqMDDPXwcO8Oef54dg"
+      SECRET_KEY: "you_can_add_on_here_secret_key"
     ports:
       - "8080:8080"
       - "8081:8081"
