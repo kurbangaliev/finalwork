@@ -240,8 +240,6 @@ networks:
 
 ## 7. CI/CD
 
-![CI/CD Workflow Diagram](web/assets/images/CI-CD-WorkflowDiagram.png)
-
 ```mermaid
 flowchart LR
     Dev[👨‍💻 Developer] -->|push| GitHub[📦 Repository]
@@ -273,3 +271,9 @@ flowchart LR
 * контейнеризацию и деплой в dev/prod
 * мониторинг и безопасность
 * масштабируемую архитектуру с возможностью расширения
+
+## 10. Запуск
+* Запуск проекта
+docker compose up -d
+* Остановка проекта
+docker compose down
