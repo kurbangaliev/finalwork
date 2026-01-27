@@ -73,6 +73,8 @@ sequenceDiagram
 
 **Dev Environment**
 
+![Alt text for the image](web/assets/images/Development Environment Setup Flowchart.png)
+
 ```mermaid
 flowchart LR
     Dev[👨‍💻 Developer] -->|git clone / git pull| Repo[📦 GitHub Repository]
