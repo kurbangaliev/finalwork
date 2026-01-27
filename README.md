@@ -58,18 +58,19 @@ flowchart TD
 
 ![User Login Sequence Diagram](web/assets/images/User-Login-Sequence.png)
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant B as Browser
-    participant A as Go Backend
+flowchart TD
+Browser[🌐 Браузер пользователя] -->|HTTP / HTTPS| Frontend[🎨 Web UI<br/>(HTML / CSS / JS)]
+Frontend -->|API requests| Backend[⚙️ Go Backend<br/>(net/http / mux)]
+Backend -->|Business logic| Internal[📦 internal пакеты]
+Backend -->|Config| Env[⚙️ .env]
+Backend -->|Metrics| Prometheus[📊 Prometheus]
+Backend -->|File upload| Storage[(🗂️ File Storage)]
+subgraph Docker
+Frontend
+Backend
+Prometheus
+end
 
-    U->>B: Ввод логина и пароля
-    B->>A: POST /login
-    A->>B: Set-Cookie (Auth Token)
-    B->>A: GET /news/
-    A->>B: 200 OK (данные)
-```
 
 ---
 
