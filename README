@@ -73,7 +73,7 @@ sequenceDiagram
 
 **Dev Environment**
 
-![Alt text for the image](web/assets/images/Development Environment Setup Flowchart.png)
+![Development Environment Setup Flowchart](web/assets/images/DevEnvSetupFlowchart.png)
 
 ```mermaid
 flowchart LR
