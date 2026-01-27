@@ -54,8 +54,6 @@ flowchart TD
 
 ### 3.2 Поток авторизации
 
-![User Login Sequence Diagram](web/assets/images/User-Login-Sequence.png)
-
 ```mermaid
 flowchart TD
 Browser[🌐 Браузер пользователя] -->|HTTP HTTPS| Frontend[🎨 Web UI<br/> HTML / CSS / JS]
@@ -77,8 +75,6 @@ end
 
 **Dev Environment**
 
-![Development Environment Setup Flowchart](web/assets/images/DevEnvSetupFlowchart.png)
-
 ```mermaid
 flowchart LR
     Dev[👨‍💻 Developer] -->|git clone / git pull| Repo[📦 GitHub Repository]
@@ -95,14 +91,12 @@ flowchart LR
 
 **Prod Environment**
 
-![Production Server Architecture](web/assets/images/ProdServerArchitecture.png)
-
 ```mermaid
 flowchart LR
-    User[🌍 Пользователь] -->|HTTPS| LB[🔀 Reverse Proxy / Load Balancer<br/>(Nginx)]
-    LB --> FrontendProd[🎨 Web UI<br/>(Static / Container)]
-    LB --> BackendProd[⚙️ Go Backend<br/>(Container)]
-    BackendProd --> StorageProd[(🗂️ Persistent Storage)]
+    User[🌍 Пользователь] -->|HTTPS| LB[🔀 Reverse Proxy / Load Balancer<br/> Nginx]
+    LB --> FrontendProd[🎨 Web UI<br/>Static / Container]
+    LB --> BackendProd[⚙️ Go Backend<br/>Container]
+    BackendProd --> StorageProd[🗂️ Persistent Storage]
     BackendProd --> PromProd[📊 Prometheus]
     subgraph Server[🖥️ Production Server / VM / Cloud]
         FrontendProd
