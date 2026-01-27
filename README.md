@@ -274,6 +274,10 @@ flowchart LR
 
 ## 10. Запуск
 * Запуск проекта
-docker compose up -d
+```console
+$ docker compose up -d
+```
 * Остановка проекта
-docker compose down
+```console
+$ docker compose down
+```
