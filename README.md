@@ -277,6 +277,9 @@ flowchart LR
 ```console
 $ docker compose up -d
 ```
+* Просмотр сайта по ссылке [http://localhost:8080/](http://localhost:8080/).
+* Аутентификация в панель администрирования [http://localhost:8080/login](http://localhost:8080/login).
+* Пароль по умолчанию для входа **admin/admin**
 * Остановка проекта
 ```console
 $ docker compose down
