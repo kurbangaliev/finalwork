@@ -33,6 +33,8 @@
 
 ### 3.1 Компоненты
 
+![Web Application Architecture Diagram](web/assets/images/Web-Application-Architecture-Diagram.png)
+
 ```mermaid
 flowchart TD
     Browser[🌐 Браузер пользователя] -->|HTTP / HTTPS| Frontend[🎨 Web UI<br/>(HTML / CSS / JS)]
@@ -53,6 +55,8 @@ flowchart TD
 ---
 
 ### 3.2 Поток авторизации
+
+![User Login Sequence Diagram](web/assets/images/User-Login-Sequence.png)
 
 ```mermaid
 sequenceDiagram
@@ -90,6 +94,8 @@ flowchart LR
 ```
 
 **Prod Environment**
+
+![Production Server Architecture](web/assets/images/ProdServerArchitecture.png)
 
 ```mermaid
 flowchart LR
@@ -238,7 +244,9 @@ networks:
 
 ---
 
-## 7. CI/CD (опционально)
+## 7. CI/CD
+
+![CI/CD Workflow Diagram](web/assets/images/CI-CD-WorkflowDiagram.png)
 
 ```mermaid
 flowchart LR
@@ -256,7 +264,7 @@ flowchart LR
 
 ## 8. Безопасность
 
-* Использование **HTTP-only cookies** или JWT
+* Использование **HTTP-only cookies** и JWT
 * Разделение конфигураций (`.env.dev` и `.env.prod`)
 * Reverse proxy с HTTPS
 * Ограничение доступа к `/metrics` и другим внутренним эндпоинтам
