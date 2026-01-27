@@ -60,7 +60,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-Browser[🌐 Браузер пользователя] -->|HTTP / HTTPS| Frontend[🎨 Web UI<br/>(HTML / CSS / JS)]
+Browser[🌐 Браузер пользователя] -->|HTTP HTTPS| Frontend[🎨 Web UI<br/>(HTML / CSS / JS)]
 Frontend -->|API requests| Backend[⚙️ Go Backend<br/>(net/http / mux)]
 Backend -->|Business logic| Internal[📦 internal пакеты]
 Backend -->|Config| Env[⚙️ .env]
@@ -137,7 +137,7 @@ http://localhost:8080
 **Пример запроса авторизации:**
 
 ```json
-POST /api/login
+POST /login
 {
   "login": "user",
   "password": "password"
