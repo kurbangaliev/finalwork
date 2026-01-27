@@ -33,8 +33,6 @@
 
 ### 3.1 Компоненты
 
-![Web Application Architecture Diagram](web/assets/images/Web-Application-Architecture-Diagram.png)
-
 ```mermaid
 flowchart TD
     Browser[🌐 Браузер пользователя] -->|HTTP / HTTPS| Frontend[🎨 Web UI HTML/CSS/JS]
