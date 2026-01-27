@@ -37,7 +37,7 @@
 
 ```mermaid
 flowchart TD
-    Browser[🌐 Браузер пользователя] -->|HTTP / HTTPS| Frontend[🎨 Web UI (HTML/CSS/JS)]
+    Browser[🌐 Браузер пользователя] -->|HTTP / HTTPS| Frontend[🎨 Web UI HTML/CSS/JS]
     Frontend -->|API requests| Backend[⚙️ Go Backend<br/>(net/http / mux)]
     Backend -->|Business logic| Internal[📦 internal пакеты]
     Backend -->|Config| Env[⚙️ .env]
