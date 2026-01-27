@@ -58,6 +58,7 @@ flowchart TD
 
 ![User Login Sequence Diagram](web/assets/images/User-Login-Sequence.png)
 
+```mermaid
 flowchart TD
 Browser[🌐 Браузер пользователя] -->|HTTP / HTTPS| Frontend[🎨 Web UI<br/>(HTML / CSS / JS)]
 Frontend -->|API requests| Backend[⚙️ Go Backend<br/>(net/http / mux)]
@@ -70,7 +71,7 @@ Frontend
 Backend
 Prometheus
 end
-
+```
 
 ---
 
