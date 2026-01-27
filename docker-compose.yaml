@@ -7,10 +7,10 @@ services:
       dockerfile: Dockerfile
     image: finalwork/finalwork:latest
     environment:
-      DB_HOST: "finalwork-postgres"
-      DB_USER: "postgres"
-      DB_PASSWORD: ${DB_DEFAULT_PASSWORD}
-      DB_NAME: "finalwork"
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
       DB_PORT: 5432
       SECRET_KEY: ${SECRET_KEY}
     ports:
@@ -50,12 +50,12 @@ services:
       - finalwork-network
 
   postgres:
-    container_name: finalwork-postgres
+    container_name: ${DB_HOST}
     image: postgres
     environment:
-      POSTGRES_DB: "postgres"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: ${DB_DEFAULT_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       PGDATA: "/var/lib/postgresql/data/pgdata"
     ports:
       - "5432:5432"
