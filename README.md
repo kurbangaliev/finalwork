@@ -273,14 +273,17 @@ flowchart LR
 * масштабируемую архитектуру с возможностью расширения
 
 ## 10. Запуск
-* Запуск проекта
+### Запуск проекта
 ```console
+$ git clone https://github.com/kurbangaliev/finalwork.git
+$ cd finalwork 
 $ docker compose up -d
 ```
 * Просмотр сайта по ссылке [http://localhost:8080/](http://localhost:8080/).
 * Аутентификация в панель администрирования [http://localhost:8080/login](http://localhost:8080/login).
 * Пароль по умолчанию для входа **admin/admin**
-* Остановка проекта
+
+### Остановка проекта
 ```console
 $ docker compose down
 ```
