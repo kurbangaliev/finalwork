@@ -14,19 +14,6 @@ import (
 
 /* =================== NEWS =================== */
 
-// HandleGetNews GET /news
-func HandleGetNews(w http.ResponseWriter, r *http.Request) {
-	newsList, err := db.SelectAll[models.News]()
-	if err != nil {
-		log.Println(err)
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(`{"error": "` + err.Error() + `"}`)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(newsList)
-}
-
 // HandleEditNews PUT /news/{id}
 func HandleEditNews(w http.ResponseWriter, r *http.Request) {
 	var item models.News

@@ -115,7 +115,12 @@
     async function deleteNews(id){
         if(!confirm('Удалить новость?')) return;
         try{
-            const res=await fetch('http://localhost:8081/news/'+id,{method:'DELETE'});
+            const res=await fetch('http://localhost:8081/news/'+id,{
+                method:'DELETE',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({id})
+            });
+
             if(!res.ok) throw new Error();
             loadNews();
         }catch{ alert('Ошибка при удалении'); }

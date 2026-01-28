@@ -2,6 +2,7 @@ package main
 
 import (
 	"finalwork/internal/handlers"
+	"finalwork/internal/models"
 	"log"
 	"net/http"
 	"os"
@@ -36,14 +37,19 @@ func main() {
 	r.HandleFunc("/image/{filename}", handlers.DeleteHandler).Methods("DELETE")
 	r.HandleFunc("/folders", handlers.FoldersHandler).Methods("GET")
 	//news handlers
-	r.HandleFunc("/news/", handlers.HandleAddNews).Methods("POST")
-	r.HandleFunc("/news/{id}", handlers.HandleEditNews).Methods("PUT")
-	r.HandleFunc("/news/", handlers.HandleGetNews).Methods("GET")
-	r.HandleFunc("/news/{id}", handlers.HandleDeleteNews).Methods("DELETE")
+	//r.HandleFunc("/news/", handlers.HandleAddNews).Methods("POST")
+	r.HandleFunc("/news/", handlers.HandleAddObject[models.News]).Methods("POST")
+	//r.HandleFunc("/news/{id}", handlers.HandleEditNews).Methods("PUT")
+	r.HandleFunc("/news/{id}", handlers.HandleEditObject[models.News]).Methods("PUT")
+	//r.HandleFunc("/news/", handlers.HandleGetNews).Methods("GET")
+	r.HandleFunc("/news/", handlers.HandleGetObjects[models.News]).Methods("GET")
+	//r.HandleFunc("/news/{id}", handlers.HandleDeleteNews).Methods("DELETE")
+	r.HandleFunc("/news/{id}", handlers.HandleDeleteObject[models.News]).Methods("DELETE")
 	//manager handlers
 	r.HandleFunc("/managers/", handlers.HandleAddManager).Methods("POST")
 	r.HandleFunc("/managers/{id}", handlers.HandleEditManagers).Methods("PUT")
-	r.HandleFunc("/managers/", handlers.HandleGetManagers).Methods("GET")
+	//r.HandleFunc("/managers/", handlers.HandleGetManagers).Methods("GET")
+	r.HandleFunc("/managers/", handlers.HandleGetObjects[models.Manager]).Methods("GET")
 	r.HandleFunc("/managers/{id}", handlers.HandleDeleteManager).Methods("DELETE")
 	//security handlers
 	r.HandleFunc("/login", handlers.HandleLogin).Methods("POST")

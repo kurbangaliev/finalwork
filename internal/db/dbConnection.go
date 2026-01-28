@@ -19,7 +19,7 @@ func DbConnection() (*gorm.DB, error) {
 
 	connectionString := fmt.Sprintf("host=%s dbname=%s user=%s password=%s port=%s sslmode=disable", dbHost, dbName, dbUser, dbPassword, dbPort)
 	if dbUser == "" || dbPassword == "" || dbHost == "" || dbName == "" {
-		connectionString = "host=localhost dbname=finalwork user=postgres password=postgres port=5432 sslmode=disable"
+		connectionString = "host=localhost dbname=postgres user=postgres password=postgres port=5432 sslmode=disable"
 	}
 
 	db, err := gorm.Open(postgres.Open(connectionString), &gorm.Config{})
