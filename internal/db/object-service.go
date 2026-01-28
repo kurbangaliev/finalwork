@@ -9,6 +9,13 @@ func SaveObject[T comparable](item T) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	result := db.Create(&item)
 	if result.Error != nil {
 		log.Println(result.Error)
@@ -23,6 +30,12 @@ func DeleteObject[T comparable](item T) error {
 		return err
 	}
 
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	result := db.Delete(&item)
 	if result.Error != nil {
 		log.Println(result.Error)
@@ -36,6 +49,12 @@ func UpdateObject[T comparable](item T) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
 
 	result := db.Updates(&item)
 	if result.Error != nil {

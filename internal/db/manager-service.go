@@ -13,6 +13,13 @@ func SaveManager(item models.Manager) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	result := db.Create(&item)
 	if result.Error != nil {
 		log.Println(result.Error)
@@ -26,6 +33,13 @@ func UpdateManager(item models.Manager) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	item.UpdatedAt = time.Now()
 	result := db.Updates(&item)
 	if result.Error != nil {
@@ -40,6 +54,12 @@ func DeleteManager(id uint) error {
 	if err != nil {
 		return err
 	}
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	manager := models.Manager{
 		Model: gorm.Model{
 			ID: id,

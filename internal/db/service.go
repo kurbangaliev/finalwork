@@ -12,6 +12,12 @@ func SelectAll[T comparable]() ([]T, error) {
 		log.Fatal(err)
 	}
 
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	result := db.Find(&items)
 	if result.Error != nil {
 		log.Fatal(result.Error)

@@ -37,6 +37,12 @@ func AutoMigrate() error {
 		log.Fatal(err)
 		return err
 	}
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	log.Println(db)
 	err = db.AutoMigrate(&models.Manager{})
 	if err != nil {

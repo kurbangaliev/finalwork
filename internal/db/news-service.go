@@ -13,6 +13,13 @@ func SaveNews(newsItem models.News) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	result := db.Create(&newsItem)
 	if result.Error != nil {
 		log.Println(result.Error)
@@ -26,6 +33,13 @@ func UpdateNews(newsItem models.News) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	newsItem.UpdatedAt = time.Now()
 	result := db.Updates(&newsItem)
 	if result.Error != nil {
@@ -40,6 +54,13 @@ func DeleteNews(id uint) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	news := models.News{
 		Model: gorm.Model{
 			ID: id,

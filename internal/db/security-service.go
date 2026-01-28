@@ -17,6 +17,12 @@ func SelectAllUsers() []models.User {
 		log.Fatal(err)
 	}
 
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	result := db.Find(&users)
 	if result.Error != nil {
 		log.Fatal(result.Error)
@@ -30,6 +36,13 @@ func SaveUser(user models.User) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	result := db.Create(&user)
 	if result.Error != nil {
 		log.Println(result.Error)
@@ -43,6 +56,13 @@ func UpdateUser(user models.User) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	user.UpdatedAt = time.Now()
 	result := db.Updates(&user)
 	if result.Error != nil {
@@ -57,6 +77,13 @@ func DeleteUser(id uint) error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	user := models.User{
 		Model: gorm.Model{
 			ID: id,
@@ -75,6 +102,12 @@ func CreateDefaultUser() error {
 	if err != nil {
 		return err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
 
 	var users []models.User
 	result := db.Find(&users, "login = ?", "admin")
@@ -100,6 +133,13 @@ func FindUserByLogin(login string) (*models.User, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
 	var users []models.User
 	result := db.Find(&users)
 	if result.Error != nil {
