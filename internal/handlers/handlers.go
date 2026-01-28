@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"finalwork/internal/db"
+	"finalwork/internal/models"
 	"fmt"
 	"html/template"
 	"log"
@@ -23,7 +24,12 @@ func ShowContacts(writer http.ResponseWriter, request *http.Request) {
 		fmt.Printf("Error parsing contacts.html: %v \n", err)
 	}
 
-	managers := db.SelectAllManagers()
+	//managers := db.SelectAllManagers()
+	managers, err := db.SelectAll[models.Manager]()
+	if err != nil {
+		http.Error(writer, "Error load managers", http.StatusInternalServerError)
+		log.Fatal(err)
+	}
 
 	err = tmpl.Execute(writer, managers)
 	if err != nil {
@@ -39,7 +45,12 @@ func ShowNews(writer http.ResponseWriter, request *http.Request) {
 		fmt.Printf("Error parsing news.html: %v \n", err)
 	}
 
-	news := db.SelectAllNews()
+	//news := db.SelectAllNews()
+	news, err := db.SelectAll[models.News]()
+	if err != nil {
+		http.Error(writer, "Error load news", http.StatusInternalServerError)
+		log.Fatal(err)
+	}
 
 	err = tmpl.Execute(writer, news)
 	if err != nil {
@@ -83,7 +94,8 @@ func ShowIndexPage(writer http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Error parsing index.html: %v \n", err)
 	}
 
-	news := db.SelectAllNews()
+	//	news := db.SelectAllNews()
+	news, _ := db.SelectAll[models.News]()
 
 	err = tmpl.Execute(writer, news)
 	if err != nil {

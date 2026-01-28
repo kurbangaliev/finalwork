@@ -15,7 +15,12 @@ import (
 
 // HandleGetManagers GET /managers
 func HandleGetManagers(w http.ResponseWriter, r *http.Request) {
-	managersList := db.SelectAllManagers()
+	managersList, err := db.SelectAll[models.Manager]()
+	if err != nil {
+		log.Println(err)
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(`{"error": "` + err.Error() + `"}`)
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(managersList)

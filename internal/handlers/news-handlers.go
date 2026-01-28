@@ -16,7 +16,12 @@ import (
 
 // HandleGetNews GET /news
 func HandleGetNews(w http.ResponseWriter, r *http.Request) {
-	newsList := db.SelectAllNews()
+	newsList, err := db.SelectAll[models.News]()
+	if err != nil {
+		log.Println(err)
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(`{"error": "` + err.Error() + `"}`)
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(newsList)

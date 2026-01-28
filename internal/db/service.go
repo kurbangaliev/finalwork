@@ -1,36 +1,21 @@
 package db
 
 import (
-	"finalwork/internal/models"
 	"log"
 )
 
-func SelectAllManagers() []models.Manager {
-	var managers []models.Manager
+func SelectAll[T comparable]() ([]T, error) {
+	var items []T
 
 	db, err := DbConnection()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	result := db.Find(&managers)
+	result := db.Find(&items)
 	if result.Error != nil {
 		log.Fatal(result.Error)
 	}
 
-	return managers
-}
-
-func SelectAllNews() []models.News {
-	var news []models.News
-	db, err := DbConnection()
-	if err != nil {
-		log.Fatal(err)
-	}
-	result := db.Order("created_at ASC").Find(&news)
-	if result.Error != nil {
-		log.Fatal(result.Error)
-	}
-
-	return news
+	return items, nil
 }
