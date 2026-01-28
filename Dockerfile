@@ -29,6 +29,7 @@ WORKDIR /app
 COPY --from=builder /app/* /app/
 COPY web/ /app/web/
 COPY scripts/start.sh .
+RUN chmod +x start.sh
 
 # Optional: Run as a non-root user for better security
 RUN groupadd -r appgroup && useradd -r -g appgroup appuser
