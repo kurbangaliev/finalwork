@@ -15,8 +15,8 @@ COPY . .
 
 # Build the application with CGO_ENABLED=0 to produce a static binary
 # and optional flags to strip debug information for a smaller size
-RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /app/server ./cmd/main.go
-RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /app/admin-server ./cmd/admin-server.go
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /app/frontend-server ./cmd/frontend-server.go
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /app/backend-server ./cmd/backend-server.go
 
 # Stage 2: Create a minimal production image
 FROM debian:bookworm-slim

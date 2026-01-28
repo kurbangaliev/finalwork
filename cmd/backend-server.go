@@ -57,7 +57,7 @@ func main() {
 	fileServer := http.FileServer(uploadPath)
 	r.PathPrefix(uploadPrefix).Handler(http.StripPrefix(uploadPrefix, fileServer)).Methods("GET")
 
-	log.Println("🚀 Server started on http://localhost:8081")
+	log.Println("🚀 Backend Server started on http://localhost:8081")
 
 	handler := c.Handler(r)
 	log.Fatal(http.ListenAndServe(":8081", handler))

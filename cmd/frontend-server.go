@@ -17,7 +17,7 @@ const (
 )
 
 func main() {
-	fmt.Println("Server is starting...")
+	fmt.Println("Frontend server is starting...")
 	fmt.Println("Database auto migrate...")
 	err := db.AutoMigrate()
 	if err != nil {
@@ -62,6 +62,6 @@ func main() {
 	protected.HandleFunc("/managerAdd", handlers.ManagerAddPage).Methods("GET")
 	protected.HandleFunc("/managerBrowser", handlers.ManagerBrowserPage).Methods("GET")
 
-	log.Println("🚀 Server started on http://localhost:8080")
+	log.Println("🚀 Frontend server started on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

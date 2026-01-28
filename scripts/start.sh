@@ -1,8 +1,8 @@
 #!/bin/bash
-# Start the first server
-./server &
-# Start the second server
-./admin-server &
+# Start the backend server
+./backend-server &
+# Start the frontend server
+./frontend-server &
 
 # Wait for any process to exit
 wait -n
