@@ -8,6 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Deprecated: SaveNews
 func SaveNews(newsItem models.News) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -28,6 +29,7 @@ func SaveNews(newsItem models.News) error {
 	return nil
 }
 
+// Deprecated: UpdateNews
 func UpdateNews(newsItem models.News) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -49,6 +51,7 @@ func UpdateNews(newsItem models.News) error {
 	return nil
 }
 
+// Deprecated: DeleteNews
 func DeleteNews(id uint) error {
 	db, err := DbConnection()
 	if err != nil {

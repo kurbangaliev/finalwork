@@ -13,7 +13,7 @@ import (
 
 /* =================== Managers =================== */
 
-// HandleEditManagers PUT /managers/{id}
+// Deprecated: HandleEditManagers PUT /managers/{id}
 func HandleEditManagers(w http.ResponseWriter, r *http.Request) {
 	var item models.Manager
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
@@ -30,7 +30,7 @@ func HandleEditManagers(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Manager updated"))
 }
 
-// HandleDeleteManager DELETE /managers/{id}
+// Deprecated: HandleDeleteManager DELETE /managers/{id}
 func HandleDeleteManager(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	strId := vars["id"]
@@ -50,7 +50,7 @@ func HandleDeleteManager(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("News deleted"))
 }
 
-// HandleAddManager POST /managers
+// Deprecated: HandleAddManager POST /managers
 func HandleAddManager(w http.ResponseWriter, r *http.Request) {
 	var item models.Manager
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {

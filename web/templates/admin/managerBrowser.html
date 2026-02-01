@@ -120,7 +120,13 @@
     async function deleteManager(id){
         if(!confirm('Удалить руководителя?')) return;
         try{
-            const res=await fetch('http://localhost:8081/managers/'+id,{method:'DELETE'});
+            const res=await fetch(
+                'http://localhost:8081/managers/'+id,{
+                    method:'DELETE',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({id})
+                }
+            );
             if(!res.ok) throw new Error();
             loadManagers();
         }catch{ alert('Ошибка при удалении'); }

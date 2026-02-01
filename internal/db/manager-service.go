@@ -8,6 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Deprecated: SaveManager
 func SaveManager(item models.Manager) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -28,6 +29,7 @@ func SaveManager(item models.Manager) error {
 	return nil
 }
 
+// Deprecated: UpdateManager
 func UpdateManager(item models.Manager) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -49,6 +51,7 @@ func UpdateManager(item models.Manager) error {
 	return nil
 }
 
+// Deprecated: DeleteManager
 func DeleteManager(id uint) error {
 	db, err := DbConnection()
 	if err != nil {

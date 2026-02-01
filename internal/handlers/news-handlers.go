@@ -14,7 +14,7 @@ import (
 
 /* =================== NEWS =================== */
 
-// HandleEditNews PUT /news/{id}
+// Deprecated: HandleEditNews PUT /news/{id}
 func HandleEditNews(w http.ResponseWriter, r *http.Request) {
 	var item models.News
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
@@ -30,7 +30,7 @@ func HandleEditNews(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("News updated"))
 }
 
-// HandleDeleteNews DELETE /news/{id}
+// Deprecated: HandleDeleteNews DELETE /news/{id}
 func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	strId := vars["id"]
@@ -50,7 +50,7 @@ func HandleDeleteNews(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("News deleted"))
 }
 
-// HandleAddNews POST /news
+// Deprecated: HandleAddNews POST /news
 func HandleAddNews(w http.ResponseWriter, r *http.Request) {
 	var item models.News
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
