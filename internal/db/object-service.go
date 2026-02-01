@@ -4,6 +4,30 @@ import (
 	"log"
 )
 
+// SelectAll - Загрузка списка объектов по передаваемому типу
+func SelectAll[T comparable]() ([]T, error) {
+	var items []T
+
+	db, err := DbConnection()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer sqlDB.Close()
+
+	result := db.Find(&items)
+	if result.Error != nil {
+		log.Fatal(result.Error)
+	}
+
+	return items, nil
+}
+
+// SaveObject - Сохранение объекта в базу данных
 func SaveObject[T comparable](item T) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -24,6 +48,7 @@ func SaveObject[T comparable](item T) error {
 	return nil
 }
 
+// DeleteObject - Удаление объекта из базы данных
 func DeleteObject[T comparable](item T) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -44,6 +69,7 @@ func DeleteObject[T comparable](item T) error {
 	return nil
 }
 
+// UpdateObject - Обновление объекта в базе данных
 func UpdateObject[T comparable](item T) error {
 	db, err := DbConnection()
 	if err != nil {

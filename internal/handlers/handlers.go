@@ -17,6 +17,7 @@ var HttpCounter = prometheus.NewCounterVec(prometheus.CounterOpts{
 	[]string{"path"},
 )
 
+// ShowContacts - Отображение страницы Контакты
 func ShowContacts(writer http.ResponseWriter, request *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": request.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/contacts.html")
@@ -38,6 +39,7 @@ func ShowContacts(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
+// ShowNews - отображение страницы Новости
 func ShowNews(writer http.ResponseWriter, request *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": request.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/news.html")
@@ -59,6 +61,7 @@ func ShowNews(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
+// ShowSustainableDevelopment Отображение страницы Устойчивое развитие
 func ShowSustainableDevelopment(writer http.ResponseWriter, request *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": request.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/sustainableDevelopment.html")
@@ -73,6 +76,7 @@ func ShowSustainableDevelopment(writer http.ResponseWriter, request *http.Reques
 	}
 }
 
+// ShowServicesPage Отображение страницы Услуги
 func ShowServicesPage(writer http.ResponseWriter, request *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": request.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/services.html")
@@ -87,6 +91,7 @@ func ShowServicesPage(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
+// ShowIndexPage Отображение главной стрнаницы
 func ShowIndexPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/index.html")
@@ -104,6 +109,7 @@ func ShowIndexPage(writer http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ShowImagesPage Отображение страницы Администрирование-Изображения
 func ShowImagesPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/admin/images.html")
@@ -118,6 +124,7 @@ func ShowImagesPage(writer http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// NewsAddPage Отображение страницы Администрирование-Создание новости
 func NewsAddPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/admin/newsAdd.html")
@@ -132,6 +139,7 @@ func NewsAddPage(writer http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// NewsBrowserPage Отображение страницы Администрирование-Новости
 func NewsBrowserPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/admin/newsBrowser.html")
@@ -146,6 +154,7 @@ func NewsBrowserPage(writer http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ManagerAddPage Отображение страницы Администрирование-Добавление руководителей
 func ManagerAddPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/admin/managerAdd.html")
@@ -160,6 +169,7 @@ func ManagerAddPage(writer http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ManagerBrowserPage Отображение страницы Администрирование-Руководители
 func ManagerBrowserPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/admin/managerBrowser.html")
@@ -174,6 +184,7 @@ func ManagerBrowserPage(writer http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ShowLoginPage Отображение страницы Аутентификация
 func ShowLoginPage(writer http.ResponseWriter, r *http.Request) {
 	HttpCounter.With(prometheus.Labels{"path": r.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/admin/auth.html")

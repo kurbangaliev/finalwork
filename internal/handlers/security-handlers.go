@@ -27,6 +27,7 @@ type contextKey string
 
 const UserClaimsKey contextKey = "userClaims"
 
+// generateJWT - Генерация токена JSON Web Token
 func generateJWT(login string) (string, error) {
 	claims := jwt.MapClaims{
 		"Username": login,
@@ -37,6 +38,7 @@ func generateJWT(login string) (string, error) {
 	return token.SignedString([]byte(GetSecretKey()))
 }
 
+// HandleLogin - Аутентификация пользователя
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	var loginRequest models.LoginRequest
 
@@ -78,6 +80,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(`{"status":"ok"}`))
 }
 
+// JWTAuth - Проверка страниц администрирования на безопасность
 func JWTAuth(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
@@ -107,6 +110,7 @@ func JWTAuth(next http.Handler) http.Handler {
 	})
 }
 
+// CORS - (Cross-Origin Resource Sharing) — механизм безопасности браузеров
 func CORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
@@ -124,6 +128,7 @@ func CORS(next http.Handler) http.Handler {
 	})
 }
 
+// HandlerLogout - Выход из системы администрирования. Сброс токенов аутентификации из браузера
 func HandlerLogout(w http.ResponseWriter, r *http.Request) {
 	log.Println("HandlerLogout")
 	http.SetCookie(w, &http.Cookie{

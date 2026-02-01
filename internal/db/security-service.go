@@ -9,6 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// SelectAllUsers - загрузка всех пользователей
 func SelectAllUsers() []models.User {
 	var users []models.User
 
@@ -31,6 +32,7 @@ func SelectAllUsers() []models.User {
 	return users
 }
 
+// SaveUser - Сохранение пользователя в базу данных
 func SaveUser(user models.User) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -51,6 +53,7 @@ func SaveUser(user models.User) error {
 	return nil
 }
 
+// UpdateUser - Обновление пользователя в базе данных
 func UpdateUser(user models.User) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -72,6 +75,7 @@ func UpdateUser(user models.User) error {
 	return nil
 }
 
+// DeleteUser - Удаление пользователя из базы данных
 func DeleteUser(id uint) error {
 	db, err := DbConnection()
 	if err != nil {
@@ -97,6 +101,7 @@ func DeleteUser(id uint) error {
 	return nil
 }
 
+// CreateDefaultUser - создание пользователя по умолчанию в базе данных при первом запуске системы
 func CreateDefaultUser() error {
 	db, err := DbConnection()
 	if err != nil {
@@ -128,6 +133,7 @@ func CreateDefaultUser() error {
 	return nil
 }
 
+// FindUserByLogin - поиск пользователя по имени пользователя
 func FindUserByLogin(login string) (*models.User, error) {
 	db, err := DbConnection()
 	if err != nil {

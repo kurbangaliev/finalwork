@@ -15,6 +15,7 @@ const (
 	uploadPrefix = "/uploads/"
 )
 
+// main Главная функция запуска сервера API backend-server
 func main() {
 	if err := os.MkdirAll(handlers.UploadDir, 0755); err != nil {
 		log.Fatal(err)

@@ -16,6 +16,7 @@ const (
 	staticDir = "/assets/"
 )
 
+// main Главная функция запуска web-сервера frontend-server
 func main() {
 	fmt.Println("Frontend server is starting...")
 	fmt.Println("Database auto migrate...")

@@ -4,6 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Manager - Модель руководителя
 type Manager struct {
 	gorm.Model
 	Name     string `gorm:"size:255" json:"name"`
@@ -15,6 +16,7 @@ type Manager struct {
 	Image    string `gorm:"size:255" json:"image"`
 }
 
+// News - Модель новости
 type News struct {
 	gorm.Model
 	Title   string `gorm:"type:text" json:"title"`
@@ -23,12 +25,14 @@ type News struct {
 	Image   string `gorm:"size:1024" json:"image"`
 }
 
+// Partner - модель партнера
 type Partner struct {
 	gorm.Model
 	Name  string `gorm:"size:255" json:"name"`
 	Image string `gorm:"size:255" json:"image"`
 }
 
+// User - Модель пользователя
 type User struct {
 	gorm.Model
 	Login    string `gorm:"size:255" json:"login"`

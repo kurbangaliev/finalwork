@@ -10,6 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// DbConnection Инициализация подключения к базе данных Postgresql
 func DbConnection() (*gorm.DB, error) {
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
@@ -31,6 +32,7 @@ func DbConnection() (*gorm.DB, error) {
 	return db, nil
 }
 
+// AutoMigrate - фукнция миграции объектов приложения в базу данных
 func AutoMigrate() error {
 	db, err := DbConnection()
 	if err != nil {
