@@ -460,22 +460,22 @@
             </div>
 
             <div class="news-slider">
-                {{range .}}
+                {{range $index, $element := .}}
                     <div class="item">
                         <div class="image">
-                            <img src="{{.Image}}" alt="{{.Title}}" style="height: 270px; overflow: hidden; img {
+                            <img src="{{$element.Image}}" alt="{{$element.Title}}" style="height: 270px; overflow: hidden; img {
                         height: 270px;
                         object-fit: contain;
                     }">
                         </div>
                         <div class="info">
                             <div class="date">
-                                {{.Date}}
+                                {{$element.Date}}
                             </div>
                             <div class="text">
-                                {{.Title}}
+                                {{$element.Title}}
                             </div>
-                            <a href="{{.Image}}" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                            <a href="/news/{{$index}}" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 {{end}}

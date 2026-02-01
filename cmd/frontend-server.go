@@ -42,7 +42,9 @@ func main() {
 	r.HandleFunc("/", handlers.ShowIndexPage).Methods("GET")
 	r.HandleFunc("/services", handlers.ShowServicesPage).Methods("GET")
 	r.HandleFunc("/sustainableDevelopment", handlers.ShowSustainableDevelopment).Methods("GET")
+	//	r.HandleFunc("/news", handlers.ShowNews).Methods("GET")
 	r.HandleFunc("/news", handlers.ShowNews).Methods("GET")
+	r.HandleFunc("/news/{id:[0-9]+}", handlers.ShowNews).Methods("GET")
 	r.HandleFunc("/contacts", handlers.ShowContacts).Methods("GET")
 
 	//Prometey handler

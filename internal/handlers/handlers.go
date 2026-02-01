@@ -7,7 +7,9 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
 
+	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -39,8 +41,17 @@ func ShowContacts(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
+type DataNews struct {
+	SelectedId int
+	AllNews    []models.News
+}
+
 // ShowNews - отображение страницы Новости
 func ShowNews(writer http.ResponseWriter, request *http.Request) {
+	vars := mux.Vars(request)
+	strId := vars["id"]
+	var selectedId int
+
 	HttpCounter.With(prometheus.Labels{"path": request.URL.Path}).Inc()
 	tmpl, err := template.ParseFiles("web/templates/news.html")
 	if err != nil {
@@ -54,7 +65,21 @@ func ShowNews(writer http.ResponseWriter, request *http.Request) {
 		log.Fatal(err)
 	}
 
-	err = tmpl.Execute(writer, news)
+	selectedId, err = strconv.Atoi(strId)
+	if err != nil {
+		selectedId = 0
+	}
+	if selectedId > len(news) {
+		selectedId = 0
+	}
+
+	var dataNews = DataNews{
+		SelectedId: selectedId,
+		AllNews:    news,
+	}
+	//log.Printf("dataNews=%v\n", dataNews)
+
+	err = tmpl.Execute(writer, dataNews)
 	if err != nil {
 		http.Error(writer, "Error rendering template", http.StatusInternalServerError)
 		log.Printf("Error executing template: %v", err)

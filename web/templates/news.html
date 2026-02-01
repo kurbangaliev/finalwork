@@ -104,29 +104,23 @@
 
   </div>
 </div>        	
-
       <section class="news-page">
         <div class="container">
-
           <div class="image">
-            <img src="https://www.darrail.com/storage/articles/October2024/USsRQRhKisIy1xdhbJPd.jpg" alt="V Евразийский форум по безопасности и цифровизации на транспорте ">
+              <img src="{{ (index .AllNews .SelectedId).Image }}" alt="{{ (index .AllNews .SelectedId).Title }}" style="width: 100%; overflow: hidden; img {
+                        height: 270px;
+                        object-fit: contain;
+                    }">
           </div>
           <div class="date">
-            08.10.2024
+              {{ (index .AllNews .SelectedId).Date }}
           </div>
           <div class="name">
-            V Евразийский форум по безопасности и цифровизации на транспорте 
+              {{ (index .AllNews .SelectedId).Title }}
           </div>
-          <div class="text">
-            <p>4 октября 2024 года в Алматы, на базе ALT университета имени Мухамеджана Тынышпаева, прошло важное отраслевое событие &mdash; V Евразийский форум по безопасности и цифровизации на транспорте, в рамках которого состоялась выставка компаний. В мероприятии приняли участие представители КТЖ, РЖД, производителей железнодорожной техники и оборудования, а также поставщики ИТ-решений.&nbsp;</p>
-<p>&nbsp;</p>
-<p>Компания DAR RAIL активно участвовала в мероприятии, где генеральный директор Ринат Дюсенов представил инновационную систему АСУП (Автоматизированная система управления перевозками) в рамках панельной сессии, посвященной цифровой трансформации железнодорожной отрасли. Эта система значительно улучшает эффективность управления, оптимизируя процессы и снижая затраты. Презентация вызвала живой интерес у участников, подчеркивая важность внедрения цифровых решений в современном железнодорожном транспорте.</p>
-<p>&nbsp;</p>
-<p>Кроме того, компания была представлена на выставочном стенде Ассоциации казахстанских грузовых железнодорожных перевозчиков. Там посетители могли ознакомиться с информацией о деятельности DAR RAIL и внедряемых ИТ-решениях, представленными в наглядной форме.&nbsp;</p>
-<p>&nbsp;</p>
-<p>Со стендом DAR RAIL ознакомились: заместитель председателя правления КТЖ Талгат Алдыбергенов, директор департамента безопасности движения КТЖ Марат Шакенов и заместитель генерального директора РЖД &mdash; директор департамента безопасности движения Шевкет Шайдуллин.</p>
-          </div>
-
+            <div class="text">
+                {{ (index .AllNews .SelectedId).Content }}
+            </div>
         </div>
       </section>
 
@@ -138,44 +132,26 @@
           
           <div class="news-slider">
 
-            {{range .}}
+            {{range $index, $element := .AllNews}}
             <div class="item">
               <div class="image">
-                <img src="{{.Image}}" alt="{{.Title}}" style="height: 270px; overflow: hidden; img {
+                <img src="{{$element.Image}}" alt="{{$element.Title}}" style="height: 270px; overflow: hidden; img {
                         height: 270px;
                         object-fit: contain;
                     }">
               </div>
               <div class="info">
                 <div class="date">
-                  {{.Date}}
+                  {{$element.Date}}
                 </div>
                 <div class="text">
-                  {{.Title}}
+                  {{$element.Title}}
                 </div>
-                <a href="{{.Image}}" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                <a href="/news/{{$index}}" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
             {{end}}
-            
           </div>
-<!--            <div class="item">-->
-<!--              <div class="image">-->
-<!--                <img src="https://www.darrail.com/storage/articles/October2025/4YenWejPl3T1cdRhF9Df.png" alt="DAR Rail отпраздновал День железнодорожника и отметил лучших сотрудников" style="height: 270px; overflow: hidden; img {-->
-<!--                height: 270px;-->
-<!--                object-fit: contain;-->
-<!--            }">-->
-<!--              </div>-->
-<!--              <div class="info">-->
-<!--                <div class="date">-->
-<!--                  01.08.2025-->
-<!--                </div>-->
-<!--                <div class="text">-->
-<!--                  DAR Rail отпраздновал День железнод...-->
-<!--                </div>-->
-<!--                <a href="/news/dar-rail-temirzholshylar-k-nin-atap-tip-zdik-yzmetkerlerin-marapattady" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>-->
-<!--              </div>-->
-<!--            </div>-->
           <div class="center">
             <div class="news-slider-dots"></div>
           </div>
@@ -275,5 +251,6 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-7LSENC4QL9');
-</script>    </body>
+</script>
+</body>
 </html>
