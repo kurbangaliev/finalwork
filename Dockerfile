@@ -31,10 +31,6 @@ COPY web/ /app/web/
 COPY scripts/start.sh .
 RUN chmod +x start.sh
 
-# Optional: Run as a non-root user for better security
-RUN groupadd -r appgroup && useradd -r -g appgroup appuser
-USER appuser
-
 # Expose the port your application listens on
 EXPOSE 8080
 EXPOSE 8081
