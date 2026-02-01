@@ -9,7 +9,7 @@ import (
 
 /* =================== Objects =================== */
 
-// HandleGetObjects GET /news
+// HandleGetObjects GET /news /managers
 func HandleGetObjects[T comparable](w http.ResponseWriter, r *http.Request) {
 	items, err := db.SelectAll[T]()
 	if err != nil {
@@ -22,7 +22,7 @@ func HandleGetObjects[T comparable](w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(items)
 }
 
-// HandleAddObject POST /news
+// HandleAddObject POST /news /managers
 func HandleAddObject[T comparable](w http.ResponseWriter, r *http.Request) {
 	var item T
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
@@ -50,7 +50,7 @@ func HandleAddObject[T comparable](w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("News saved"))
 }
 
-// HandleEditObject PUT /news/{id}
+// HandleEditObject PUT /news/{id} /managers/{id}
 func HandleEditObject[T comparable](w http.ResponseWriter, r *http.Request) {
 	var item T
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
@@ -66,7 +66,7 @@ func HandleEditObject[T comparable](w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("News updated"))
 }
 
-// HandleDeleteObject DELETE /news/{id}
+// HandleDeleteObject DELETE /news/{id} /managers/{id}
 func HandleDeleteObject[T comparable](w http.ResponseWriter, r *http.Request) {
 	var item T
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
