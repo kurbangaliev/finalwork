@@ -41,6 +41,7 @@ func main() {
 	r.HandleFunc("/news/", handlers.HandleAddObject[models.News]).Methods("POST")
 	r.HandleFunc("/news/{id}", handlers.HandleEditObject[models.News]).Methods("PUT")
 	r.HandleFunc("/news/", handlers.HandleGetObjects[models.News]).Methods("GET")
+	r.HandleFunc("/news/{id}", handlers.HandleGetObject[models.News]).Methods("GET")
 	r.HandleFunc("/news/{id}", handlers.HandleDeleteObject[models.News]).Methods("DELETE")
 	//manager handlers
 	r.HandleFunc("/managers/", handlers.HandleAddObject[models.Manager]).Methods("POST")

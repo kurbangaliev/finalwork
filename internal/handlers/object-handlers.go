@@ -5,6 +5,9 @@ import (
 	"finalwork/internal/db"
 	"log"
 	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 /* =================== Objects =================== */
@@ -20,6 +23,35 @@ func HandleGetObjects[T comparable](w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(items)
+}
+
+// HandleGetObject GET /news/{id}
+func HandleGetObject[T comparable](w http.ResponseWriter, r *http.Request) {
+	var item T
+
+	vars := mux.Vars(r)
+	strId := vars["id"]
+	_, err := strconv.Atoi(strId)
+	if err != nil {
+		http.Error(w, "Invalid id", http.StatusBadRequest)
+		return
+	}
+
+	strBody := `{"id": ` + strId + `}`
+	if err = json.Unmarshal([]byte(strBody), &item); err != nil {
+		log.Printf("Get Item: %s", strBody)
+		http.Error(w, "Invalid JSON. "+string(strBody), http.StatusBadRequest)
+		return
+	}
+
+	log.Printf("Get Item: %v\n", item)
+	item, err = db.Select[T](item)
+	if err != nil {
+		http.Error(w, "Failed to get item", http.StatusInternalServerError)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(item)
 }
 
 // HandleAddObject POST /news /managers
