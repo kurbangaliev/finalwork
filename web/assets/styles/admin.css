@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background: #bfbbbb;
-    color:#fff;
+    color: #000000;
     margin:0;
     padding:0;
     background-color: #bfbbbb;
@@ -78,4 +78,12 @@ table tr:nth-child(even) td {
     table th, table td {
         padding: 12px;
     }
+}
+.zoom-image {
+    width: 26px; /* Исходный размер */
+    transition: transform 0.3s ease; /* Плавность */
+}
+
+.zoom-image:hover {
+    transform: scale(1.2); /* Увеличение на 20% */
 }

@@ -13,7 +13,7 @@
 <header class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand">Администрирование руководетелей</a>
-        <a class="nav-link" href="/managerAdd"><img src="assets/icons/add-square.svg"  width="32" height="32"/></a>
+        <a class="nav-link" href="/managerAdd"><img class="zoom-image" src="assets/icons/add-square.svg"  width="32" height="32"/></a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
@@ -33,7 +33,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout" onclick="logout(); return false;">
-                        <img src="assets/icons/logout.svg"  width="32" height="32"/>
+                        <img class="zoom-image" src="assets/icons/logout.svg"  width="32" height="32"/>
                     </a>
                 </li>
             </ul>
@@ -48,6 +48,31 @@
     <div class="modal-content">
         <button class="close-btn" id="closeModal">×</button>
         <div id="modalThumbs"></div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Удаление</strong>
+            <small>Сейчас</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Руководитель успешно удален.
+        </div>
+    </div>
+    <div id="liveToastUpdate" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Обновление</strong>
+            <small>Сейчас</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id="toast-body" class="toast-body">
+            Руководитель успешно обновлен.
+        </div>
     </div>
 </div>
 
@@ -82,9 +107,13 @@
 
                 const saveBtn=document.createElement('button'); saveBtn.className='btn btn-outline-primary'; saveBtn.textContent='Сохранить';
                 saveBtn.onclick=()=>saveManager(item.ID,name.value,jobTitle.value,address.value,phone.value,email.value,schedule.value,currentEditImage||item.Image);
+                const saveImg=document.createElement('img'); saveImg.className='zoom-image'; saveImg.src='assets/icons/save.svg';
+                saveBtn.appendChild(saveImg);
 
                 const deleteBtn=document.createElement('button'); deleteBtn.className='btn btn-outline-danger'; deleteBtn.textContent='Удалить';
                 deleteBtn.onclick=()=>deleteManager(item.ID);
+                const deleteImg=document.createElement('img'); deleteImg.className='zoom-image'; deleteImg.src='assets/icons/delete.svg';
+                deleteBtn.appendChild(deleteImg);
 
                 contentDiv.appendChild(name);
                 contentDiv.appendChild(jobTitle);
@@ -114,7 +143,8 @@
                 throw new Error(message);
             }
             currentEditImage='';
-            loadManagers();
+            await showToast('liveToastUpdate');
+            await loadManagers();
         }catch(error)
         {
             console.error('Fetch error:', error);
@@ -134,7 +164,8 @@
                 }
             );
             if(!res.ok) throw new Error();
-            loadManagers();
+            await showToast('liveToast');
+            await loadManagers();
         }catch{ alert('Ошибка при удалении'); }
     }
 

@@ -20,3 +20,16 @@ async function authFetch(url, options = {}) {
 
     return response;
 }
+
+async function showToast(toastId){
+    const toastLiveExample = document.getElementById(toastId);
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    toastBootstrap.show();
+}
+
+async function showToastMessage(toastId, message){
+    const toastLiveExample = document.getElementById(toastId);
+    const toastBody = document.getElementById('toast-body'); toastBody.textContent = message;
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    toastBootstrap.show();
+}
