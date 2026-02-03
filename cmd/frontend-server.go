@@ -30,8 +30,8 @@ func main() {
 	}
 
 	fmt.Println("Server handling requests...")
-	r := mux.NewRouter()
-	//	r.Use(handlers.CORS)
+	router := mux.NewRouter()
+	//	router.Use(handlers.CORS)
 
 	staticPath := http.Dir("./web/assets")
 	fs := http.FileServer(staticPath)
@@ -39,24 +39,24 @@ func main() {
 	prometheus.MustRegister(handlers.HttpCounter)
 
 	// Public Routes
-	r.HandleFunc("/", handlers.ShowIndexPage).Methods("GET")
-	r.HandleFunc("/services", handlers.ShowServicesPage).Methods("GET")
-	r.HandleFunc("/sustainableDevelopment", handlers.ShowSustainableDevelopment).Methods("GET")
-	//	r.HandleFunc("/news", handlers.ShowNews).Methods("GET")
-	r.HandleFunc("/news", handlers.ShowNews).Methods("GET")
-	r.HandleFunc("/news/{id:[0-9]+}", handlers.ShowNews).Methods("GET")
-	r.HandleFunc("/contacts", handlers.ShowContacts).Methods("GET")
+	router.HandleFunc("/", handlers.ShowIndexPage).Methods("GET")
+	router.HandleFunc("/services", handlers.ShowServicesPage).Methods("GET")
+	router.HandleFunc("/sustainableDevelopment", handlers.ShowSustainableDevelopment).Methods("GET")
+	//	router.HandleFunc("/news", handlers.ShowNews).Methods("GET")
+	router.HandleFunc("/news", handlers.ShowNews).Methods("GET")
+	router.HandleFunc("/news/{id:[0-9]+}", handlers.ShowNews).Methods("GET")
+	router.HandleFunc("/contacts", handlers.ShowContacts).Methods("GET")
 
-	//Prometey handler
-	r.Handle("/metrics", promhttp.Handler())
-	r.PathPrefix(staticDir).Handler(http.StripPrefix(staticDir, fs)).Methods("GET")
+	//Prometheus handler
+	router.Handle("/metrics", promhttp.Handler())
+	router.PathPrefix(staticDir).Handler(http.StripPrefix(staticDir, fs)).Methods("GET")
 
 	// Authentification
-	r.HandleFunc("/login", handlers.ShowLoginPage).Methods("GET")
-	r.HandleFunc("/logout", handlers.HandlerLogout).Methods("POST")
+	router.HandleFunc("/login", handlers.ShowLoginPage).Methods("GET")
+	router.HandleFunc("/logout", handlers.HandlerLogout).Methods("POST")
 
 	// Private Routes
-	protected := r.PathPrefix("/").Subrouter()
+	protected := router.PathPrefix("/").Subrouter()
 	protected.Use(handlers.JWTAuth)
 	// Admin page handlers
 	protected.HandleFunc("/images", handlers.ShowImagesPage).Methods("GET")
@@ -66,5 +66,5 @@ func main() {
 	protected.HandleFunc("/managerBrowser", handlers.ManagerBrowserPage).Methods("GET")
 
 	log.Println("🚀 Frontend server started on http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
