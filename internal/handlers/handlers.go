@@ -11,6 +11,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus"
+	"gorm.io/gorm"
 )
 
 var HttpCounter = prometheus.NewCounterVec(prometheus.CounterOpts{
@@ -44,6 +45,7 @@ func ShowContacts(writer http.ResponseWriter, request *http.Request) {
 type DataNews struct {
 	SelectedId int
 	AllNews    []models.News
+	Selected   models.News
 }
 
 // ShowNews - отображение страницы Новости
@@ -58,7 +60,6 @@ func ShowNews(writer http.ResponseWriter, request *http.Request) {
 		fmt.Printf("Error parsing news.html: %v \n", err)
 	}
 
-	//news := db.SelectAllNews()
 	news, err := db.SelectAll[models.News]()
 	if err != nil {
 		http.Error(writer, "Error load news", http.StatusInternalServerError)
@@ -73,9 +74,18 @@ func ShowNews(writer http.ResponseWriter, request *http.Request) {
 		selectedId = 0
 	}
 
+	var selectedNews = models.News{
+		Model: gorm.Model{
+			ID: uint(selectedId),
+		},
+	}
+	if selectedNews, err = db.Select[models.News](selectedNews); err != nil {
+		http.Error(writer, "Error load news", http.StatusInternalServerError)
+	}
+
 	var dataNews = DataNews{
-		SelectedId: selectedId,
-		AllNews:    news,
+		AllNews:  news,
+		Selected: selectedNews,
 	}
 	//log.Printf("dataNews=%v\n", dataNews)
 
