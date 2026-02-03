@@ -102,7 +102,7 @@
                 const date=document.createElement('input'); date.className='form-control'; date.type='date'; date.value=item.date.split('T')[0];
                 const text=document.createElement('textarea'); text.className='form-control'; text.value=item.content;
 
-                // const id=document.createElement('input'); id.value=item.ID; id.disabled=true;
+                const id=document.createElement('input'); id.value=item.ID; id.disabled=true;
                  const divButtons=document.createElement('div'); divButtons.className='d-grid gap-2 d-md-block';
                 const saveBtn=document.createElement('button'); saveBtn.className='btn btn-outline-primary'; saveBtn.textContent='Сохранить ';
                 saveBtn.onclick=()=>saveNews(item.ID,title.value,text.value,date.value,currentEditImage||item.image);
@@ -119,7 +119,7 @@
                 contentDiv.appendChild(title);
                 contentDiv.appendChild(date);
                 contentDiv.appendChild(text);
-                // contentDiv.appendChild(id);
+                contentDiv.appendChild(id);
                 // contentDiv.appendChild(saveBtn);
                 // contentDiv.appendChild(deleteBtn);
                 contentDiv.appendChild(divButtons);

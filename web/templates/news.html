@@ -107,7 +107,7 @@
       <section class="news-page">
         <div class="container">
           <div class="image">
-              <img src="{{ (index .AllNews .SelectedId).Image }}" alt="{{ (index .AllNews .SelectedId).Title }}" style="width: 100%; overflow: hidden; img {
+              <img src="{{ .Selected.Image }}" alt="{{ .Selected.Title }}" style="width: 100%; overflow: hidden; img {
                         height: 270px;
                         object-fit: contain;
                     }">
@@ -147,7 +147,7 @@
                 <div class="text">
                   {{$element.Title}}
                 </div>
-                <a href="/news/{{$index}}" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
+                <a href="/news/{{$element.ID}}" class="arrow-link">Читать <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
             {{end}}
