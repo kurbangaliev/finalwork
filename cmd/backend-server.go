@@ -21,7 +21,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	c := cors.New(cors.Options{
+	//Cross-Origin Resource Sharing
+	corsHandler := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:8080"},
 		AllowCredentials: true,
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
@@ -30,7 +31,6 @@ func main() {
 	})
 
 	r := mux.NewRouter()
-	//r.Use(handlers.CORS)
 
 	//images handlers
 	r.HandleFunc("/upload", handlers.UploadHandler).Methods("POST")
@@ -56,6 +56,6 @@ func main() {
 
 	log.Println("🚀 Backend Server started on http://localhost:8081")
 
-	handler := c.Handler(r)
+	handler := corsHandler.Handler(r)
 	log.Fatal(http.ListenAndServe(":8081", handler))
 }
