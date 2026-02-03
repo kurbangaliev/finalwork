@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"finalwork/internal/db"
+	"finalwork/internal/utils"
 	"log"
 	"net/http"
 	"strconv"
@@ -31,18 +32,13 @@ func HandleGetObject[T comparable](w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	strId := vars["id"]
-	_, err := strconv.Atoi(strId)
+	id, err := strconv.Atoi(strId)
 	if err != nil {
 		http.Error(w, "Invalid id", http.StatusBadRequest)
 		return
 	}
 
-	strBody := `{"id": ` + strId + `}`
-	if err = json.Unmarshal([]byte(strBody), &item); err != nil {
-		log.Printf("Get Item: %s", strBody)
-		http.Error(w, "Invalid JSON. "+string(strBody), http.StatusBadRequest)
-		return
-	}
+	utils.SetField(&item, "ID", uint(id))
 
 	log.Printf("Get Item: %v\n", item)
 	item, err = db.Select[T](item)
