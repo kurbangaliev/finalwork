@@ -95,8 +95,30 @@ graph TD
     Prometheus --> PromUI
     
     Prometheus --> Grafana
-
 ```
+**Docker / Docker Compose**
+```mermaid
+graph TD
+    subgraph DockerHost[Docker Host]
+        Backend[Backend Service Go]
+        Frontend[Frontend Web Server (Nginx)]
+        Database[(PostgreSQL)]
+        Prometheus[Prometheus]
+    end
+
+    User[User / Browser]
+
+    User -->|HTTP| Frontend
+    Frontend -->|HTTP/REST| Backend
+    Backend -->|SQL| Database
+    Backend -->|Metrics| Prometheus
+
+    %% Опционально можно добавить volumes / networks
+    Backend -.->|Docker Network| Frontend
+    Backend -.->|Docker Network| Database
+    Prometheus -.->|Docker Network| Backend
+```
+
 ---
 
 ## 3. Архитектура системы
