@@ -31,7 +31,7 @@
 graph TD
 Client[Web Client / Browser]
 
-    subgraph Backend[Backend Service (Go)]
+    subgraph Backend[Backend Service Go]
         Router[HTTP Router<br/>net/http]
         Handlers[REST Handlers]
         Services[Business Logic<br/>Services]
