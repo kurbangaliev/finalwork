@@ -74,6 +74,23 @@ graph TD
     Backend -->|Response| ApiClient
     ApiClient --> Scripts
     Scripts --> UI
+```
+**Monitoring**
+```mermaid
+graph TD
+    subgraph Backend[Backend Service Go]
+        App[Application Logic]
+        Metrics[Metrics Endpoint<br/>/metrics]
+    end
+
+    Prometheus[Prometheus Server]
+
+    PromUI[Prometheus Web UI]
+
+    Prometheus -->|HTTP scrape| Metrics
+    Metrics --> App
+
+    Prometheus --> PromUI
 
 ```
 ---
