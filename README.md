@@ -367,6 +367,51 @@ K --> L[Сбор метрик и наблюдаемость]
 * Reverse proxy с HTTPS
 * Ограничение доступа к `/metrics` и другим внутренним эндпоинтам
 
+```mermaid
+graph TD
+User[User / Browser]
+
+    subgraph Frontend[Frontend Browser]
+        UI[HTML / CSS / JS]
+        SecureCookies[JWT / HttpOnly Cookies]
+        CSRF[CSRF Protection]
+        XSS[Input Sanitization / Escaping]
+    end
+
+    subgraph Backend[Backend Service Go]
+        RESTAPI[REST API]
+        Auth[Authentication / Authorization]
+        Validation[Input Validation]
+        HTTPS[HTTPS / SSL]
+        Logging[Secure Logging & Error Handling]
+    end
+
+    subgraph Infrastructure[Docker & DB]
+        DockerNet[Docker Private Network]
+        DB[(PostgreSQL)]
+        Volumes[Persistent Volumes]
+        Images[Verified Docker Images]
+        Prometheus[Prometheus Monitoring]
+    end
+
+    User -->|Interaction| UI
+    UI --> SecureCookies
+    UI --> CSRF
+    UI --> XSS
+    UI -->|HTTP/HTTPS| RESTAPI
+
+    RESTAPI --> Auth
+    RESTAPI --> Validation
+    RESTAPI --> HTTPS
+    RESTAPI --> Logging
+    RESTAPI -->|SQL Queries| DB
+
+    RESTAPI -->|Metrics| Prometheus
+    DB --> Volumes
+    Backend --> DockerNet
+    Prometheus --> DockerNet
+    Backend --> Images
+```
 ---
 
 ## 9. Заключение
