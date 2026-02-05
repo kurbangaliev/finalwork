@@ -101,7 +101,7 @@ graph TD
 graph TD
     subgraph DockerHost[Docker Host]
         Backend[Backend Service Go]
-        Frontend[Frontend Web Server (Nginx)]
+        Frontend[Frontend Web Server Nginx]
         Database[(PostgreSQL)]
         Prometheus[Prometheus]
     end
