@@ -10,6 +10,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -20,6 +21,7 @@ func TestAuthUser(t *testing.T) {
 		contentType      string
 		responseValid    bool
 		responseContains string
+		requestCookie    bool
 	}
 
 	type requestBody struct {
@@ -43,6 +45,7 @@ func TestAuthUser(t *testing.T) {
 				contentType:      "application/json; charset=utf-8",
 				responseValid:    false,
 				responseContains: "ok",
+				requestCookie:    true,
 			},
 		},
 		{
@@ -125,6 +128,27 @@ func TestAuthUser(t *testing.T) {
 			}
 			assert.Contains(t, string(resBody), tt.want.responseContains,
 				"Response should contain email field")
+			if tt.want.requestCookie {
+
+				cookies := writer.Result().Cookies()
+				if len(cookies) == 0 || cookies[0].Name != "access_token" {
+					t.Errorf("Exptected cookie 'access_token', got %v", cookies)
+					assert.FailNow(t, "Cookie should exist")
+				}
+				tokenStr := cookies[0].Value
+				token, err := jwt.Parse(tokenStr, func(t *jwt.Token) (interface{}, error) {
+					if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
+
+						return nil, jwt.ErrSignatureInvalid
+					}
+					return handlers.GetSecretKey(), nil
+				})
+
+				if err != nil || !token.Valid {
+					assert.FailNow(t, "Token should exist")
+				}
+			}
+
 		})
 	}
 }
