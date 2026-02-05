@@ -8,11 +8,32 @@ on:
 
 jobs:
 
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag denislam/finalwork:$(date +%s)
+      run: docker build . --file Dockerfile --tag finalwork/finalwork:latest
+
+    - name: Build the Docker Compose stack
+      run: docker compose -f docker-compose.yaml up -d --build
+
+    - name: Check running containers (optional)
+      run: docker ps -a
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.25' # Specify the Go version you want to use
+
+    - name: Download dependencies
+      run: go mod tidy # Installs all dependencies
+
+    - name: Run tests
+      run: go test -v ./... # Executes all tests in all packages with verbose output
+
+    - name: Clean up (post-hook, optional, but a good practice)
+      if: always()
+      run: docker compose down
