@@ -27,6 +27,7 @@
 * **Docker / Docker Compose** — инфраструктура для развёртывания и тестирования.
 * **Reverse Proxy** — Nginx для маршрутизации и HTTPS в production.
 
+**Backend**
 ```mermaid
 graph TD
 Client[Web Client / Browser]
@@ -50,7 +51,31 @@ Client[Web Client / Browser]
 
     Prometheus -->|scrape| Metrics
 ```
+**Frontend**
+```mermaid
+graph TD
+    User[User]
 
+    subgraph Browser[Web Browser]
+        UI[HTML Pages]
+        Styles[CSS Styles]
+        Scripts[JavaScript Logic]
+        ApiClient[API Client<br/>fetch / XMLHttpRequest]
+    end
+
+    Backend[Backend REST API]
+
+    User -->|interaction| UI
+    UI --> Scripts
+    Styles --> UI
+
+    Scripts --> ApiClient
+    ApiClient -->|HTTP/JSON| Backend
+    Backend -->|Response| ApiClient
+    ApiClient --> Scripts
+    Scripts --> UI
+
+```
 ---
 
 ## 3. Архитектура системы
