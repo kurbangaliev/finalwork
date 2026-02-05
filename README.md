@@ -86,11 +86,15 @@ graph TD
     Prometheus[Prometheus Server]
 
     PromUI[Prometheus Web UI]
+    
+    Grafana[Grafana Web UI]
 
     Prometheus -->|HTTP scrape| Metrics
     Metrics --> App
 
     Prometheus --> PromUI
+    
+    Prometheus --> Grafana
 
 ```
 ---
