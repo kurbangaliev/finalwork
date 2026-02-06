@@ -68,10 +68,10 @@ jobs:
       id: meta
       env:
         IMAGE_TAG: ${{ env.IMAGE_TAG }}
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       uses: docker/metadata-action@v5 # Use the latest version
       with:
-        images: |
-          $ECR_REGISTRY/$ECR_REPOSITORY.$IMAGE_TAG # Replace with your image name (e.g., ghcr.io/myuser/myrepo)
+        images: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         tags: |
           type=raw,value=latest
           # Add a tag with the current date in YYYYMMDD format
