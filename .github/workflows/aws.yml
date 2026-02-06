@@ -71,7 +71,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       uses: docker/metadata-action@v5 # Use the latest version
       with:
-        images: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+        images: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:${{ secrets.IMAGE_TAG }}
         tags: |
           type=raw,value=latest
           # Add a tag with the current date in YYYYMMDD format
