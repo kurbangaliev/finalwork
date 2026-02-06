@@ -66,26 +66,20 @@ jobs:
 
     - name: Docker meta
       id: meta
-      uses: docker/metadata-action@v5
+      uses: docker/metadata-action@v5 # Use the latest version
       with:
-        # list of Docker images to use as base name for tags
         images: |
-          denislam/finalwork
-        # generate Docker tags based on the following events/attributes
+          denislam/finalwork # Replace with your image name (e.g., ghcr.io/myuser/myrepo)
         tags: |
-          type=schedule
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
-          type=sha      
+          type=raw,value=latest
+          # Add a tag with the current date in YYYYMMDD format
+          type=raw,value={{date 'YYYYMMDD'}}  
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ secrets.IMAGE_TAG }} . ${{ steps.meta.outputs.tags }}
+        IMAGE_TAG: ${{ steps.meta.outputs.tags }}
       run: |
         # Build a docker container and
         # push it to ECR so that it can
