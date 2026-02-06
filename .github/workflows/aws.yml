@@ -66,26 +66,35 @@ jobs:
 
     - name: Docker meta
       id: meta
+      env:
+        IMAGE_TAG: ${{ env.IMAGE_TAG }}
       uses: docker/metadata-action@v5 # Use the latest version
       with:
         images: |
-          denislam/finalwork # Replace with your image name (e.g., ghcr.io/myuser/myrepo)
+          $ECR_REGISTRY/$ECR_REPOSITORY.$IMAGE_TAG # Replace with your image name (e.g., ghcr.io/myuser/myrepo)
         tags: |
           type=raw,value=latest
           # Add a tag with the current date in YYYYMMDD format
           type=raw,value={{date 'YYYYMMDD'}}  
 
-    - name: Build, tag, and push image to Amazon ECR
-      id: build-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
-        IMAGE_LABEL: ${{ steps.docker_tags.outputs.tags }}
-      run: |
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+          
+#    - name: Build, tag, and push image to Amazon ECR
+#      id: build-image
+#      env:
+#        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+#        IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
+#      run: |
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build --label "build-date=$(date)" -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . 
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+#        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . 
+#        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+#        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
