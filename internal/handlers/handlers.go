@@ -46,9 +46,6 @@ func SelectDataNews(vars map[string]string) (any, error) {
 	if err != nil {
 		selectedId = 0
 	}
-	if selectedId > len(news) {
-		selectedId = 0
-	}
 
 	var selectedNews = models.News{
 		Model: gorm.Model{
